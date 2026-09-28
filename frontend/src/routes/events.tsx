@@ -57,8 +57,8 @@ function CarvedBackdrop({ tone }: { tone: "gold" | "dark" }) {
   const opacity = tone === "gold" ? "opacity-[0.10]" : "opacity-[0.14]";
   return (
     <>
-      <img src={mandala} alt="" aria-hidden className={`pointer-events-none absolute -left-40 -top-32 w-[520px] ${opacity} animate-spin-slow`} />
-      <img src={mandala} alt="" aria-hidden className={`pointer-events-none absolute -right-40 -bottom-32 w-[520px] ${opacity} animate-spin-slow`} style={{ animationDirection: "reverse" }} />
+      <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className={`pointer-events-none absolute -left-40 -top-32 w-[520px] ${opacity} animate-spin-slow`} />
+      <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className={`pointer-events-none absolute -right-40 -bottom-32 w-[520px] ${opacity} animate-spin-slow`} style={{ animationDirection: "reverse" }} />
     </>
   );
 }

@@ -32,9 +32,9 @@ export function Footer() {
   const minChargeActive = useSiteToggle("min-charge-notice");
   return (
     <footer className="relative overflow-hidden bg-palace border-t border-gold/20">
-      <img src={mandala} alt="" aria-hidden
+      <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async"
         className="pointer-events-none absolute -left-40 -bottom-40 w-[520px] opacity-[0.06] animate-spin-slow" />
-      <img src={mandala} alt="" aria-hidden
+      <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async"
         className="pointer-events-none absolute -right-40 -top-40 w-[400px] opacity-[0.04] animate-spin-slow" style={{ animationDirection: "reverse" }} />
 
       {/* Main grid */}
@@ -42,7 +42,7 @@ export function Footer() {
 
         {/* ── Col 1: Brand ── */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
-          <img src={logo} alt="The Grand Palace" className="h-24 w-24 object-contain mb-4"
+          <img src={logo} alt="The Grand Palace" loading="lazy" decoding="async" className="h-24 w-24 object-contain mb-4"
             style={{ filter: "drop-shadow(0 0 14px rgba(212,168,76,0.55))" }} />
           <p className="text-gold/90 font-display text-base italic leading-snug mb-1">Fine Dining Indian Restaurant</p>
           <p className="text-cream/55 text-[13px] leading-relaxed mb-5">Make Your Moments Special With Us</p>

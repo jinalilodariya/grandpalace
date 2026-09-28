@@ -430,7 +430,7 @@ function MenuSubGroup({ label, dishes }: { label?: string; dishes: { name: strin
                  border: "1px solid rgba(200,150,50,0.14)",
                  boxShadow: i % 2 === 0 ? "0 1px 6px rgba(0,0,0,0.05)" : "none",
                }}>
-            <img src={d.img} alt={d.name} className="w-20 h-20 rounded-xl object-cover flex-shrink-0"
+            <img src={d.img} alt={d.name} loading="lazy" decoding="async" className="w-20 h-20 rounded-xl object-cover flex-shrink-0"
                  style={{ border: "1px solid rgba(200,150,50,0.2)" }} />
             <span className="text-[16px] font-medium" style={{ color: "#2a1200" }}>{d.name}</span>
           </div>

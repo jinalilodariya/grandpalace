@@ -29,8 +29,8 @@ export function NormalGuideTemplate({ guide }: { guide: GuideContent }) {
 
       {/* Hero — typographic + "at a glance" panel; optional photo below */}
       <div className="relative bg-palace overflow-hidden pt-24 pb-10 md:pt-28 md:pb-14 px-6">
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -right-40 -top-32 w-[520px] opacity-[0.07] animate-spin-slow" />
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -left-44 -bottom-40 w-[480px] opacity-[0.05] animate-spin-slow" style={{ animationDirection: "reverse" }} />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -right-40 -top-32 w-[520px] opacity-[0.07] animate-spin-slow" />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -left-44 -bottom-40 w-[480px] opacity-[0.05] animate-spin-slow" style={{ animationDirection: "reverse" }} />
         <div className="relative z-10 max-w-5xl mx-auto grid lg:grid-cols-[1fr_300px] gap-8 items-start">
           <div>
             <p className="text-[11px] tracking-[0.45em] uppercase font-bold mb-4" style={{ color: "#f5c14a" }}>
@@ -83,7 +83,7 @@ export function NormalGuideTemplate({ guide }: { guide: GuideContent }) {
 
       {/* Body — single column, no comparison table or ranked-card grid */}
       <section className="relative section-cream py-12 px-6 overflow-hidden">
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -left-36 -top-28 w-[460px] opacity-[0.06] animate-spin-slow" />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -left-36 -top-28 w-[460px] opacity-[0.06] animate-spin-slow" />
         <div className="relative z-10 max-w-3xl mx-auto">
           <div className="text-palace/75 mb-6">{renderBlockText(guide.intro, "text-[15px] leading-relaxed")}</div>
 

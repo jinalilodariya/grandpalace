@@ -277,10 +277,10 @@ function MenuPage() {
 
                 {/* section header: full-width bg image */}
                 <div className="relative flex items-end min-h-[180px] md:min-h-[220px] overflow-hidden bg-stone-900">
-                  <img src={cat.img} alt="" aria-hidden="true"
+                  <img src={cat.img} alt="" aria-hidden="true" loading="lazy" decoding="async"
                        className="absolute inset-0 w-full h-full object-cover scale-110"
                        style={{filter:"brightness(0.5) saturate(1.1) blur(20px)"}} />
-                  <img src={cat.img} alt={cat.label}
+                  <img src={cat.img} alt={cat.label} loading="lazy" decoding="async"
                        className="absolute inset-0 w-full h-full object-cover"
                        style={{filter:"brightness(0.85) saturate(1.15)"}} />
                   <div className="absolute inset-0" style={{background:"linear-gradient(to top,rgba(10,4,0,0.88) 0%,rgba(10,4,0,0.45) 55%,rgba(10,4,0,0.2) 100%)"}} />

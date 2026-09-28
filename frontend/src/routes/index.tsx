@@ -188,9 +188,9 @@ function Home() {
       {/* OUR DELICIOUS MENU — dark */}
       <section className="relative py-20 px-6 overflow-hidden bg-palace">
         {/* Mandala grid background — unique tiled pattern */}
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute top-[-80px] left-1/2 -translate-x-1/2 w-[700px] opacity-[0.13] animate-spin-slow" />
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute bottom-[-60px] left-0 w-[280px] opacity-[0.11]" style={{ animationDirection: "reverse" }} />
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute top-10 right-0 w-[240px] opacity-[0.11]" />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute top-[-80px] left-1/2 -translate-x-1/2 w-[700px] opacity-[0.13] animate-spin-slow" />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute bottom-[-60px] left-0 w-[280px] opacity-[0.11]" style={{ animationDirection: "reverse" }} />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute top-10 right-0 w-[240px] opacity-[0.11]" />
         <div className="pointer-events-none absolute inset-0" style={{ backgroundImage: `radial-gradient(circle at 20% 80%, oklch(0.78 0.14 78 / 0.04) 0%, transparent 50%), radial-gradient(circle at 80% 20%, oklch(0.72 0.18 55 / 0.04) 0%, transparent 50%)` }} />
 
         <div className="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-x-14 gap-y-5 items-center">
@@ -204,6 +204,8 @@ function Home() {
             <img
               src={menuHero020}
               alt="Our Delicious Menu"
+              loading="lazy"
+              decoding="async"
               data-tgp-key="menuSectionImage"
               className="w-full h-full md:h-auto object-cover block"
               style={{ transformOrigin: "center bottom" }}
@@ -474,9 +476,9 @@ function TestimonialsSection({ reviews: liveReviews }: { reviews: { name: string
   return (
     <section className="relative py-20 px-6 overflow-hidden bg-palace">
       {/* layered mandala background */}
-      <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] opacity-[0.13] animate-spin-slow" />
-      <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -left-40 top-0 w-[350px] opacity-[0.10]" style={{ animationDirection: "reverse" }} />
-      <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -right-40 bottom-0 w-[350px] opacity-[0.10] animate-spin-slow" />
+      <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] opacity-[0.13] animate-spin-slow" />
+      <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -left-40 top-0 w-[350px] opacity-[0.10]" style={{ animationDirection: "reverse" }} />
+      <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -right-40 bottom-0 w-[350px] opacity-[0.10] animate-spin-slow" />
 
       <div className="relative max-w-6xl mx-auto">
         {/* Heading */}
@@ -614,7 +616,7 @@ function ContactSection() {
   return (
     <section className="relative py-20 px-6 overflow-hidden bg-palace">
       <CarvedBackdrop tone="gold" />
-      <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[620px] opacity-[0.13] animate-spin-slow" />
+      <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[620px] opacity-[0.13] animate-spin-slow" />
 
       <div className="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
 
@@ -966,8 +968,8 @@ function CarvedBackdrop({ tone }: { tone: "gold" | "dark" }) {
   const opacity = tone === "gold" ? "opacity-[0.12]" : "opacity-[0.16]";
   return (
     <>
-      <img src={mandala} alt="" aria-hidden className={`pointer-events-none absolute -left-40 -top-32 w-[520px] ${opacity} animate-spin-slow`} />
-      <img src={mandala} alt="" aria-hidden className={`pointer-events-none absolute -right-40 -bottom-32 w-[520px] ${opacity} animate-spin-slow`} style={{ animationDirection: "reverse" }} />
+      <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className={`pointer-events-none absolute -left-40 -top-32 w-[520px] ${opacity} animate-spin-slow`} />
+      <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className={`pointer-events-none absolute -right-40 -bottom-32 w-[520px] ${opacity} animate-spin-slow`} style={{ animationDirection: "reverse" }} />
     </>
   );
 }

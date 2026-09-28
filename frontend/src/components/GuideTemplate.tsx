@@ -595,7 +595,7 @@ function RankCard({ section, num, compact }: {
           <img src={section.image} alt={section.imageAlt || title} loading="lazy" decoding="async" className="w-full object-cover aspect-[16/9]" />
         ) : banner ? (
           <div className="relative w-full flex flex-col items-center justify-center gap-1.5 overflow-hidden aspect-[16/9]" style={{ background: banner.gradient }}>
-            <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -right-10 -bottom-10 w-32 opacity-[0.15]" />
+            <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -right-10 -bottom-10 w-32 opacity-[0.15]" />
             <banner.icon className={compact ? "h-6 w-6 text-white/90 relative z-10" : "h-8 w-8 text-white/90 relative z-10"} strokeWidth={1.5} />
             <span className="relative z-10 text-white/85 text-[10px] font-semibold uppercase tracking-widest">{banner.label}</span>
           </div>
@@ -747,8 +747,8 @@ export function GuideTemplate({ guide }: { guide: GuideContent }) {
 
       {/* Hero — typographic + "at a glance" panel; optional photo below */}
       <div className="relative bg-palace overflow-hidden pt-24 pb-10 md:pt-28 md:pb-14 px-6">
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -right-40 -top-32 w-[520px] opacity-[0.07] animate-spin-slow" />
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -left-44 -bottom-40 w-[480px] opacity-[0.05] animate-spin-slow" style={{ animationDirection: "reverse" }} />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -right-40 -top-32 w-[520px] opacity-[0.07] animate-spin-slow" />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -left-44 -bottom-40 w-[480px] opacity-[0.05] animate-spin-slow" style={{ animationDirection: "reverse" }} />
         <div className="relative z-10 max-w-5xl mx-auto grid lg:grid-cols-[1fr_300px] gap-8 items-start">
           <div>
             <p className="text-[11px] tracking-[0.45em] uppercase font-bold mb-4" style={{ color: "#f5c14a" }}>
@@ -802,7 +802,7 @@ export function GuideTemplate({ guide }: { guide: GuideContent }) {
 
       {/* Body */}
       <section className="relative section-cream py-12 px-6 overflow-hidden">
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -left-36 -top-28 w-[460px] opacity-[0.06] animate-spin-slow" />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -left-36 -top-28 w-[460px] opacity-[0.06] animate-spin-slow" />
         <div className="relative z-10 max-w-6xl mx-auto">
             <div className="max-w-3xl mx-auto">
               <div className="text-palace/75 mb-6">{renderBlockText(guide.intro, "text-[15px] leading-relaxed")}</div>

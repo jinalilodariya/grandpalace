@@ -66,7 +66,7 @@ export function GuideListingPage({
 
       {/* Guide grid */}
       <section className="relative section-cream py-12 px-6 overflow-hidden">
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -left-36 -top-28 w-[460px] opacity-[0.07] animate-spin-slow" />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -left-36 -top-28 w-[460px] opacity-[0.07] animate-spin-slow" />
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {filtered.map((guide, i) => {

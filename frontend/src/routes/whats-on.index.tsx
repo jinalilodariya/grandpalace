@@ -35,8 +35,8 @@ export const Route = createFileRoute("/whats-on/")({
 function CarvedBackdrop() {
   return (
     <>
-      <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -left-36 -top-28 w-[460px] opacity-[0.09] animate-spin-slow" />
-      <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -right-36 -bottom-28 w-[460px] opacity-[0.09] animate-spin-slow" style={{ animationDirection: "reverse" }} />
+      <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -left-36 -top-28 w-[460px] opacity-[0.09] animate-spin-slow" />
+      <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -right-36 -bottom-28 w-[460px] opacity-[0.09] animate-spin-slow" style={{ animationDirection: "reverse" }} />
     </>
   );
 }

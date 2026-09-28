@@ -43,8 +43,8 @@ function GiftCardPage() {
 
       {/* Main */}
       <section className="relative section-cream py-20 px-6 overflow-hidden">
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -left-36 -top-28 w-[460px] opacity-[0.08] animate-spin-slow" />
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -right-36 -bottom-28 w-[460px] opacity-[0.08] animate-spin-slow" style={{ animationDirection: "reverse" }} />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -left-36 -top-28 w-[460px] opacity-[0.08] animate-spin-slow" />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -right-36 -bottom-28 w-[460px] opacity-[0.08] animate-spin-slow" style={{ animationDirection: "reverse" }} />
         <div className="relative z-10 max-w-6xl mx-auto">
 
           <div className="grid lg:grid-cols-2 gap-14 items-center mb-16">
@@ -67,7 +67,7 @@ function GiftCardPage() {
               </a>
             </div>
             <div className="relative rounded-2xl overflow-hidden shadow-[0_24px_60px_-20px_rgba(0,0,0,0.35)] min-h-[380px]">
-              <img src={diningImg} alt="The Grand Palace dining experience" className="w-full h-full object-cover absolute inset-0" />
+              <img src={diningImg} alt="The Grand Palace dining experience" loading="lazy" decoding="async" className="w-full h-full object-cover absolute inset-0" />
               <div className="absolute inset-0 bg-gradient-to-t from-palace/60 to-transparent" />
               <div className="absolute bottom-0 left-0 p-6">
                 <p className="font-display text-xl text-cream">An experience they'll never forget</p>

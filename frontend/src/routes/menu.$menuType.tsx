@@ -93,7 +93,7 @@ function GenericMenuPage() {
                     className={`flex gap-4 px-6 py-5 items-start ${i % 2 === 1 ? "sm:border-l border-stone-100" : ""}`}
                   >
                     {item.imageUrl && (
-                      <img src={item.imageUrl} alt={item.name} className="w-20 h-20 rounded-xl object-cover flex-shrink-0" />
+                      <img src={item.imageUrl} alt={item.name} loading="lazy" decoding="async" className="w-20 h-20 rounded-xl object-cover flex-shrink-0" />
                     )}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
