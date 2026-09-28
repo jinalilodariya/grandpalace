@@ -27,11 +27,17 @@ const redirectMiddleware = createMiddleware().server(async ({ next, request }) =
   const { pathname } = url;
   const lastSegment = pathname.split("/").pop() ?? "";
   const isAsset = lastSegment.includes(".");
-  const isExempt = pathname.startsWith("/admin") || pathname.startsWith("/api") || pathname.startsWith("/_") || isAsset;
+  const isExempt =
+    pathname.startsWith("/admin") ||
+    pathname.startsWith("/api") ||
+    pathname.startsWith("/_") ||
+    isAsset;
 
   if (!isExempt) {
     try {
-      const res = await fetch(`${API_URL}/api/seo/redirects/lookup?path=${encodeURIComponent(pathname)}`);
+      const res = await fetch(
+        `${API_URL}/api/seo/redirects/lookup?path=${encodeURIComponent(pathname)}`,
+      );
       if (res.ok) {
         const redirect = await res.json();
         if (redirect?.toPath) {

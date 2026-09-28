@@ -41,7 +41,9 @@ export type SimpleCaptchaState = ReturnType<typeof useSimpleCaptcha>;
 export function SimpleCaptcha({ captcha, dark }: { captcha: SimpleCaptchaState; dark?: boolean }) {
   return (
     <div>
-      <label className={`block text-xs font-semibold uppercase tracking-wider mb-1.5 ${dark ? "text-cream/70" : "text-stone-600"}`}>
+      <label
+        className={`block text-xs font-semibold uppercase tracking-wider mb-1.5 ${dark ? "text-cream/70" : "text-stone-600"}`}
+      >
         Security Check — What is {captcha.a} + {captcha.b}? <span className="text-red-500">*</span>
       </label>
       <div className="flex items-center gap-2">
@@ -60,14 +62,22 @@ export function SimpleCaptcha({ captcha, dark }: { captcha: SimpleCaptchaState; 
                 : "border-stone-300 focus:border-amber-500"
           }`}
         />
-        <button type="button" onClick={captcha.refresh} aria-label="Get a new question"
+        <button
+          type="button"
+          onClick={captcha.refresh}
+          aria-label="Get a new question"
           className={`flex-shrink-0 p-2.5 rounded-lg border transition ${
-            dark ? "border-cream/20 hover:bg-white/5 text-cream/60" : "border-stone-300 hover:bg-stone-50 text-stone-500"
-          }`}>
+            dark
+              ? "border-cream/20 hover:bg-white/5 text-cream/60"
+              : "border-stone-300 hover:bg-stone-50 text-stone-500"
+          }`}
+        >
           <RefreshCw className="h-4 w-4" />
         </button>
       </div>
-      {captcha.error && <p className="text-red-500 text-xs mt-1.5">That's not quite right — please try again.</p>}
+      {captcha.error && (
+        <p className="text-red-500 text-xs mt-1.5">That's not quite right — please try again.</p>
+      )}
     </div>
   );
 }

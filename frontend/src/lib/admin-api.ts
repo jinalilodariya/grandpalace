@@ -83,11 +83,20 @@ async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
 export const api = {
   get: <T>(path: string) => request<T>(path),
   post: <T>(path: string, data?: unknown) =>
-    request<T>(path, { method: "POST", body: data !== undefined ? JSON.stringify(data) : undefined }),
+    request<T>(path, {
+      method: "POST",
+      body: data !== undefined ? JSON.stringify(data) : undefined,
+    }),
   patch: <T>(path: string, data?: unknown) =>
-    request<T>(path, { method: "PATCH", body: data !== undefined ? JSON.stringify(data) : undefined }),
+    request<T>(path, {
+      method: "PATCH",
+      body: data !== undefined ? JSON.stringify(data) : undefined,
+    }),
   put: <T>(path: string, data?: unknown) =>
-    request<T>(path, { method: "PUT", body: data !== undefined ? JSON.stringify(data) : undefined }),
+    request<T>(path, {
+      method: "PUT",
+      body: data !== undefined ? JSON.stringify(data) : undefined,
+    }),
   delete: <T>(path: string) => request<T>(path, { method: "DELETE" }),
   upload: <T>(path: string, file: File, fieldName = "photo") => {
     const form = new FormData();
@@ -243,7 +252,16 @@ export type SitePage = {
   contentBlocks: Array<{ subtitle?: string; body: string }> | null;
   highlightLine: string | null;
   intro: string | null;
-  sections: Array<{ heading: string; priceTag?: string; intro?: string; items: string[]; description?: string; tags?: string[]; character?: string; itemIcons?: ("pin" | "clock" | "phone" | "navigation" | "message" | "mail")[] }>;
+  sections: Array<{
+    heading: string;
+    priceTag?: string;
+    intro?: string;
+    items: string[];
+    description?: string;
+    tags?: string[];
+    character?: string;
+    itemIcons?: ("pin" | "clock" | "phone" | "navigation" | "message" | "mail")[];
+  }>;
   ctaLabel: string;
   ctaHref: string;
   cta2Label: string | null;
@@ -252,14 +270,30 @@ export type SitePage = {
 };
 
 export type GuideQuickFact = { label: string; value: string };
-export type GuideComparisonRow = { name: string; area: string; style: string; dietary: string; goodForGroups: boolean; highlight?: boolean };
+export type GuideComparisonRow = {
+  name: string;
+  area: string;
+  style: string;
+  dietary: string;
+  goodForGroups: boolean;
+  highlight?: boolean;
+};
 export type GuideComparisonTable = { title: string; note?: string; rows: GuideComparisonRow[] };
 export type GuideBlockType = "listing" | "text" | "box" | "row";
 export type GuideBulletItem = { title: string; description: string };
 export type GuideSection = {
-  heading: string; body: string[]; bullets?: string[]; bulletItems?: GuideBulletItem[];
-  image?: string; imageAlt?: string; bannerIcon?: string; blockType?: GuideBlockType; items?: string[];
-  showFactsTable?: boolean; address?: string; timing?: string;
+  heading: string;
+  body: string[];
+  bullets?: string[];
+  bulletItems?: GuideBulletItem[];
+  image?: string;
+  imageAlt?: string;
+  bannerIcon?: string;
+  blockType?: GuideBlockType;
+  items?: string[];
+  showFactsTable?: boolean;
+  address?: string;
+  timing?: string;
 };
 export type GuideFAQ = { q: string; a: string };
 export type GuideExternalLink = { label: string; href: string; source: string };

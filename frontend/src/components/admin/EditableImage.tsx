@@ -2,8 +2,15 @@ import { useRef, useState } from "react";
 import { api } from "@/lib/admin-api";
 
 export function EditableImage({
-  value, onChange, className, imgClassName, placeholder,
-  resizeHeight, onResizeHeight, minHeight = 100, maxHeight = 600,
+  value,
+  onChange,
+  className,
+  imgClassName,
+  placeholder,
+  resizeHeight,
+  onResizeHeight,
+  minHeight = 100,
+  maxHeight = 600,
 }: {
   value: string;
   onChange: (url: string) => void;
@@ -97,9 +104,15 @@ export function EditableImage({
 
       {/* always-visible prompt when there's no photo yet */}
       {!hasImage && (
-        <div className={`absolute inset-0 z-20 flex items-center justify-center transition-colors ${dragOver ? "bg-amber-600/60" : "bg-black/55"}`}>
+        <div
+          className={`absolute inset-0 z-20 flex items-center justify-center transition-colors ${dragOver ? "bg-amber-600/60" : "bg-black/55"}`}
+        >
           <span className="text-white text-sm font-bold uppercase tracking-wider px-4 py-2 rounded-full border-2 border-dashed border-white/70 text-center">
-            {uploading ? "Uploading…" : dragOver ? "Drop to upload" : "📷 Click or Drag & Drop a Photo"}
+            {uploading
+              ? "Uploading…"
+              : dragOver
+                ? "Drop to upload"
+                : "📷 Click or Drag & Drop a Photo"}
           </span>
         </div>
       )}
@@ -107,9 +120,17 @@ export function EditableImage({
       {/* hover-to-change once a photo is set, plus an always-visible small badge as a hint */}
       {hasImage && (
         <>
-          <div className={`absolute inset-0 z-20 transition-colors flex items-center justify-center ${dragOver ? "bg-amber-600/60" : "bg-black/0 group-hover:bg-black/50"}`}>
-            <span className={`text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-black/60 transition-opacity ${dragOver ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
-              {uploading ? "Uploading…" : dragOver ? "Drop to replace" : "📷 Change or Drag & Drop Photo"}
+          <div
+            className={`absolute inset-0 z-20 transition-colors flex items-center justify-center ${dragOver ? "bg-amber-600/60" : "bg-black/0 group-hover:bg-black/50"}`}
+          >
+            <span
+              className={`text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-black/60 transition-opacity ${dragOver ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+            >
+              {uploading
+                ? "Uploading…"
+                : dragOver
+                  ? "Drop to replace"
+                  : "📷 Change or Drag & Drop Photo"}
             </span>
           </div>
           <span className="absolute bottom-2 right-2 z-20 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full bg-black/60 text-white group-hover:opacity-0 transition-opacity">
@@ -129,7 +150,14 @@ export function EditableImage({
         </div>
       )}
 
-      <input ref={fileRef} type="file" accept="image/*" onChange={handleFileInput} className="hidden" disabled={uploading} />
+      <input
+        ref={fileRef}
+        type="file"
+        accept="image/*"
+        onChange={handleFileInput}
+        className="hidden"
+        disabled={uploading}
+      />
     </label>
   );
 }

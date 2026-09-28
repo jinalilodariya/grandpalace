@@ -54,7 +54,9 @@ export const Route = createFileRoute("/llms.txt")({
         const toLine = ([slug, title]: [string, string], base: string) =>
           `- [${title}](${SITE_URL}/${base}/${slug})`;
         const entries = [...titles.entries()];
-        const guideLines = entries.filter(([s]) => !blogSlugSet.has(s)).map((e) => toLine(e, "guides"));
+        const guideLines = entries
+          .filter(([s]) => !blogSlugSet.has(s))
+          .map((e) => toLine(e, "guides"));
         const blogLines = entries.filter(([s]) => blogSlugSet.has(s)).map((e) => toLine(e, "blog"));
 
         const body = `# The Grand Palace Indian Restaurant

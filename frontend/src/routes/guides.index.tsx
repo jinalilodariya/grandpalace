@@ -18,7 +18,10 @@ async function fetchAdminGuides(): Promise<Guide[]> {
 
 export const Route = createFileRoute("/guides/")({
   loader: async () => {
-    const [content, adminGuides] = await Promise.all([fetchPageContent("/guides"), fetchAdminGuides()]);
+    const [content, adminGuides] = await Promise.all([
+      fetchPageContent("/guides"),
+      fetchAdminGuides(),
+    ]);
     return { content, adminGuides };
   },
   head: (ctx) => pageHead(ctx, "/guides"),
@@ -46,12 +49,26 @@ function GuidesPage() {
     ...guides.map((g, i) => {
       const db = loaderData.adminGuides.find((d) => d.slug === g.slug);
       return db
-        ? { title: db.title, excerpt: db.excerpt, date: db.publishedDateDisplay, tag: db.tag as typeof g.tag, slug: db.slug, order: db.sortOrder }
+        ? {
+            title: db.title,
+            excerpt: db.excerpt,
+            date: db.publishedDateDisplay,
+            tag: db.tag as typeof g.tag,
+            slug: db.slug,
+            order: db.sortOrder,
+          }
         : { ...g, order: i };
     }),
     ...loaderData.adminGuides
       .filter((g) => !guides.some((s) => s.slug === g.slug))
-      .map((g) => ({ title: g.title, excerpt: g.excerpt, date: g.publishedDateDisplay, tag: g.tag as typeof guides[number]["tag"], slug: g.slug, order: g.sortOrder })),
+      .map((g) => ({
+        title: g.title,
+        excerpt: g.excerpt,
+        date: g.publishedDateDisplay,
+        tag: g.tag as (typeof guides)[number]["tag"],
+        slug: g.slug,
+        order: g.sortOrder,
+      })),
   ]
     .filter((g) => !blogSlugSet.has(g.slug))
     .sort((a, b) => a.order - b.order);
@@ -63,7 +80,10 @@ function GuidesPage() {
       basePath="/guides"
       heroKicker="The Grand Palace · Sydney CBD"
       heroTitle={c("hero.title", "Dining Guides")}
-      heroSubtitle={c("hero.subtitle", "Your ultimate guide to Sydney's finest Indian dining experience")}
+      heroSubtitle={c(
+        "hero.subtitle",
+        "Your ultimate guide to Sydney's finest Indian dining experience",
+      )}
       heroImg={heroImg}
       crumbLabel="Guides"
     />

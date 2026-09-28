@@ -59,7 +59,9 @@ function GuidePage() {
   // guideType is only ever undefined for the bundled static guides (they
   // predate this field) — all of those are listicle-style, so undefined
   // defaults to "listicle" to keep their appearance unchanged.
-  return guide.guideType === "normal"
-    ? <NormalGuideTemplate guide={guide} />
-    : <GuideTemplate guide={guide} />;
+  return guide.guideType === "normal" ? (
+    <NormalGuideTemplate guide={guide} />
+  ) : (
+    <GuideTemplate guide={guide} />
+  );
 }

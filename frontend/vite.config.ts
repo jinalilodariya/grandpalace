@@ -59,58 +59,164 @@ export default defineConfig({
       // on every page load, which was compounding the site's slow/failing
       // image loads) but short enough that a swapped-in replacement image
       // shows up within a day rather than being stuck for a year.
-      "/dishes/**": { headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" } },
-      "/category-images/**": { headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" } },
-      "/gallery-images/**": { headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" } },
-      "/gallery-images-home/**": { headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" } },
-      "/site-image-defaults/**": { headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" } },
-      "/whats-on-images/**": { headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" } },
-      "/scroll-frames/**": { headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" } },
-      "/favicon.png": { headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" } },
-      "/email-logo.png": { headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" } },
+      "/dishes/**": {
+        headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" },
+      },
+      "/category-images/**": {
+        headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" },
+      },
+      "/gallery-images/**": {
+        headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" },
+      },
+      "/gallery-images-home/**": {
+        headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" },
+      },
+      "/site-image-defaults/**": {
+        headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" },
+      },
+      "/whats-on-images/**": {
+        headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" },
+      },
+      "/scroll-frames/**": {
+        headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" },
+      },
+      "/favicon.png": {
+        headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" },
+      },
+      "/email-logo.png": {
+        headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" },
+      },
       // These 28 guides moved from /guides/$slug to /blog/$slug — permanent
       // redirects so existing search rankings/backlinks to the old URLs
       // still land on the right page instead of 404ing.
-      "/guides/restaurant-for-birthday-dinner": { redirect: { to: "/blog/best-indian-birthday-dinner-sydney-where-to-celebrate-in-style", status: 301 } },
-      "/guides/private-event-venue-hire-sydney": { redirect: { to: "/blog/private-event-venue-hire-sydney", status: 301 } },
-      "/guides/best-indian-birthday-dinner-sydney-where-to-celebrate-in-style": { redirect: { to: "/blog/best-indian-birthday-dinner-sydney-where-to-celebrate-in-style", status: 301 } },
-      "/guides/make-birthday-memorable-with-tgp": { redirect: { to: "/blog/make-birthday-memorable-with-tgp", status: 301 } },
-      "/guides/why-tgp-best-for-christmas-lunch-and-dinner": { redirect: { to: "/blog/why-tgp-best-for-christmas-lunch-and-dinner", status: 301 } },
-      "/guides/catering-boxes-in-sydney-for-parties": { redirect: { to: "/blog/catering-boxes-in-sydney-for-parties", status: 301 } },
-      "/guides/why-tgp-is-best-for-diwali-party": { redirect: { to: "/blog/why-tgp-is-best-for-diwali-party", status: 301 } },
-      "/guides/where-to-host-a-royal-indian-birthday-dinner-in-sydney": { redirect: { to: "/blog/best-birthday-venues-sydney-cbd", status: 301 } },
-      "/guides/wedding-catering-sydney-cbd": { redirect: { to: "/blog/wedding-catering-sydney-cbd", status: 301 } },
-      "/guides/best-birthday-venues-sydney-cbd": { redirect: { to: "/blog/best-birthday-venues-sydney-cbd", status: 301 } },
-      "/guides/how-to-plan-office-lunch-catering-in-sydney": { redirect: { to: "/blog/how-to-plan-office-lunch-catering-in-sydney", status: 301 } },
-      "/guides/indian-catering-box-sydney-cbd": { redirect: { to: "/blog/indian-catering-box-sydney-cbd", status: 301 } },
-      "/guides/christmas-corporate-catering-box-by-tgp": { redirect: { to: "/blog/christmas-corporate-catering-box-by-tgp", status: 301 } },
-      "/guides/sydney-corporate-catering-at-tgp": { redirect: { to: "/blog/sydney-corporate-catering-at-tgp", status: 301 } },
-      "/guides/corporate-catering-in-sydney-at-tgp": { redirect: { to: "/blog/private-corporate-dining-sydney-cbd", status: 301 } },
-      "/blog/corporate-catering-in-sydney-at-tgp": { redirect: { to: "/blog/private-corporate-dining-sydney-cbd", status: 301 } },
-      "/guides/indian-catering-boxes-in-sydney": { redirect: { to: "/blog/indian-catering-boxes-in-sydney", status: 301 } },
-      "/guides/find-right-indian-catering-for-event": { redirect: { to: "/blog/find-right-indian-catering-for-event", status: 301 } },
-      "/guides/business-lunch-sydney-cbd": { redirect: { to: "/blog/business-lunch-sydney-cbd", status: 301 } },
-      "/guides/corporate-catering-sydney-cbd": { redirect: { to: "/blog/how-to-plan-office-lunch-catering-in-sydney", status: 301 } },
-      "/blog/corporate-catering-sydney-cbd": { redirect: { to: "/blog/how-to-plan-office-lunch-catering-in-sydney", status: 301 } },
-      "/guides/indian-wedding-catering-sydney": { redirect: { to: "/blog/indian-wedding-catering-sydney", status: 301 } },
-      "/guides/choose-indian-catering-sydney-event": { redirect: { to: "/blog/find-right-indian-catering-for-event", status: 301 } },
-      "/guides/jain-restaurants-in-sydney-no-onion-no-garlic": { redirect: { to: "/blog/jain-restaurants-in-sydney-no-onion-no-garlic", status: 301 } },
-      "/guides/tgp-is-best-for-a-weekend-indian-lunch": { redirect: { to: "/blog/tgp-is-best-for-a-weekend-indian-lunch", status: 301 } },
-      "/guides/mocktails-drinks-in-indian-food": { redirect: { to: "/blog/mocktails-drinks-in-indian-food", status: 301 } },
-      "/guides/indian-restaurant-near-wynyard-station-sydney": { redirect: { to: "/blog/indian-restaurant-near-wynyard-station-sydney", status: 301 } },
-      "/guides/best-indian-restaurant-near-me-sydney-cbd-the-grand-palace-guide": { redirect: { to: "/blog/best-indian-restaurant-near-me-sydney-cbd-the-grand-palace-guide", status: 301 } },
-      "/guides/guide-to-indian-whisky-in-sydney": { redirect: { to: "/blog/guide-to-indian-whisky-in-sydney", status: 301 } },
-      "/guides/indian-food-delivery-sydney-cbd": { redirect: { to: "/blog/indian-food-delivery-sydney-cbd", status: 301 } },
-      "/guides/indian-restaurant-near-martin-place": { redirect: { to: "/blog/indian-restaurant-near-martin-place", status: 301 } },
-      "/guides/indian-restaurant-near-town-hall-station": { redirect: { to: "/blog/indian-restaurant-near-town-hall-station", status: 301 } },
-      "/guides/best-halal-indian-restaurant-sydney": { redirect: { to: "/guides/best-halal-restaurant-in-sydney", status: 301 } },
+      "/guides/restaurant-for-birthday-dinner": {
+        redirect: {
+          to: "/blog/best-indian-birthday-dinner-sydney-where-to-celebrate-in-style",
+          status: 301,
+        },
+      },
+      "/guides/private-event-venue-hire-sydney": {
+        redirect: { to: "/blog/private-event-venue-hire-sydney", status: 301 },
+      },
+      "/guides/best-indian-birthday-dinner-sydney-where-to-celebrate-in-style": {
+        redirect: {
+          to: "/blog/best-indian-birthday-dinner-sydney-where-to-celebrate-in-style",
+          status: 301,
+        },
+      },
+      "/guides/make-birthday-memorable-with-tgp": {
+        redirect: { to: "/blog/make-birthday-memorable-with-tgp", status: 301 },
+      },
+      "/guides/why-tgp-best-for-christmas-lunch-and-dinner": {
+        redirect: { to: "/blog/why-tgp-best-for-christmas-lunch-and-dinner", status: 301 },
+      },
+      "/guides/catering-boxes-in-sydney-for-parties": {
+        redirect: { to: "/blog/catering-boxes-in-sydney-for-parties", status: 301 },
+      },
+      "/guides/why-tgp-is-best-for-diwali-party": {
+        redirect: { to: "/blog/why-tgp-is-best-for-diwali-party", status: 301 },
+      },
+      "/guides/where-to-host-a-royal-indian-birthday-dinner-in-sydney": {
+        redirect: { to: "/blog/best-birthday-venues-sydney-cbd", status: 301 },
+      },
+      "/guides/wedding-catering-sydney-cbd": {
+        redirect: { to: "/blog/wedding-catering-sydney-cbd", status: 301 },
+      },
+      "/guides/best-birthday-venues-sydney-cbd": {
+        redirect: { to: "/blog/best-birthday-venues-sydney-cbd", status: 301 },
+      },
+      "/guides/how-to-plan-office-lunch-catering-in-sydney": {
+        redirect: { to: "/blog/how-to-plan-office-lunch-catering-in-sydney", status: 301 },
+      },
+      "/guides/indian-catering-box-sydney-cbd": {
+        redirect: { to: "/blog/indian-catering-box-sydney-cbd", status: 301 },
+      },
+      "/guides/christmas-corporate-catering-box-by-tgp": {
+        redirect: { to: "/blog/christmas-corporate-catering-box-by-tgp", status: 301 },
+      },
+      "/guides/sydney-corporate-catering-at-tgp": {
+        redirect: { to: "/blog/sydney-corporate-catering-at-tgp", status: 301 },
+      },
+      "/guides/corporate-catering-in-sydney-at-tgp": {
+        redirect: { to: "/blog/private-corporate-dining-sydney-cbd", status: 301 },
+      },
+      "/blog/corporate-catering-in-sydney-at-tgp": {
+        redirect: { to: "/blog/private-corporate-dining-sydney-cbd", status: 301 },
+      },
+      "/guides/indian-catering-boxes-in-sydney": {
+        redirect: { to: "/blog/indian-catering-boxes-in-sydney", status: 301 },
+      },
+      "/guides/find-right-indian-catering-for-event": {
+        redirect: { to: "/blog/find-right-indian-catering-for-event", status: 301 },
+      },
+      "/guides/business-lunch-sydney-cbd": {
+        redirect: { to: "/blog/business-lunch-sydney-cbd", status: 301 },
+      },
+      "/guides/corporate-catering-sydney-cbd": {
+        redirect: { to: "/blog/how-to-plan-office-lunch-catering-in-sydney", status: 301 },
+      },
+      "/blog/corporate-catering-sydney-cbd": {
+        redirect: { to: "/blog/how-to-plan-office-lunch-catering-in-sydney", status: 301 },
+      },
+      "/guides/indian-wedding-catering-sydney": {
+        redirect: { to: "/blog/indian-wedding-catering-sydney", status: 301 },
+      },
+      "/guides/choose-indian-catering-sydney-event": {
+        redirect: { to: "/blog/find-right-indian-catering-for-event", status: 301 },
+      },
+      "/guides/jain-restaurants-in-sydney-no-onion-no-garlic": {
+        redirect: { to: "/blog/jain-restaurants-in-sydney-no-onion-no-garlic", status: 301 },
+      },
+      "/guides/tgp-is-best-for-a-weekend-indian-lunch": {
+        redirect: { to: "/blog/tgp-is-best-for-a-weekend-indian-lunch", status: 301 },
+      },
+      "/guides/mocktails-drinks-in-indian-food": {
+        redirect: { to: "/blog/mocktails-drinks-in-indian-food", status: 301 },
+      },
+      "/guides/indian-restaurant-near-wynyard-station-sydney": {
+        redirect: { to: "/blog/indian-restaurant-near-wynyard-station-sydney", status: 301 },
+      },
+      "/guides/best-indian-restaurant-near-me-sydney-cbd-the-grand-palace-guide": {
+        redirect: {
+          to: "/blog/best-indian-restaurant-near-me-sydney-cbd-the-grand-palace-guide",
+          status: 301,
+        },
+      },
+      "/guides/guide-to-indian-whisky-in-sydney": {
+        redirect: { to: "/blog/guide-to-indian-whisky-in-sydney", status: 301 },
+      },
+      "/guides/indian-food-delivery-sydney-cbd": {
+        redirect: { to: "/blog/indian-food-delivery-sydney-cbd", status: 301 },
+      },
+      "/guides/indian-restaurant-near-martin-place": {
+        redirect: { to: "/blog/indian-restaurant-near-martin-place", status: 301 },
+      },
+      "/guides/indian-restaurant-near-town-hall-station": {
+        redirect: { to: "/blog/indian-restaurant-near-town-hall-station", status: 301 },
+      },
+      "/guides/best-halal-indian-restaurant-sydney": {
+        redirect: { to: "/guides/best-halal-restaurant-in-sydney", status: 301 },
+      },
       // Consolidated near-duplicate catering guides into stronger versions covering the same ground.
-      "/blog/indian-catering-boxes-in-sydney": { redirect: { to: "/blog/indian-catering-box-sydney-cbd", status: 301 } },
-      "/blog/sydney-corporate-catering-at-tgp": { redirect: { to: "/blog/indian-catering-box-sydney-cbd", status: 301 } },
-      "/blog/choose-indian-catering-sydney-event": { redirect: { to: "/blog/find-right-indian-catering-for-event", status: 301 } },
+      "/blog/indian-catering-boxes-in-sydney": {
+        redirect: { to: "/blog/indian-catering-box-sydney-cbd", status: 301 },
+      },
+      "/blog/sydney-corporate-catering-at-tgp": {
+        redirect: { to: "/blog/indian-catering-box-sydney-cbd", status: 301 },
+      },
+      "/blog/choose-indian-catering-sydney-event": {
+        redirect: { to: "/blog/find-right-indian-catering-for-event", status: 301 },
+      },
       // Consolidated near-duplicate birthday guides into stronger versions covering the same ground.
-      "/blog/restaurant-for-birthday-dinner": { redirect: { to: "/blog/best-indian-birthday-dinner-sydney-where-to-celebrate-in-style", status: 301 } },
-      "/blog/where-to-host-a-royal-indian-birthday-dinner-in-sydney": { redirect: { to: "/blog/best-birthday-venues-sydney-cbd", status: 301 } },
+      "/blog/restaurant-for-birthday-dinner": {
+        redirect: {
+          to: "/blog/best-indian-birthday-dinner-sydney-where-to-celebrate-in-style",
+          status: 301,
+        },
+      },
+      "/blog/where-to-host-a-royal-indian-birthday-dinner-in-sydney": {
+        redirect: { to: "/blog/best-birthday-venues-sydney-cbd", status: 301 },
+      },
     },
   },
   vite: {

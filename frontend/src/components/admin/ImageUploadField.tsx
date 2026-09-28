@@ -29,7 +29,7 @@ async function compressImage(file: File): Promise<File> {
   ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
 
   const blob = await new Promise<Blob | null>((resolve) =>
-    canvas.toBlob(resolve, "image/jpeg", JPEG_QUALITY)
+    canvas.toBlob(resolve, "image/jpeg", JPEG_QUALITY),
   );
   if (!blob || blob.size >= file.size) return file; // compression didn't help, keep original
 
@@ -38,7 +38,10 @@ async function compressImage(file: File): Promise<File> {
 }
 
 export function ImageUploadField({
-  label, value, onChange, wide,
+  label,
+  value,
+  onChange,
+  wide,
 }: {
   label: string;
   value: string;
@@ -90,39 +93,73 @@ export function ImageUploadField({
 
   return (
     <div className={`flex flex-col gap-1.5 ${wide ? "w-full" : ""}`}>
-      <label className="text-[10px] uppercase tracking-wider font-semibold" style={{ color: "#7a5020" }}>{label}</label>
+      <label
+        className="text-[10px] uppercase tracking-wider font-semibold"
+        style={{ color: "#7a5020" }}
+      >
+        {label}
+      </label>
       <div className="flex items-start gap-3">
         <label
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
           className="w-20 h-20 rounded-lg flex-shrink-0 border-2 overflow-hidden flex items-center justify-center bg-stone-50 cursor-pointer transition-colors"
-          style={{ borderColor: dragOver ? "#c8860a" : "rgba(200,140,30,0.25)", borderStyle: dragOver ? "dashed" : "solid", background: dragOver ? "rgba(200,140,30,0.1)" : undefined }}
+          style={{
+            borderColor: dragOver ? "#c8860a" : "rgba(200,140,30,0.25)",
+            borderStyle: dragOver ? "dashed" : "solid",
+            background: dragOver ? "rgba(200,140,30,0.1)" : undefined,
+          }}
         >
           {value && !urlLooksInvalid && !previewBroken ? (
-            <img src={value} alt="" className="w-full h-full object-cover" onError={() => setPreviewBroken(true)} />
+            <img
+              src={value}
+              alt=""
+              className="w-full h-full object-cover"
+              onError={() => setPreviewBroken(true)}
+            />
           ) : value ? (
-            <span className="text-[9px] text-red-500 text-center px-1 font-semibold">⚠ Broken image</span>
+            <span className="text-[9px] text-red-500 text-center px-1 font-semibold">
+              ⚠ Broken image
+            </span>
           ) : (
-            <span className="text-[9px] text-stone-400 text-center px-1">{dragOver ? "Drop here" : "No image set"}</span>
+            <span className="text-[9px] text-stone-400 text-center px-1">
+              {dragOver ? "Drop here" : "No image set"}
+            </span>
           )}
-          <input ref={fileRef} type="file" accept="image/*" onChange={handleFileInput} className="hidden" disabled={uploading} />
+          <input
+            ref={fileRef}
+            type="file"
+            accept="image/*"
+            onChange={handleFileInput}
+            className="hidden"
+            disabled={uploading}
+          />
         </label>
         <div className="flex-1 min-w-0 flex flex-col gap-1.5">
           <input
             value={value}
-            onChange={(e) => { setPreviewBroken(false); onChange(e.target.value); }}
+            onChange={(e) => {
+              setPreviewBroken(false);
+              onChange(e.target.value);
+            }}
             placeholder="/path/to/image.jpg"
             className="rounded-lg px-3 py-2 text-sm bg-white outline-none border w-full"
-            style={{ borderColor: urlLooksInvalid ? "#dc2626" : "rgba(200,140,30,0.25)", color: "#1a0e00" }}
+            style={{
+              borderColor: urlLooksInvalid ? "#dc2626" : "rgba(200,140,30,0.25)",
+              color: "#1a0e00",
+            }}
           />
           {urlLooksInvalid ? (
             <p className="text-[11px] text-red-600 font-medium">
-              ⚠ This isn't a web address — it looks like a file path from your computer. Use the box on the left to upload the actual photo instead.
+              ⚠ This isn't a web address — it looks like a file path from your computer. Use the box
+              on the left to upload the actual photo instead.
             </p>
           ) : (
             <p className="text-[11px] text-stone-500">
-              {uploading ? "Uploading…" : "Drag & drop a photo onto the thumbnail — don't paste a file path here"}
+              {uploading
+                ? "Uploading…"
+                : "Drag & drop a photo onto the thumbnail — don't paste a file path here"}
             </p>
           )}
         </div>

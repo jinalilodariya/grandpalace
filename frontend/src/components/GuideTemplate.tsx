@@ -2,13 +2,35 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { PageShell } from "@/components/PageShell";
 import {
-  ArrowRight, MapPin, Phone, Mail, Clock, ExternalLink as ExternalLinkIcon,
-  CheckCircle2, X, MapPinned, Globe, CalendarCheck,
-  Sparkles, Soup, Pizza, Utensils, Coffee, Beer, Salad,
+  ArrowRight,
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
+  ExternalLink as ExternalLinkIcon,
+  CheckCircle2,
+  X,
+  MapPinned,
+  Globe,
+  CalendarCheck,
+  Sparkles,
+  Soup,
+  Pizza,
+  Utensils,
+  Coffee,
+  Beer,
+  Salad,
 } from "lucide-react";
 import mandala from "@/assets/mandala.png";
 import type { GuideContent, GuideComparisonTable } from "@/lib/guidesContent";
-import { REVIEWER, GUIDE_AUTHOR, RESTAURANT_ADDRESS, RESTAURANT_PHONE_DISPLAY, RESTAURANT_PHONE_TEL, RESTAURANT_EMAIL } from "@/lib/guidesContent";
+import {
+  REVIEWER,
+  GUIDE_AUTHOR,
+  RESTAURANT_ADDRESS,
+  RESTAURANT_PHONE_DISPLAY,
+  RESTAURANT_PHONE_TEL,
+  RESTAURANT_EMAIL,
+} from "@/lib/guidesContent";
 import { SITE_URL as CURRENT_LIVE_SITE_URL } from "@/lib/admin-api";
 import { BLOG_SLUGS } from "@/lib/guidesListingData";
 import { RelatedGuides } from "@/components/RelatedGuides";
@@ -16,10 +38,22 @@ import { RelatedGuides } from "@/components/RelatedGuides";
 function GoogleIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-      <path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/>
-      <path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/>
-      <path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34A21.93 21.93 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/>
-      <path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/>
+      <path
+        fill="#4285F4"
+        d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"
+      />
+      <path
+        fill="#34A853"
+        d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34A21.93 21.93 0 0 0 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"
+      />
+      <path
+        fill="#EA4335"
+        d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"
+      />
     </svg>
   );
 }
@@ -32,7 +66,9 @@ export const SITE_URL = "https://www.thegrandpalace.com.au";
 // SITE_URL so this updates in one place (VITE_SITE_URL) when the domain
 // cuts over, instead of needing a code change here too.
 export const CANONICAL_BASE_URL = CURRENT_LIVE_SITE_URL;
-export const MAPS_URL = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(RESTAURANT_ADDRESS + ", Australia");
+export const MAPS_URL =
+  "https://www.google.com/maps/search/?api=1&query=" +
+  encodeURIComponent(RESTAURANT_ADDRESS + ", Australia");
 
 /** Strips the rich-text markup used in guide body copy (bold, links, custom
  *  color/size spans) down to plain text — used when lifting copy into JSON-LD,
@@ -104,7 +140,12 @@ export function buildSchema(guide: GuideContent) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: CANONICAL_BASE_URL },
-      { "@type": "ListItem", position: 2, name: isBlog ? "Blog" : "Guides", item: `${CANONICAL_BASE_URL}/${isBlog ? "blog" : "guides"}` },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: isBlog ? "Blog" : "Guides",
+        item: `${CANONICAL_BASE_URL}/${isBlog ? "blog" : "guides"}`,
+      },
       { "@type": "ListItem", position: 3, name: guide.title, item: url },
     ],
   };
@@ -113,7 +154,8 @@ export function buildSchema(guide: GuideContent) {
     "@context": "https://schema.org",
     "@type": "Restaurant",
     name: "The Grand Palace Indian Restaurant",
-    description: "HACCP certified kitchen holding a Gold Catering Licence, serving halal-certified meats across the full menu, in the basement at 261 George Street, Sydney CBD.",
+    description:
+      "HACCP certified kitchen holding a Gold Catering Licence, serving halal-certified meats across the full menu, in the basement at 261 George Street, Sydney CBD.",
     address: {
       "@type": "PostalAddress",
       streetAddress: "Basement, 261 George Street",
@@ -127,9 +169,24 @@ export function buildSchema(guide: GuideContent) {
     servesCuisine: "Indian",
     url: SITE_URL,
     openingHoursSpecification: [
-      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], opens: "12:00", closes: "15:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"], opens: "17:00", closes: "22:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Friday", "Saturday"], opens: "17:00", closes: "22:30" },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        opens: "12:00",
+        closes: "15:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+        opens: "17:00",
+        closes: "22:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Friday", "Saturday"],
+        opens: "17:00",
+        closes: "22:30",
+      },
     ],
   };
 
@@ -143,7 +200,9 @@ export function buildSchema(guide: GuideContent) {
       }
     : null;
 
-  return [articleSchema, faqSchema, howToSchema, breadcrumbSchema, restaurantSchema].filter(Boolean);
+  return [articleSchema, faqSchema, howToSchema, breadcrumbSchema, restaurantSchema].filter(
+    Boolean,
+  );
 }
 
 // Old WordPress-era paths still found in article copy, mapped to where they
@@ -162,7 +221,7 @@ function internalHref(href: string): string | null {
   const own = href.match(/^https?:\/\/(?:www\.)?thegrandpalace\.com\.au(\/[^?#]*)?([?#].*)?$/i);
   if (!own && !href.startsWith("/")) return null;
   let path = own ? own[1] || "/" : href.replace(/[?#].*$/, "");
-  const suffix = own ? own[2] ?? "" : href.slice(path.length);
+  const suffix = own ? (own[2] ?? "") : href.slice(path.length);
   if (path.length > 1) path = path.replace(/\/+$/, "");
   path = LEGACY_PATHS[path] ?? path;
   const guide = path.match(/^\/guides\/([^/]+)$/);
@@ -178,7 +237,8 @@ function internalHref(href: string): string | null {
  *  heading can carry any of these without any code change. */
 export function renderRich(text: string): ReactNode[] {
   const parts: ReactNode[] = [];
-  const re = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|\{\{color:(#[0-9a-fA-F]{3,8})\}\}([\s\S]*?)\{\{\/color\}\}|\{\{size:(\d{1,3})px\}\}([\s\S]*?)\{\{\/size\}\}/g;
+  const re =
+    /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|\{\{color:(#[0-9a-fA-F]{3,8})\}\}([\s\S]*?)\{\{\/color\}\}|\{\{size:(\d{1,3})px\}\}([\s\S]*?)\{\{\/size\}\}/g;
   let last = 0;
   let match: RegExpExecArray | null;
   let i = 0;
@@ -187,33 +247,53 @@ export function renderRich(text: string): ReactNode[] {
     const [, label, href, bold, colorHex, colorText, sizePx, sizeText] = match;
     if (bold !== undefined) {
       parts.push(
-        <span key={i++} className="text-saffron font-semibold">{renderRich(bold)}</span>
+        <span key={i++} className="text-saffron font-semibold">
+          {renderRich(bold)}
+        </span>,
       );
     } else if (colorHex !== undefined) {
       parts.push(
-        <span key={i++} style={{ color: colorHex }}>{renderRich(colorText)}</span>
+        <span key={i++} style={{ color: colorHex }}>
+          {renderRich(colorText)}
+        </span>,
       );
     } else if (sizePx !== undefined) {
       parts.push(
-        <span key={i++} style={{ fontSize: `${sizePx}px` }}>{renderRich(sizeText)}</span>
+        <span key={i++} style={{ fontSize: `${sizePx}px` }}>
+          {renderRich(sizeText)}
+        </span>,
       );
     } else if (href.startsWith("tel:") || href.startsWith("mailto:")) {
       parts.push(
-        <a key={i++} href={href} className="text-saffron underline decoration-saffron/30 hover:text-gold font-medium">
+        <a
+          key={i++}
+          href={href}
+          className="text-saffron underline decoration-saffron/30 hover:text-gold font-medium"
+        >
           {label}
-        </a>
+        </a>,
       );
     } else if (href.startsWith("http") && !internalHref(href)) {
       parts.push(
-        <a key={i++} href={href} target="_blank" rel="noreferrer" className="text-saffron underline decoration-saffron/30 hover:text-gold font-medium">
+        <a
+          key={i++}
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          className="text-saffron underline decoration-saffron/30 hover:text-gold font-medium"
+        >
           {label}
-        </a>
+        </a>,
       );
     } else {
       parts.push(
-        <Link key={i++} to={internalHref(href) ?? href} className="text-saffron underline decoration-saffron/30 hover:text-gold font-medium">
+        <Link
+          key={i++}
+          to={internalHref(href) ?? href}
+          className="text-saffron underline decoration-saffron/30 hover:text-gold font-medium"
+        >
           {label}
-        </Link>
+        </Link>,
       );
     }
     last = match.index + match[0].length;
@@ -246,7 +326,7 @@ export function renderBlockText(text: string, pClassName: string, keyPrefix = ""
             <span className={pClassName}>{renderRich(b)}</span>
           </li>
         ))}
-      </ul>
+      </ul>,
     );
     bulletBuf = [];
   };
@@ -256,31 +336,90 @@ export function renderBlockText(text: string, pClassName: string, keyPrefix = ""
       <ol key={`${keyPrefix}ord-${key++}`} className="space-y-3 my-2">
         {orderedBuf.map((b, i) => (
           <li key={i} className="flex items-start gap-3">
-            <span className="w-6 h-6 rounded-full flex items-center justify-center text-[12px] font-bold text-white shrink-0 mt-0.5" style={{ background: "linear-gradient(135deg,#c8860a,#e6a020)" }}>{i + 1}</span>
+            <span
+              className="w-6 h-6 rounded-full flex items-center justify-center text-[12px] font-bold text-white shrink-0 mt-0.5"
+              style={{ background: "linear-gradient(135deg,#c8860a,#e6a020)" }}
+            >
+              {i + 1}
+            </span>
             <span className={pClassName}>{renderRich(b)}</span>
           </li>
         ))}
-      </ol>
+      </ol>,
     );
     orderedBuf = [];
   };
   for (const line of text.split("\n")) {
     const bullet = line.match(/^[-*]\s+(.+)/);
-    if (bullet) { flushOrdered(); bulletBuf.push(bullet[1]); continue; }
+    if (bullet) {
+      flushOrdered();
+      bulletBuf.push(bullet[1]);
+      continue;
+    }
     const ordered = line.match(/^\d+\.\s+(.+)/);
-    if (ordered) { flushBullets(); orderedBuf.push(ordered[1]); continue; }
+    if (ordered) {
+      flushBullets();
+      orderedBuf.push(ordered[1]);
+      continue;
+    }
     flushBullets();
     flushOrdered();
     if (!line.trim()) continue;
     const h1 = line.match(/^#\s+(.+)/);
-    if (h1) { out.push(<h1 key={`${keyPrefix}h-${key++}`} className="font-display text-2xl md:text-3xl text-palace mt-6 mb-2 first:mt-0">{renderRich(h1[1])}</h1>); continue; }
+    if (h1) {
+      out.push(
+        <h1
+          key={`${keyPrefix}h-${key++}`}
+          className="font-display text-2xl md:text-3xl text-palace mt-6 mb-2 first:mt-0"
+        >
+          {renderRich(h1[1])}
+        </h1>,
+      );
+      continue;
+    }
     const h2 = line.match(/^##\s+(.+)/);
-    if (h2) { out.push(<h2 key={`${keyPrefix}h-${key++}`} className="font-display text-lg md:text-xl text-palace mt-5 mb-2 first:mt-0">{renderRich(h2[1])}</h2>); continue; }
+    if (h2) {
+      out.push(
+        <h2
+          key={`${keyPrefix}h-${key++}`}
+          className="font-display text-lg md:text-xl text-palace mt-5 mb-2 first:mt-0"
+        >
+          {renderRich(h2[1])}
+        </h2>,
+      );
+      continue;
+    }
     const h3 = line.match(/^###\s+(.+)/);
-    if (h3) { out.push(<h3 key={`${keyPrefix}h-${key++}`} className="font-display text-base md:text-lg text-palace mt-4 mb-1.5 first:mt-0">{renderRich(h3[1])}</h3>); continue; }
+    if (h3) {
+      out.push(
+        <h3
+          key={`${keyPrefix}h-${key++}`}
+          className="font-display text-base md:text-lg text-palace mt-4 mb-1.5 first:mt-0"
+        >
+          {renderRich(h3[1])}
+        </h3>,
+      );
+      continue;
+    }
     const img = line.match(/^\{\{image:([^}|]+)(?:\|([^}]+))?\}\}$/);
-    if (img) { out.push(<img key={`${keyPrefix}img-${key++}`} src={img[1].trim()} alt={img[2]?.trim() || "The Grand Palace Indian Restaurant, Sydney CBD"} loading="lazy" decoding="async" className="w-full rounded-xl my-3 object-cover" />); continue; }
-    out.push(<p key={`${keyPrefix}p-${key++}`} className={pClassName}>{renderRich(line)}</p>);
+    if (img) {
+      out.push(
+        <img
+          key={`${keyPrefix}img-${key++}`}
+          src={img[1].trim()}
+          alt={img[2]?.trim() || "The Grand Palace Indian Restaurant, Sydney CBD"}
+          loading="lazy"
+          decoding="async"
+          className="w-full rounded-xl my-3 object-cover"
+        />,
+      );
+      continue;
+    }
+    out.push(
+      <p key={`${keyPrefix}p-${key++}`} className={pClassName}>
+        {renderRich(line)}
+      </p>,
+    );
   }
   flushBullets();
   flushOrdered();
@@ -296,7 +435,10 @@ export function renderBody(paragraphs: string[], pClassName: string): ReactNode[
 }
 
 export function slugify(s: string) {
-  return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 }
 
 export const EXPLORE_LINKS = [
@@ -310,17 +452,49 @@ export const EXPLORE_LINKS = [
    using unlicensed third-party restaurant photography while still giving every
    card a visual anchor. */
 const BANNER_STYLES: Record<string, { icon: typeof Sparkles; gradient: string; label: string }> = {
-  "fine-dining": { icon: Sparkles, gradient: "linear-gradient(135deg,#6b4a8a,#9c6bc9)", label: "Fine Dining" },
-  ramen: { icon: Soup, gradient: "linear-gradient(135deg,#0e7c7b,#14b8a6)", label: "Noodles & Small Plates" },
+  "fine-dining": {
+    icon: Sparkles,
+    gradient: "linear-gradient(135deg,#6b4a8a,#9c6bc9)",
+    label: "Fine Dining",
+  },
+  ramen: {
+    icon: Soup,
+    gradient: "linear-gradient(135deg,#0e7c7b,#14b8a6)",
+    label: "Noodles & Small Plates",
+  },
   pizza: { icon: Pizza, gradient: "linear-gradient(135deg,#c0392b,#e67e22)", label: "Italian" },
-  smallplates: { icon: Utensils, gradient: "linear-gradient(135deg,#2f7a3c,#5cb85c)", label: "Small Plates" },
-  bakery: { icon: Coffee, gradient: "linear-gradient(135deg,#a9682f,#d9a441)", label: "Café & Bakery" },
+  smallplates: {
+    icon: Utensils,
+    gradient: "linear-gradient(135deg,#2f7a3c,#5cb85c)",
+    label: "Small Plates",
+  },
+  bakery: {
+    icon: Coffee,
+    gradient: "linear-gradient(135deg,#a9682f,#d9a441)",
+    label: "Café & Bakery",
+  },
   pub: { icon: Beer, gradient: "linear-gradient(135deg,#4a3220,#8a5a2f)", label: "Pub Food" },
   thai: { icon: Salad, gradient: "linear-gradient(135deg,#1f7a4d,#3fae6e)", label: "Thai" },
-  vietnamese: { icon: Soup, gradient: "linear-gradient(135deg,#c2185b,#e05a92)", label: "Vietnamese" },
-  malaysian: { icon: Soup, gradient: "linear-gradient(135deg,#b8860b,#e0a72a)", label: "Malaysian" },
-  middleeastern: { icon: Utensils, gradient: "linear-gradient(135deg,#8a4a2f,#c17a4a)", label: "Middle Eastern" },
-  lebanese: { icon: Utensils, gradient: "linear-gradient(135deg,#556b2f,#8a9a4a)", label: "Lebanese" },
+  vietnamese: {
+    icon: Soup,
+    gradient: "linear-gradient(135deg,#c2185b,#e05a92)",
+    label: "Vietnamese",
+  },
+  malaysian: {
+    icon: Soup,
+    gradient: "linear-gradient(135deg,#b8860b,#e0a72a)",
+    label: "Malaysian",
+  },
+  middleeastern: {
+    icon: Utensils,
+    gradient: "linear-gradient(135deg,#8a4a2f,#c17a4a)",
+    label: "Middle Eastern",
+  },
+  lebanese: {
+    icon: Utensils,
+    gradient: "linear-gradient(135deg,#556b2f,#8a9a4a)",
+    label: "Lebanese",
+  },
 };
 
 /** Image below the hero band, above the reviewer strip. No-op if the guide has none. */
@@ -355,7 +529,9 @@ export function AuthorBio() {
         <div>
           <p className="font-semibold text-palace mb-2 text-[15px]">{GUIDE_AUTHOR.name}</p>
           {GUIDE_AUTHOR.bioParagraphs.map((p, i) => (
-            <p key={i} className="text-palace/65 text-[13.5px] leading-relaxed mb-2 last:mb-0">{p}</p>
+            <p key={i} className="text-palace/65 text-[13.5px] leading-relaxed mb-2 last:mb-0">
+              {p}
+            </p>
           ))}
         </div>
       </div>
@@ -375,8 +551,18 @@ export function MobileCTABar({ ctaHref, ctaLabel }: { ctaHref: string; ctaLabel:
       className="lg:hidden fixed bottom-0 left-0 right-0 z-[10000] bg-palace/97 backdrop-blur border-t border-saffron/25 px-4 py-3 flex items-center gap-3 transition-transform duration-300"
       style={{ transform: visible ? "translateY(0)" : "translateY(100%)" }}
     >
-      <a href={`tel:${RESTAURANT_PHONE_TEL}`} className="btn-outline-gold flex-1 inline-flex items-center justify-center text-[13px] py-2.5 px-3">Call</a>
-      <Link to={ctaHref} className="btn-gold flex-1 inline-flex items-center justify-center gap-1.5 text-[13px] py-2.5 px-3">{ctaLabel}</Link>
+      <a
+        href={`tel:${RESTAURANT_PHONE_TEL}`}
+        className="btn-outline-gold flex-1 inline-flex items-center justify-center text-[13px] py-2.5 px-3"
+      >
+        Call
+      </a>
+      <Link
+        to={ctaHref}
+        className="btn-gold flex-1 inline-flex items-center justify-center gap-1.5 text-[13px] py-2.5 px-3"
+      >
+        {ctaLabel}
+      </Link>
     </div>
   );
 }
@@ -388,7 +574,9 @@ function ComparisonTable({ table }: { table: GuideComparisonTable }) {
   return (
     <div className="mb-8">
       <h2 className="font-display text-xl md:text-2xl text-palace mb-1">{table.title}</h2>
-      {table.note && <p className="text-palace/50 text-[12.5px] leading-relaxed mb-4">{table.note}</p>}
+      {table.note && (
+        <p className="text-palace/50 text-[12.5px] leading-relaxed mb-4">{table.note}</p>
+      )}
 
       {/* Desktop / tablet: real table, scrolls horizontally if it ever overflows */}
       <div className="hidden sm:block rounded-2xl border border-saffron/20 bg-white/90 overflow-x-auto shadow-sm">
@@ -396,11 +584,21 @@ function ComparisonTable({ table }: { table: GuideComparisonTable }) {
           <caption className="sr-only">{table.title}</caption>
           <thead>
             <tr className="bg-palace text-cream/90">
-              <th scope="col" className="text-left font-semibold px-4 py-3">Restaurant</th>
-              <th scope="col" className="text-left font-semibold px-4 py-3">Area</th>
-              <th scope="col" className="text-left font-semibold px-4 py-3">Style</th>
-              <th scope="col" className="text-left font-semibold px-4 py-3">Dietary Highlights</th>
-              <th scope="col" className="text-center font-semibold px-4 py-3">Good for Groups</th>
+              <th scope="col" className="text-left font-semibold px-4 py-3">
+                Restaurant
+              </th>
+              <th scope="col" className="text-left font-semibold px-4 py-3">
+                Area
+              </th>
+              <th scope="col" className="text-left font-semibold px-4 py-3">
+                Style
+              </th>
+              <th scope="col" className="text-left font-semibold px-4 py-3">
+                Dietary Highlights
+              </th>
+              <th scope="col" className="text-center font-semibold px-4 py-3">
+                Good for Groups
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -411,27 +609,41 @@ function ComparisonTable({ table }: { table: GuideComparisonTable }) {
                   row.highlight ? "bg-saffron/[0.08]" : i % 2 === 0 ? "bg-cream/30" : ""
                 }`}
               >
-                <th scope="row" className="text-left font-medium text-palace px-4 py-3 whitespace-nowrap">
+                <th
+                  scope="row"
+                  className="text-left font-medium text-palace px-4 py-3 whitespace-nowrap"
+                >
                   <span className="flex items-center gap-2">
                     {row.name}
                     {row.highlight && (
-                      <span className="text-[9px] font-bold uppercase tracking-wide text-white px-2 py-0.5 rounded-full shrink-0"
-                            style={{ background: "linear-gradient(90deg,#c8860a,#e6a020)" }}>
+                      <span
+                        className="text-[9px] font-bold uppercase tracking-wide text-white px-2 py-0.5 rounded-full shrink-0"
+                        style={{ background: "linear-gradient(90deg,#c8860a,#e6a020)" }}
+                      >
                         Our Pick
                       </span>
                     )}
                   </span>
                 </th>
                 <td className="px-4 py-3 text-palace/65">
-                  <span className="inline-flex items-center gap-1.5"><MapPinned className="h-3.5 w-3.5 text-saffron/70 shrink-0" />{row.area}</span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <MapPinned className="h-3.5 w-3.5 text-saffron/70 shrink-0" />
+                    {row.area}
+                  </span>
                 </td>
                 <td className="px-4 py-3 text-palace/65">{row.style}</td>
                 <td className="px-4 py-3 text-palace/65">{row.dietary}</td>
                 <td className="px-4 py-3 text-center">
                   {row.goodForGroups ? (
-                    <CheckCircle2 className="h-4 w-4 text-emerald-600 mx-auto" aria-label="Good for groups" />
+                    <CheckCircle2
+                      className="h-4 w-4 text-emerald-600 mx-auto"
+                      aria-label="Good for groups"
+                    />
                   ) : (
-                    <X className="h-4 w-4 text-palace/25 mx-auto" aria-label="Not ideal for groups" />
+                    <X
+                      className="h-4 w-4 text-palace/25 mx-auto"
+                      aria-label="Not ideal for groups"
+                    />
                   )}
                 </td>
               </tr>
@@ -452,18 +664,25 @@ function ComparisonTable({ table }: { table: GuideComparisonTable }) {
             <div className="flex items-center justify-between gap-2 mb-2">
               <p className="font-semibold text-palace text-[14px]">{row.name}</p>
               {row.highlight && (
-                <span className="text-[9px] font-bold uppercase tracking-wide text-white px-2 py-0.5 rounded-full shrink-0"
-                      style={{ background: "linear-gradient(90deg,#c8860a,#e6a020)" }}>
+                <span
+                  className="text-[9px] font-bold uppercase tracking-wide text-white px-2 py-0.5 rounded-full shrink-0"
+                  style={{ background: "linear-gradient(90deg,#c8860a,#e6a020)" }}
+                >
                   Our Pick
                 </span>
               )}
             </div>
             <p className="text-palace/55 text-[12.5px] mb-2 flex items-center gap-1.5">
-              <MapPinned className="h-3.5 w-3.5 text-saffron/70 shrink-0" />{row.area} · {row.style}
+              <MapPinned className="h-3.5 w-3.5 text-saffron/70 shrink-0" />
+              {row.area} · {row.style}
             </p>
             <p className="text-palace/70 text-[12px] mb-2.5">{row.dietary}</p>
             <div className="flex items-center gap-1.5 text-[12px] text-palace/70">
-              {row.goodForGroups ? <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" /> : <X className="h-3.5 w-3.5 text-palace/30" />}
+              {row.goodForGroups ? (
+                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
+              ) : (
+                <X className="h-3.5 w-3.5 text-palace/30" />
+              )}
               Good for groups
             </div>
           </li>
@@ -491,7 +710,9 @@ function BulletGroups({ bullets, compact }: { bullets: string[]; compact: boolea
     const m = builtIn ?? custom;
     if (m) {
       const label = builtIn
-        ? (/dietary/i.test(m[1]) ? "Dietary Options" : "Features")
+        ? /dietary/i.test(m[1])
+          ? "Dietary Options"
+          : "Features"
         : m[1].trim().replace(/\s+/g, " ");
       const existing = groups.find((g) => g.label.toLowerCase() === label.toLowerCase());
       if (existing) existing.values.push(m[2]);
@@ -505,7 +726,9 @@ function BulletGroups({ bullets, compact }: { bullets: string[]; compact: boolea
     <div className="space-y-2.5">
       {groups.map((g) => (
         <div key={g.label}>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-saffron/80 mb-1">{g.label}</p>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-saffron/80 mb-1">
+            {g.label}
+          </p>
           <p className={`text-palace/70 leading-relaxed ${textCls}`}>{g.values.join(" · ")}</p>
         </div>
       ))}
@@ -513,7 +736,8 @@ function BulletGroups({ bullets, compact }: { bullets: string[]; compact: boolea
         <ul className={`space-y-1.5 ${textCls}`}>
           {rest.map((b, j) => (
             <li key={j} className="flex items-start gap-2 text-palace/70 leading-relaxed">
-              <span className="h-1.5 w-1.5 rounded-full bg-saffron shrink-0 mt-2" />{renderRich(b)}
+              <span className="h-1.5 w-1.5 rounded-full bg-saffron shrink-0 mt-2" />
+              {renderRich(b)}
             </li>
           ))}
         </ul>
@@ -526,7 +750,11 @@ function BulletGroups({ bullets, compact }: { bullets: string[]; compact: boolea
    Features/Dietary labels (orange uppercase label, description below). Used
    anywhere a section has structured bulletItems instead of legacy freeform
    bullets — shared by both the Listicle and Normal guide templates. */
-export function BulletItemCards({ items, textSize = "text-[13px]", className = "space-y-2.5" }: {
+export function BulletItemCards({
+  items,
+  textSize = "text-[13px]",
+  className = "space-y-2.5",
+}: {
   items: import("@/lib/guidesContent").GuideBulletItem[];
   textSize?: string;
   className?: string;
@@ -535,8 +763,12 @@ export function BulletItemCards({ items, textSize = "text-[13px]", className = "
     <div className={className}>
       {items.map((item, idx) => (
         <div key={idx}>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-saffron/80 mb-1">{renderRich(item.title)}</p>
-          <div className="text-palace/70 leading-relaxed">{renderBlockText(item.description, textSize, `bi${idx}-`)}</div>
+          <p className="text-[10px] font-bold uppercase tracking-widest text-saffron/80 mb-1">
+            {renderRich(item.title)}
+          </p>
+          <div className="text-palace/70 leading-relaxed">
+            {renderBlockText(item.description, textSize, `bi${idx}-`)}
+          </div>
         </div>
       ))}
     </div>
@@ -545,7 +777,15 @@ export function BulletItemCards({ items, textSize = "text-[13px]", className = "
 
 /* Auto-advancing photo slider — one image visible at a time, cross-fades on
    its own every 3.5s, with clickable dots for manual control. */
-function ImageSlider({ images, alt, className = "mb-3 rounded-xl aspect-[16/9]" }: { images: string[]; alt: string; className?: string }) {
+function ImageSlider({
+  images,
+  alt,
+  className = "mb-3 rounded-xl aspect-[16/9]",
+}: {
+  images: string[];
+  alt: string;
+  className?: string;
+}) {
   const [index, setIndex] = useState(0);
   useEffect(() => {
     if (images.length <= 1) return;
@@ -555,16 +795,30 @@ function ImageSlider({ images, alt, className = "mb-3 rounded-xl aspect-[16/9]" 
   return (
     <div className={`relative overflow-hidden bg-palace/5 ${className}`}>
       {images.map((img, i) => (
-        <img key={i} src={img} alt={`${alt} — photo ${i + 1}`} loading="lazy" decoding="async"
-             className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
-             style={{ opacity: i === index ? 1 : 0 }} />
+        <img
+          key={i}
+          src={img}
+          alt={`${alt} — photo ${i + 1}`}
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+          style={{ opacity: i === index ? 1 : 0 }}
+        />
       ))}
       {images.length > 1 && (
         <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
           {images.map((_, i) => (
-            <button key={i} type="button" onClick={() => setIndex(i)} aria-label={`Show photo ${i + 1}`}
-                    className="h-1.5 rounded-full transition-all"
-                    style={{ width: i === index ? "16px" : "6px", background: i === index ? "#f5c14a" : "rgba(255,255,255,0.65)" }} />
+            <button
+              key={i}
+              type="button"
+              onClick={() => setIndex(i)}
+              aria-label={`Show photo ${i + 1}`}
+              className="h-1.5 rounded-full transition-all"
+              style={{
+                width: i === index ? "16px" : "6px",
+                background: i === index ? "#f5c14a" : "rgba(255,255,255,0.65)",
+              }}
+            />
           ))}
         </div>
       )}
@@ -575,7 +829,11 @@ function ImageSlider({ images, alt, className = "mb-3 rounded-xl aspect-[16/9]" 
 /* A single ranked listing — used both as a full-width featured card (#1) and
    as a compact grid tile (everything else), so the list reads as a dense,
    magazine-style grid instead of one long column of near-identical rows. */
-function RankCard({ section, num, compact }: {
+function RankCard({
+  section,
+  num,
+  compact,
+}: {
   section: import("@/lib/guidesContent").GuideSection;
   num: string;
   compact: boolean;
@@ -592,12 +850,37 @@ function RankCard({ section, num, compact }: {
         {section.imageSlider && section.imageSlider.length > 0 ? (
           <ImageSlider images={section.imageSlider} alt={title} className="aspect-[16/9]" />
         ) : section.image ? (
-          <img src={section.image} alt={section.imageAlt || title} loading="lazy" decoding="async" className="w-full object-cover aspect-[16/9]" />
+          <img
+            src={section.image}
+            alt={section.imageAlt || title}
+            loading="lazy"
+            decoding="async"
+            className="w-full object-cover aspect-[16/9]"
+          />
         ) : banner ? (
-          <div className="relative w-full flex flex-col items-center justify-center gap-1.5 overflow-hidden aspect-[16/9]" style={{ background: banner.gradient }}>
-            <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -right-10 -bottom-10 w-32 opacity-[0.15]" />
-            <banner.icon className={compact ? "h-6 w-6 text-white/90 relative z-10" : "h-8 w-8 text-white/90 relative z-10"} strokeWidth={1.5} />
-            <span className="relative z-10 text-white/85 text-[10px] font-semibold uppercase tracking-widest">{banner.label}</span>
+          <div
+            className="relative w-full flex flex-col items-center justify-center gap-1.5 overflow-hidden aspect-[16/9]"
+            style={{ background: banner.gradient }}
+          >
+            <img
+              src={mandala}
+              alt=""
+              aria-hidden
+              loading="lazy"
+              decoding="async"
+              className="pointer-events-none absolute -right-10 -bottom-10 w-32 opacity-[0.15]"
+            />
+            <banner.icon
+              className={
+                compact
+                  ? "h-6 w-6 text-white/90 relative z-10"
+                  : "h-8 w-8 text-white/90 relative z-10"
+              }
+              strokeWidth={1.5}
+            />
+            <span className="relative z-10 text-white/85 text-[10px] font-semibold uppercase tracking-widest">
+              {banner.label}
+            </span>
           </div>
         ) : null}
         <div
@@ -609,21 +892,35 @@ function RankCard({ section, num, compact }: {
       </div>
       <div className={`flex flex-col flex-1 ${compact ? "p-4" : "p-5 md:p-6"}`}>
         {isTopPick && (
-          <span className="inline-block self-start mb-2 text-[10px] font-bold uppercase tracking-widest text-white px-2.5 py-1 rounded-full"
-                style={{ background: "linear-gradient(90deg,#c8860a,#e6a020)" }}>
+          <span
+            className="inline-block self-start mb-2 text-[10px] font-bold uppercase tracking-widest text-white px-2.5 py-1 rounded-full"
+            style={{ background: "linear-gradient(90deg,#c8860a,#e6a020)" }}
+          >
             Our Pick
           </span>
         )}
-        <h2 className={`font-display text-palace mb-2 ${compact ? "text-base" : "text-lg md:text-xl"}`}>{renderRich(title)}</h2>
+        <h2
+          className={`font-display text-palace mb-2 ${compact ? "text-base" : "text-lg md:text-xl"}`}
+        >
+          {renderRich(title)}
+        </h2>
 
-        {renderBody(section.body, `text-palace/70 leading-relaxed mb-2.5 ${compact ? "text-[12.5px]" : "text-[13.5px]"}`)}
+        {renderBody(
+          section.body,
+          `text-palace/70 leading-relaxed mb-2.5 ${compact ? "text-[12.5px]" : "text-[13.5px]"}`,
+        )}
 
         {section.mustTryDishes && section.mustTryDishes.length > 0 && (
           <div className={compact ? "mb-2.5" : "mb-3"}>
-            <p className="text-[9.5px] font-bold uppercase tracking-widest text-saffron/80 mb-1.5">Must-Try Dishes</p>
+            <p className="text-[9.5px] font-bold uppercase tracking-widest text-saffron/80 mb-1.5">
+              Must-Try Dishes
+            </p>
             <div className="flex flex-wrap gap-1.5">
               {section.mustTryDishes.map((dish, idx) => (
-                <span key={idx} className={`font-semibold rounded-full bg-saffron/10 text-saffron border border-saffron/25 ${compact ? "text-[10.5px] px-2 py-0.5" : "text-[11.5px] px-2.5 py-1"}`}>
+                <span
+                  key={idx}
+                  className={`font-semibold rounded-full bg-saffron/10 text-saffron border border-saffron/25 ${compact ? "text-[10.5px] px-2 py-0.5" : "text-[11.5px] px-2.5 py-1"}`}
+                >
                   {dish}
                 </span>
               ))}
@@ -633,55 +930,87 @@ function RankCard({ section, num, compact }: {
 
         {/* Unified facts panel — address, timing, phone and website together in one place
             (deliberately not split into a separate table above the rest of the card). */}
-        {section.showFactsTable !== false && (section.address || section.timing || section.contactInfo?.phone || section.contactInfo?.website) && (
-          <div className={`rounded-xl border border-saffron/20 bg-cream/30 divide-y divide-saffron/10 mb-2.5 ${compact ? "text-[11px]" : "text-[12.5px]"}`}>
-            {section.address && (
-              <div className="flex items-start gap-2 px-3 py-2">
-                <MapPin className="h-3.5 w-3.5 text-saffron mt-0.5 shrink-0" />
-                <span className="text-palace/75">{section.address}</span>
-              </div>
-            )}
-            {section.timing && (
-              <div className="flex items-start gap-2 px-3 py-2">
-                <Clock className="h-3.5 w-3.5 text-saffron mt-0.5 shrink-0" />
-                <span className="text-palace/75">{section.timing}</span>
-              </div>
-            )}
-            {section.contactInfo?.phone && (
-              <div className="flex items-start gap-2 px-3 py-2">
-                <Phone className="h-3.5 w-3.5 text-saffron mt-0.5 shrink-0" />
-                <a href={section.contactInfo.phoneHref} className="text-palace/75 hover:text-saffron transition">{section.contactInfo.phone}</a>
-              </div>
-            )}
-            {section.contactInfo?.website && (
-              <div className="flex items-start gap-2 px-3 py-2 min-w-0">
-                <Globe className="h-3.5 w-3.5 text-saffron mt-0.5 shrink-0" />
-                <a href={section.contactInfo.websiteHref} target="_blank" rel="noreferrer" className="text-palace/75 hover:text-saffron transition truncate">{section.contactInfo.website}</a>
-              </div>
-            )}
-          </div>
-        )}
+        {section.showFactsTable !== false &&
+          (section.address ||
+            section.timing ||
+            section.contactInfo?.phone ||
+            section.contactInfo?.website) && (
+            <div
+              className={`rounded-xl border border-saffron/20 bg-cream/30 divide-y divide-saffron/10 mb-2.5 ${compact ? "text-[11px]" : "text-[12.5px]"}`}
+            >
+              {section.address && (
+                <div className="flex items-start gap-2 px-3 py-2">
+                  <MapPin className="h-3.5 w-3.5 text-saffron mt-0.5 shrink-0" />
+                  <span className="text-palace/75">{section.address}</span>
+                </div>
+              )}
+              {section.timing && (
+                <div className="flex items-start gap-2 px-3 py-2">
+                  <Clock className="h-3.5 w-3.5 text-saffron mt-0.5 shrink-0" />
+                  <span className="text-palace/75">{section.timing}</span>
+                </div>
+              )}
+              {section.contactInfo?.phone && (
+                <div className="flex items-start gap-2 px-3 py-2">
+                  <Phone className="h-3.5 w-3.5 text-saffron mt-0.5 shrink-0" />
+                  <a
+                    href={section.contactInfo.phoneHref}
+                    className="text-palace/75 hover:text-saffron transition"
+                  >
+                    {section.contactInfo.phone}
+                  </a>
+                </div>
+              )}
+              {section.contactInfo?.website && (
+                <div className="flex items-start gap-2 px-3 py-2 min-w-0">
+                  <Globe className="h-3.5 w-3.5 text-saffron mt-0.5 shrink-0" />
+                  <a
+                    href={section.contactInfo.websiteHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-palace/75 hover:text-saffron transition truncate"
+                  >
+                    {section.contactInfo.website}
+                  </a>
+                </div>
+              )}
+            </div>
+          )}
 
         {(section.contactInfo?.reviewHref || section.contactInfo?.bookHref) && (
           <div className="flex gap-2 mb-2.5">
             {section.contactInfo.reviewHref && (
-              <a href={section.contactInfo.reviewHref} target="_blank" rel="noreferrer"
-                 className={`flex-1 inline-flex items-center justify-center gap-1.5 font-semibold rounded-lg border border-saffron/30 text-palace/75 hover:border-saffron/60 hover:text-saffron transition ${compact ? "text-[10.5px] px-2.5 py-1.5" : "text-[12px] px-3 py-2"}`}>
-                <GoogleIcon className="h-3.5 w-3.5" /> {section.contactInfo.reviewLabel || "Reviews"}
+              <a
+                href={section.contactInfo.reviewHref}
+                target="_blank"
+                rel="noreferrer"
+                className={`flex-1 inline-flex items-center justify-center gap-1.5 font-semibold rounded-lg border border-saffron/30 text-palace/75 hover:border-saffron/60 hover:text-saffron transition ${compact ? "text-[10.5px] px-2.5 py-1.5" : "text-[12px] px-3 py-2"}`}
+              >
+                <GoogleIcon className="h-3.5 w-3.5" />{" "}
+                {section.contactInfo.reviewLabel || "Reviews"}
               </a>
             )}
             {section.contactInfo.bookHref && (
-              <a href={section.contactInfo.bookHref} target="_blank" rel="noreferrer"
-                 className={`flex-1 inline-flex items-center justify-center gap-1.5 font-semibold rounded-lg text-white transition hover:opacity-90 ${compact ? "text-[10.5px] px-2.5 py-1.5" : "text-[12px] px-3 py-2"}`}
-                 style={{ background: "linear-gradient(90deg,#c8860a,#e6a020)" }}>
-                <CalendarCheck className="h-3.5 w-3.5" /> {section.contactInfo.bookLabel || "Book a Table"}
+              <a
+                href={section.contactInfo.bookHref}
+                target="_blank"
+                rel="noreferrer"
+                className={`flex-1 inline-flex items-center justify-center gap-1.5 font-semibold rounded-lg text-white transition hover:opacity-90 ${compact ? "text-[10.5px] px-2.5 py-1.5" : "text-[12px] px-3 py-2"}`}
+                style={{ background: "linear-gradient(90deg,#c8860a,#e6a020)" }}
+              >
+                <CalendarCheck className="h-3.5 w-3.5" />{" "}
+                {section.contactInfo.bookLabel || "Book a Table"}
               </a>
             )}
           </div>
         )}
 
         {section.bulletItems && section.bulletItems.length > 0 ? (
-          <BulletItemCards items={section.bulletItems} textSize={compact ? "text-[11.5px]" : "text-[13px]"} className="space-y-2.5" />
+          <BulletItemCards
+            items={section.bulletItems}
+            textSize={compact ? "text-[11.5px]" : "text-[13px]"}
+            className="space-y-2.5"
+          />
         ) : (
           section.bullets && <BulletGroups bullets={section.bullets} compact={compact} />
         )}
@@ -700,12 +1029,21 @@ function RankCard({ section, num, compact }: {
  *  hand-type a number into the heading. Numbers come from the heading when
  *  present (preserves exact legacy numbering), otherwise auto-increment. */
 type SectionBlock =
-  | { type: "single"; section: import("@/lib/guidesContent").GuideSection; key: string; num?: string }
-  | { type: "grid"; items: { section: import("@/lib/guidesContent").GuideSection; num: string; key: string }[] };
+  | {
+      type: "single";
+      section: import("@/lib/guidesContent").GuideSection;
+      key: string;
+      num?: string;
+    }
+  | {
+      type: "grid";
+      items: { section: import("@/lib/guidesContent").GuideSection; num: string; key: string }[];
+    };
 
 function groupSections(sections: import("@/lib/guidesContent").GuideSection[]): SectionBlock[] {
   const blocks: SectionBlock[] = [];
-  let grid: { section: import("@/lib/guidesContent").GuideSection; num: string; key: string }[] = [];
+  let grid: { section: import("@/lib/guidesContent").GuideSection; num: string; key: string }[] =
+    [];
   let autoNum = 0;
   let sawFirstListing = false;
   sections.forEach((section, i) => {
@@ -740,28 +1078,62 @@ export function GuideTemplate({ guide }: { guide: GuideContent }) {
   const schemas = buildSchema(guide);
 
   return (
-    <PageShell crumbs={[{ label: "Guides", to: "/guides" }, { label: `${guide.tag} Guides`, to: "/guides" }, { label: guide.title }]}>
+    <PageShell
+      crumbs={[
+        { label: "Guides", to: "/guides" },
+        { label: `${guide.tag} Guides`, to: "/guides" },
+        { label: guide.title },
+      ]}
+    >
       {schemas.map((schema, i) => (
-        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
       ))}
 
       {/* Hero — typographic + "at a glance" panel; optional photo below */}
       <div className="relative bg-palace overflow-hidden pt-24 pb-10 md:pt-28 md:pb-14 px-6">
-        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -right-40 -top-32 w-[520px] opacity-[0.07] animate-spin-slow" />
-        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -left-44 -bottom-40 w-[480px] opacity-[0.05] animate-spin-slow" style={{ animationDirection: "reverse" }} />
+        <img
+          src={mandala}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          decoding="async"
+          className="pointer-events-none absolute -right-40 -top-32 w-[520px] opacity-[0.07] animate-spin-slow"
+        />
+        <img
+          src={mandala}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          decoding="async"
+          className="pointer-events-none absolute -left-44 -bottom-40 w-[480px] opacity-[0.05] animate-spin-slow"
+          style={{ animationDirection: "reverse" }}
+        />
         <div className="relative z-10 max-w-5xl mx-auto grid lg:grid-cols-[1fr_300px] gap-8 items-start">
           <div>
-            <p className="text-[11px] tracking-[0.45em] uppercase font-bold mb-4" style={{ color: "#f5c14a" }}>
+            <p
+              className="text-[11px] tracking-[0.45em] uppercase font-bold mb-4"
+              style={{ color: "#f5c14a" }}
+            >
               {guide.tag} Guide · The Grand Palace, Sydney CBD
             </p>
-            <h1 className="font-display text-3xl md:text-[2.7rem] leading-[1.15] text-gold-gradient mb-5">{renderRich(guide.title)}</h1>
-            <p className="text-cream/60 text-[14.5px] leading-relaxed max-w-xl mb-5">{guide.excerpt}</p>
+            <h1 className="font-display text-3xl md:text-[2.7rem] leading-[1.15] text-gold-gradient mb-5">
+              {renderRich(guide.title)}
+            </h1>
+            <p className="text-cream/60 text-[14.5px] leading-relaxed max-w-xl mb-5">
+              {guide.excerpt}
+            </p>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[12px] text-cream/50">
               <span>Published {guide.publishedDateDisplay}</span>
               {guide.updatedDate !== guide.publishedDate && (
                 <>
                   <span aria-hidden>·</span>
-                  <span className="text-emerald-400 font-medium">Updated {guide.updatedDateDisplay}</span>
+                  <span className="text-emerald-400 font-medium">
+                    Updated {guide.updatedDateDisplay}
+                  </span>
                 </>
               )}
             </div>
@@ -769,26 +1141,42 @@ export function GuideTemplate({ guide }: { guide: GuideContent }) {
 
           {/* At-a-glance panel — local SEO + CRO, no image needed */}
           <div className="rounded-2xl bg-cream/[0.06] border border-cream/15 backdrop-blur-sm p-5 flex flex-col gap-3">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-saffron mb-1">At a Glance</p>
-            <a href={MAPS_URL} target="_blank" rel="noreferrer" className="flex items-start gap-2.5 text-[13px] text-cream/80 hover:text-gold transition">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-saffron mb-1">
+              At a Glance
+            </p>
+            <a
+              href={MAPS_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-start gap-2.5 text-[13px] text-cream/80 hover:text-gold transition"
+            >
               <MapPin className="h-4 w-4 text-saffron mt-0.5 shrink-0" /> {RESTAURANT_ADDRESS}
             </a>
-            <a href={`tel:${RESTAURANT_PHONE_TEL}`} className="flex items-start gap-2.5 text-[13px] text-cream/80 hover:text-gold transition">
+            <a
+              href={`tel:${RESTAURANT_PHONE_TEL}`}
+              className="flex items-start gap-2.5 text-[13px] text-cream/80 hover:text-gold transition"
+            >
               <Phone className="h-4 w-4 text-saffron mt-0.5 shrink-0" /> {RESTAURANT_PHONE_DISPLAY}
             </a>
-            <a href={`mailto:${RESTAURANT_EMAIL}`} className="flex items-start gap-2.5 text-[13px] text-cream/80 hover:text-gold transition break-all">
+            <a
+              href={`mailto:${RESTAURANT_EMAIL}`}
+              className="flex items-start gap-2.5 text-[13px] text-cream/80 hover:text-gold transition break-all"
+            >
               <Mail className="h-4 w-4 text-saffron mt-0.5 shrink-0" /> {RESTAURANT_EMAIL}
             </a>
             <div className="flex items-start gap-2.5 text-[13px] text-cream/80">
-              <Clock className="h-4 w-4 text-saffron mt-0.5 shrink-0" /> Lunch 12–3pm · Dinner from 5pm, daily
+              <Clock className="h-4 w-4 text-saffron mt-0.5 shrink-0" /> Lunch 12–3pm · Dinner from
+              5pm, daily
             </div>
             <div className="h-px bg-cream/10 my-1" />
-            <Link to={guide.ctaHref} className="btn-gold text-center text-[13px] py-2.5 inline-flex items-center justify-center gap-1.5">
+            <Link
+              to={guide.ctaHref}
+              className="btn-gold text-center text-[13px] py-2.5 inline-flex items-center justify-center gap-1.5"
+            >
               {guide.ctaLabel} <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
         </div>
-
       </div>
 
       <GuideHeroImage guide={guide} />
@@ -802,106 +1190,182 @@ export function GuideTemplate({ guide }: { guide: GuideContent }) {
 
       {/* Body */}
       <section className="relative section-cream py-12 px-6 overflow-hidden">
-        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -left-36 -top-28 w-[460px] opacity-[0.06] animate-spin-slow" />
+        <img
+          src={mandala}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          decoding="async"
+          className="pointer-events-none absolute -left-36 -top-28 w-[460px] opacity-[0.06] animate-spin-slow"
+        />
         <div className="relative z-10 max-w-6xl mx-auto">
-            <div className="max-w-3xl mx-auto">
-              <div className="text-palace/75 mb-6">{renderBlockText(guide.intro, "text-[15px] leading-relaxed")}</div>
-
-              {/* Quick Answer — AEO/GEO answer-engine callout */}
-              {guide.quickAnswer && (
-                <div id="quick-answer" className="mb-8 rounded-2xl border-l-4 border-saffron bg-white/90 p-5 shadow-sm scroll-mt-24">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-saffron mb-1.5">Quick Answer</p>
-                  <div className="text-palace/85 font-medium">{renderBlockText(guide.quickAnswer, "text-[14.5px] leading-relaxed font-medium")}</div>
-                </div>
-              )}
+          <div className="max-w-3xl mx-auto">
+            <div className="text-palace/75 mb-6">
+              {renderBlockText(guide.intro, "text-[15px] leading-relaxed")}
             </div>
 
-            {guide.comparisonTable && <ComparisonTable table={guide.comparisonTable} />}
+            {/* Quick Answer — AEO/GEO answer-engine callout */}
+            {guide.quickAnswer && (
+              <div
+                id="quick-answer"
+                className="mb-8 rounded-2xl border-l-4 border-saffron bg-white/90 p-5 shadow-sm scroll-mt-24"
+              >
+                <p className="text-[10px] font-bold uppercase tracking-widest text-saffron mb-1.5">
+                  Quick Answer
+                </p>
+                <div className="text-palace/85 font-medium">
+                  {renderBlockText(guide.quickAnswer, "text-[14.5px] leading-relaxed font-medium")}
+                </div>
+              </div>
+            )}
+          </div>
 
-            {groupSections(guide.sections).map((block) => {
-              if (block.type === "single") {
-                const { section, key, num } = block;
+          {guide.comparisonTable && <ComparisonTable table={guide.comparisonTable} />}
 
-                if (num !== undefined) {
-                  return (
-                    <div key={key} className="mb-6 max-w-3xl mx-auto">
-                      <RankCard section={section} num={num} compact={false} />
-                    </div>
-                  );
-                }
+          {groupSections(guide.sections).map((block) => {
+            if (block.type === "single") {
+              const { section, key, num } = block;
 
-                if (section.blockType === "box") {
-                  return (
-                    <div key={key} id={slugify(section.heading)} className="mb-8 max-w-3xl mx-auto scroll-mt-24 rounded-2xl border-l-4 border-saffron bg-white/90 p-5 md:p-6 shadow-sm">
-                      {section.heading && <h2 className="font-display text-lg md:text-xl text-palace mb-2">{renderRich(section.heading)}</h2>}
-                      {renderBody(section.body, "text-palace/75 text-[14px] leading-relaxed mb-2.5")}
-                      {section.bulletItems && section.bulletItems.length > 0 ? (
-                        <BulletItemCards items={section.bulletItems} textSize="text-[14px]" className="mt-1 space-y-2.5" />
-                      ) : section.bullets && (
+              if (num !== undefined) {
+                return (
+                  <div key={key} className="mb-6 max-w-3xl mx-auto">
+                    <RankCard section={section} num={num} compact={false} />
+                  </div>
+                );
+              }
+
+              if (section.blockType === "box") {
+                return (
+                  <div
+                    key={key}
+                    id={slugify(section.heading)}
+                    className="mb-8 max-w-3xl mx-auto scroll-mt-24 rounded-2xl border-l-4 border-saffron bg-white/90 p-5 md:p-6 shadow-sm"
+                  >
+                    {section.heading && (
+                      <h2 className="font-display text-lg md:text-xl text-palace mb-2">
+                        {renderRich(section.heading)}
+                      </h2>
+                    )}
+                    {renderBody(section.body, "text-palace/75 text-[14px] leading-relaxed mb-2.5")}
+                    {section.bulletItems && section.bulletItems.length > 0 ? (
+                      <BulletItemCards
+                        items={section.bulletItems}
+                        textSize="text-[14px]"
+                        className="mt-1 space-y-2.5"
+                      />
+                    ) : (
+                      section.bullets && (
                         <ul className="space-y-1.5 mt-1">
                           {section.bullets.map((b, j) => (
-                            <li key={j} className="flex items-start gap-2 text-palace/70 text-[14px] leading-relaxed">
-                              <span className="h-1.5 w-1.5 rounded-full bg-saffron shrink-0 mt-2" />{renderRich(b)}
+                            <li
+                              key={j}
+                              className="flex items-start gap-2 text-palace/70 text-[14px] leading-relaxed"
+                            >
+                              <span className="h-1.5 w-1.5 rounded-full bg-saffron shrink-0 mt-2" />
+                              {renderRich(b)}
                             </li>
                           ))}
                         </ul>
-                      )}
-                    </div>
-                  );
-                }
-
-                if (section.blockType === "row") {
-                  const rowItems = section.items && section.items.length ? section.items : (section.bullets ?? []);
-                  return (
-                    <div key={key} id={slugify(section.heading)} className="mb-8 max-w-3xl mx-auto scroll-mt-24">
-                      {section.heading && <h2 className="font-display text-xl md:text-2xl text-palace mb-3">{renderRich(section.heading)}</h2>}
-                      {renderBody(section.body, "text-palace/70 text-[14px] leading-relaxed mb-4")}
-                      <div className="flex flex-wrap justify-center gap-3">
-                        {rowItems.map((it, j) => {
-                          const [titleLine, ...restLines] = it.split("\n");
-                          const description = restLines.join("\n");
-                          const widthClass = rowItems.length % 3 === 0 ? "sm:w-[calc(33.333%-0.5rem)]" : rowItems.length % 2 === 0 ? "sm:w-[calc(50%-0.375rem)]" : "sm:w-[calc(33.333%-0.5rem)]";
-                          return (
-                            <div key={j} className={`w-full ${widthClass} rounded-xl border border-saffron/25 bg-white p-4 text-center shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all`}>
-                              <p className="font-semibold text-[14px] mb-1.5" style={{ color: "#c8720a" }}>{renderRich(titleLine)}</p>
-                              {description && <p className="text-palace/70 text-[12.5px] leading-relaxed">{renderRich(description)}</p>}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  );
-                }
-
-                return (
-                  <div key={key} id={slugify(section.heading)} className="mb-8 max-w-3xl mx-auto scroll-mt-24">
-                    <h2 className="font-display text-xl md:text-2xl text-palace mb-3">{renderRich(section.heading)}</h2>
-                    {renderBody(section.body, "text-palace/70 text-[14px] leading-relaxed mb-3")}
-                    {section.bulletItems && section.bulletItems.length > 0 ? (
-                      <BulletItemCards items={section.bulletItems} textSize="text-[14px]" className="mt-2 space-y-2.5" />
-                    ) : section.bullets && (
-                      <ul className="space-y-1.5 mt-2">
-                        {section.bullets.map((b, j) => (
-                          <li key={j} className="flex items-start gap-2 text-palace/70 text-[14px] leading-relaxed">
-                            <span className="h-1.5 w-1.5 rounded-full bg-saffron shrink-0 mt-2" />{renderRich(b)}
-                          </li>
-                        ))}
-                      </ul>
+                      )
                     )}
                   </div>
                 );
               }
 
+              if (section.blockType === "row") {
+                const rowItems =
+                  section.items && section.items.length ? section.items : (section.bullets ?? []);
+                return (
+                  <div
+                    key={key}
+                    id={slugify(section.heading)}
+                    className="mb-8 max-w-3xl mx-auto scroll-mt-24"
+                  >
+                    {section.heading && (
+                      <h2 className="font-display text-xl md:text-2xl text-palace mb-3">
+                        {renderRich(section.heading)}
+                      </h2>
+                    )}
+                    {renderBody(section.body, "text-palace/70 text-[14px] leading-relaxed mb-4")}
+                    <div className="flex flex-wrap justify-center gap-3">
+                      {rowItems.map((it, j) => {
+                        const [titleLine, ...restLines] = it.split("\n");
+                        const description = restLines.join("\n");
+                        const widthClass =
+                          rowItems.length % 3 === 0
+                            ? "sm:w-[calc(33.333%-0.5rem)]"
+                            : rowItems.length % 2 === 0
+                              ? "sm:w-[calc(50%-0.375rem)]"
+                              : "sm:w-[calc(33.333%-0.5rem)]";
+                        return (
+                          <div
+                            key={j}
+                            className={`w-full ${widthClass} rounded-xl border border-saffron/25 bg-white p-4 text-center shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all`}
+                          >
+                            <p
+                              className="font-semibold text-[14px] mb-1.5"
+                              style={{ color: "#c8720a" }}
+                            >
+                              {renderRich(titleLine)}
+                            </p>
+                            {description && (
+                              <p className="text-palace/70 text-[12.5px] leading-relaxed">
+                                {renderRich(description)}
+                              </p>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              }
+
               return (
-                <div key={block.items[0]?.key} className="flex flex-col gap-5 mb-8 max-w-3xl mx-auto">
-                  {block.items.map(({ section, num, key }) => (
-                    <RankCard key={key} section={section} num={num} compact={false} />
-                  ))}
+                <div
+                  key={key}
+                  id={slugify(section.heading)}
+                  className="mb-8 max-w-3xl mx-auto scroll-mt-24"
+                >
+                  <h2 className="font-display text-xl md:text-2xl text-palace mb-3">
+                    {renderRich(section.heading)}
+                  </h2>
+                  {renderBody(section.body, "text-palace/70 text-[14px] leading-relaxed mb-3")}
+                  {section.bulletItems && section.bulletItems.length > 0 ? (
+                    <BulletItemCards
+                      items={section.bulletItems}
+                      textSize="text-[14px]"
+                      className="mt-2 space-y-2.5"
+                    />
+                  ) : (
+                    section.bullets && (
+                      <ul className="space-y-1.5 mt-2">
+                        {section.bullets.map((b, j) => (
+                          <li
+                            key={j}
+                            className="flex items-start gap-2 text-palace/70 text-[14px] leading-relaxed"
+                          >
+                            <span className="h-1.5 w-1.5 rounded-full bg-saffron shrink-0 mt-2" />
+                            {renderRich(b)}
+                          </li>
+                        ))}
+                      </ul>
+                    )
+                  )}
                 </div>
               );
-            })}
+            }
 
-            <div className="max-w-3xl mx-auto">
+            return (
+              <div key={block.items[0]?.key} className="flex flex-col gap-5 mb-8 max-w-3xl mx-auto">
+                {block.items.map(({ section, num, key }) => (
+                  <RankCard key={key} section={section} num={num} compact={false} />
+                ))}
+              </div>
+            );
+          })}
+
+          <div className="max-w-3xl mx-auto">
             {guide.pricingTable && (
               <div className="mb-8 rounded-2xl border border-saffron/20 bg-white/80 overflow-hidden">
                 <div className="px-5 py-3 border-b border-saffron/15">
@@ -912,86 +1376,122 @@ export function GuideTemplate({ guide }: { guide: GuideContent }) {
                     {guide.pricingTable.rows.map((row, i) => (
                       <tr key={i} className={i % 2 === 0 ? "bg-cream/40" : ""}>
                         <td className="px-5 py-3 text-palace/85 font-medium">{row.item}</td>
-                        <td className="px-5 py-3 text-saffron font-bold whitespace-nowrap">{row.price}</td>
-                        <td className="px-5 py-3 text-palace/50 hidden sm:table-cell">{row.note}</td>
+                        <td className="px-5 py-3 text-saffron font-bold whitespace-nowrap">
+                          {row.price}
+                        </td>
+                        <td className="px-5 py-3 text-palace/50 hidden sm:table-cell">
+                          {row.note}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
                 {guide.pricingTable.note && (
-                  <p className="px-5 py-3 text-[12px] text-palace/45 italic border-t border-saffron/10">{guide.pricingTable.note}</p>
+                  <p className="px-5 py-3 text-[12px] text-palace/45 italic border-t border-saffron/10">
+                    {guide.pricingTable.note}
+                  </p>
                 )}
               </div>
             )}
 
             {/* Mid-content CTA — CRO */}
             <div className="mb-8 rounded-2xl bg-gradient-to-r from-palace to-[#2a0f05] p-5 md:p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <p className="text-cream/90 text-[14px] text-center sm:text-left">Ready to experience it yourself? Tables fill fast on weeknights.</p>
+              <p className="text-cream/90 text-[14px] text-center sm:text-left">
+                Ready to experience it yourself? Tables fill fast on weeknights.
+              </p>
               <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 w-full sm:w-auto sm:shrink-0">
-                <a href={`tel:${RESTAURANT_PHONE_TEL}`} className="btn-outline-gold whitespace-nowrap inline-flex items-center justify-center text-[13px]">Call Now</a>
-                <Link to={guide.ctaHref} className="btn-gold whitespace-nowrap inline-flex items-center justify-center gap-2 text-[13px]">
+                <a
+                  href={`tel:${RESTAURANT_PHONE_TEL}`}
+                  className="btn-outline-gold whitespace-nowrap inline-flex items-center justify-center text-[13px]"
+                >
+                  Call Now
+                </a>
+                <Link
+                  to={guide.ctaHref}
+                  className="btn-gold whitespace-nowrap inline-flex items-center justify-center gap-2 text-[13px]"
+                >
                   {guide.ctaLabel} <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             </div>
-            </div>
+          </div>
 
-            <AuthorBio />
+          <AuthorBio />
 
-            {/* FAQ */}
-            {guide.faq.length > 0 && (
-              <div id="faq" className="mb-10 scroll-mt-24">
-                <h2 className="font-display text-xl md:text-2xl text-palace mb-4">Frequently Asked Questions</h2>
-                <div className="grid sm:grid-cols-2 gap-3 [&>*:last-child:nth-child(odd)]:sm:col-span-2">
-                  {guide.faq.map((f, i) => (
-                    <div key={i} className="rounded-xl border border-saffron/20 bg-white/70 p-5">
-                      <p className="font-semibold text-palace mb-1.5 text-[14px]">{f.q}</p>
-                      <div className="text-palace/65">{renderBlockText(f.a, "text-[13.5px] leading-relaxed", `faq${i}-`)}</div>
+          {/* FAQ */}
+          {guide.faq.length > 0 && (
+            <div id="faq" className="mb-10 scroll-mt-24">
+              <h2 className="font-display text-xl md:text-2xl text-palace mb-4">
+                Frequently Asked Questions
+              </h2>
+              <div className="grid sm:grid-cols-2 gap-3 [&>*:last-child:nth-child(odd)]:sm:col-span-2">
+                {guide.faq.map((f, i) => (
+                  <div key={i} className="rounded-xl border border-saffron/20 bg-white/70 p-5">
+                    <p className="font-semibold text-palace mb-1.5 text-[14px]">{f.q}</p>
+                    <div className="text-palace/65">
+                      {renderBlockText(f.a, "text-[13.5px] leading-relaxed", `faq${i}-`)}
                     </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* External Resources — authoritative outbound links */}
-            {guide.externalLinks && guide.externalLinks.length > 0 && (
-              <div className="mb-10">
-                <h3 className="font-display text-lg text-palace mb-3">Helpful External Resources</h3>
-                <ul className="space-y-2">
-                  {guide.externalLinks.map((l, i) => (
-                    <li key={i}>
-                      <a href={l.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-[13.5px] text-saffron hover:text-gold transition font-medium">
-                        <ExternalLinkIcon className="h-3.5 w-3.5" /> {l.label}
-                      </a>
-                      <span className="text-palace/40 text-[12px]"> — {l.source}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {/* Explore More — internal linking */}
-            <div className="mb-10">
-              <h3 className="font-display text-lg text-palace mb-3">Explore More at The Grand Palace</h3>
-              <div className="flex flex-wrap gap-2">
-                {EXPLORE_LINKS.map((l) => (
-                  <Link key={l.to} to={l.to} className="text-[12.5px] font-medium px-3.5 py-2 rounded-full border border-saffron/25 text-palace/75 hover:border-saffron/50 hover:text-saffron transition bg-white/60">
-                    {l.label}
-                  </Link>
+                  </div>
                 ))}
               </div>
             </div>
+          )}
 
-            {/* Final CTA */}
-            <div className="rounded-2xl bg-palace p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
-              <p className="text-cream/85 font-display text-lg text-center sm:text-left">Ready to book The Grand Palace?</p>
-              <Link to={guide.ctaHref} className="btn-gold whitespace-nowrap inline-flex items-center justify-center gap-2 w-full sm:w-auto">
-                {guide.ctaLabel} <ArrowRight className="h-4 w-4" />
-              </Link>
+          {/* External Resources — authoritative outbound links */}
+          {guide.externalLinks && guide.externalLinks.length > 0 && (
+            <div className="mb-10">
+              <h3 className="font-display text-lg text-palace mb-3">Helpful External Resources</h3>
+              <ul className="space-y-2">
+                {guide.externalLinks.map((l, i) => (
+                  <li key={i}>
+                    <a
+                      href={l.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[13.5px] text-saffron hover:text-gold transition font-medium"
+                    >
+                      <ExternalLinkIcon className="h-3.5 w-3.5" /> {l.label}
+                    </a>
+                    <span className="text-palace/40 text-[12px]"> — {l.source}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
+          )}
 
-            {/* Related guides */}
-            <RelatedGuides guide={guide} />
+          {/* Explore More — internal linking */}
+          <div className="mb-10">
+            <h3 className="font-display text-lg text-palace mb-3">
+              Explore More at The Grand Palace
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {EXPLORE_LINKS.map((l) => (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  className="text-[12.5px] font-medium px-3.5 py-2 rounded-full border border-saffron/25 text-palace/75 hover:border-saffron/50 hover:text-saffron transition bg-white/60"
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Final CTA */}
+          <div className="rounded-2xl bg-palace p-6 md:p-8 flex flex-col sm:flex-row items-center justify-between gap-4 mb-10">
+            <p className="text-cream/85 font-display text-lg text-center sm:text-left">
+              Ready to book The Grand Palace?
+            </p>
+            <Link
+              to={guide.ctaHref}
+              className="btn-gold whitespace-nowrap inline-flex items-center justify-center gap-2 w-full sm:w-auto"
+            >
+              {guide.ctaLabel} <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          {/* Related guides */}
+          <RelatedGuides guide={guide} />
         </div>
       </section>
 

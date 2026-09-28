@@ -9,7 +9,9 @@ export type ContentMap = Record<string, string>;
 // backend hiccup returns {} so the page silently keeps its hardcoded defaults.
 export async function fetchPageContent(path: string): Promise<ContentMap> {
   try {
-    const res = await fetch(`${API_URL}/api/content/blocks/lookup?path=${encodeURIComponent(path)}`);
+    const res = await fetch(
+      `${API_URL}/api/content/blocks/lookup?path=${encodeURIComponent(path)}`,
+    );
     if (!res.ok) return {};
     return await res.json();
   } catch {
@@ -29,10 +31,17 @@ export function makeContent(map: ContentMap | undefined | null) {
 
 // Splits a textarea value into paragraphs (blank-line separated), falling back
 // to the provided default paragraphs when unset.
-export function contentParagraphs(map: ContentMap | undefined | null, key: string, fallback: string[]): string[] {
+export function contentParagraphs(
+  map: ContentMap | undefined | null,
+  key: string,
+  fallback: string[],
+): string[] {
   const v = map?.[key];
   if (v === undefined || v.trim() === "") return fallback;
-  return v.split(/\n\s*\n/).map((s) => s.trim()).filter(Boolean);
+  return v
+    .split(/\n\s*\n/)
+    .map((s) => s.trim())
+    .filter(Boolean);
 }
 
 // Layers live edits from the admin's preview iframe on top of the loaded

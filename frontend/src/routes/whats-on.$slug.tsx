@@ -36,11 +36,12 @@ function WhatsOnPage() {
     ? { label: page.ctaLabel, to: page.ctaHref }
     : { label: page.ctaLabel, href: page.ctaHref, external: page.ctaHref.startsWith("http") };
 
-  const cta2 = page.cta2Label && page.cta2Href
-    ? (page.cta2Href.startsWith("/")
+  const cta2 =
+    page.cta2Label && page.cta2Href
+      ? page.cta2Href.startsWith("/")
         ? { label: page.cta2Label, to: page.cta2Href }
-        : { label: page.cta2Label, href: page.cta2Href, external: page.cta2Href.startsWith("http") })
-    : undefined;
+        : { label: page.cta2Label, href: page.cta2Href, external: page.cta2Href.startsWith("http") }
+      : undefined;
 
   return (
     <WhatsOnSimpleTemplate
@@ -52,7 +53,11 @@ function WhatsOnPage() {
       heroVideo={page.heroVideo ?? undefined}
       galleryImages={page.galleryImages ?? undefined}
       highlightLine={page.highlightLine ? renderRich(page.highlightLine) : undefined}
-      intro={page.intro ? renderBlockText(page.intro, "text-stone-800 leading-relaxed mb-2 last:mb-0 text-[15px]") : undefined}
+      intro={
+        page.intro
+          ? renderBlockText(page.intro, "text-stone-800 leading-relaxed mb-2 last:mb-0 text-[15px]")
+          : undefined
+      }
       contentBlocks={page.contentBlocks?.map((b) => ({
         subtitle: b.subtitle ? renderRich(b.subtitle) : undefined,
         body: renderBlockText(b.body, "text-stone-700 leading-relaxed mb-2 last:mb-0 text-[15px]"),
