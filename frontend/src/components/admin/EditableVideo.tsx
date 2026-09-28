@@ -7,7 +7,10 @@ import { api } from "@/lib/admin-api";
  *  types, and "remove video" affordance are different enough to make a
  *  shared implementation more confusing than two small ones. */
 export function EditableVideo({
-  value, onChange, className, videoClassName,
+  value,
+  onChange,
+  className,
+  videoClassName,
 }: {
   value: string;
   onChange: (url: string) => void;
@@ -62,28 +65,43 @@ export function EditableVideo({
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      {hasVideo && (
-        <video src={value} className={videoClassName} muted loop playsInline autoPlay />
-      )}
+      {hasVideo && <video src={value} className={videoClassName} muted loop playsInline autoPlay />}
 
       {!hasVideo && (
-        <div className={`absolute inset-0 z-20 flex items-center justify-center transition-colors ${dragOver ? "bg-amber-600/60" : "bg-black/55"}`}>
+        <div
+          className={`absolute inset-0 z-20 flex items-center justify-center transition-colors ${dragOver ? "bg-amber-600/60" : "bg-black/55"}`}
+        >
           <span className="text-white text-sm font-bold uppercase tracking-wider px-4 py-2 rounded-full border-2 border-dashed border-white/70 text-center">
-            {uploading ? "Uploading…" : dragOver ? "Drop to upload" : "🎬 Click or Drag & Drop a Video (optional)"}
+            {uploading
+              ? "Uploading…"
+              : dragOver
+                ? "Drop to upload"
+                : "🎬 Click or Drag & Drop a Video (optional)"}
           </span>
         </div>
       )}
 
       {hasVideo && (
         <>
-          <div className={`absolute inset-0 z-20 transition-colors flex items-center justify-center ${dragOver ? "bg-amber-600/60" : "bg-black/0 group-hover:bg-black/50"}`}>
-            <span className={`text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-black/60 transition-opacity ${dragOver ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
-              {uploading ? "Uploading…" : dragOver ? "Drop to replace" : "🎬 Change or Drag & Drop Video"}
+          <div
+            className={`absolute inset-0 z-20 transition-colors flex items-center justify-center ${dragOver ? "bg-amber-600/60" : "bg-black/0 group-hover:bg-black/50"}`}
+          >
+            <span
+              className={`text-white text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full bg-black/60 transition-opacity ${dragOver ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}
+            >
+              {uploading
+                ? "Uploading…"
+                : dragOver
+                  ? "Drop to replace"
+                  : "🎬 Change or Drag & Drop Video"}
             </span>
           </div>
           <button
             type="button"
-            onClick={(e) => { e.preventDefault(); onChange(""); }}
+            onClick={(e) => {
+              e.preventDefault();
+              onChange("");
+            }}
             className="absolute top-2 right-2 z-30 text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full bg-black/60 text-white opacity-0 group-hover:opacity-100 transition-opacity"
           >
             ✕ Remove video
@@ -91,7 +109,14 @@ export function EditableVideo({
         </>
       )}
 
-      <input ref={fileRef} type="file" accept="video/*" onChange={handleFileInput} className="hidden" disabled={uploading} />
+      <input
+        ref={fileRef}
+        type="file"
+        accept="video/*"
+        onChange={handleFileInput}
+        className="hidden"
+        disabled={uploading}
+      />
     </label>
   );
 }

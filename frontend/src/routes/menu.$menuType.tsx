@@ -14,7 +14,7 @@ import { buildSeoHead, titleWithBrand } from "@/lib/seo";
 // pattern, so it never actually reaches this loader.
 const DEDICATED_PAGES: Record<string, string> = {
   "set-menu": "/set-menu",
-  "beverages": "/beverages",
+  beverages: "/beverages",
   "lunch-special": "/lunch-special",
 };
 
@@ -66,12 +66,21 @@ function GenericMenuPage() {
 
   return (
     <PageShell crumbs={[{ label: "Menu", to: "/menu" }, { label: menuLabel }]}>
-      <div className="relative flex items-center justify-center text-center overflow-hidden" style={{ minHeight: "36vh", background: "linear-gradient(135deg,#1a0e00,#3d2610)" }}>
+      <div
+        className="relative flex items-center justify-center text-center overflow-hidden"
+        style={{ minHeight: "36vh", background: "linear-gradient(135deg,#1a0e00,#3d2610)" }}
+      >
         <div className="relative flex flex-col items-center gap-4 px-6 py-10">
-          <p className="text-[9px] tracking-[0.7em] uppercase font-bold" style={{ color: "#f5c14a" }}>
+          <p
+            className="text-[9px] tracking-[0.7em] uppercase font-bold"
+            style={{ color: "#f5c14a" }}
+          >
             The Grand Palace · Sydney CBD
           </p>
-          <h1 className="font-display leading-none" style={{ fontSize: "clamp(38px,7vw,72px)", color: "#fdf6e8" }}>
+          <h1
+            className="font-display leading-none"
+            style={{ fontSize: "clamp(38px,7vw,72px)", color: "#fdf6e8" }}
+          >
             {menuLabel}
           </h1>
         </div>
@@ -82,7 +91,11 @@ function GenericMenuPage() {
           <section key={cat.id} className="max-w-5xl mx-auto">
             <div className="rounded-2xl overflow-hidden shadow-sm border border-stone-200 bg-white">
               <div className="flex items-center gap-3 px-6 py-5" style={{ background: "#fdf6e4" }}>
-                {cat.tag && <span className={`w-3 h-3 rounded-sm border-2 ${tagDot[cat.tag] ?? tagDot.mixed}`} />}
+                {cat.tag && (
+                  <span
+                    className={`w-3 h-3 rounded-sm border-2 ${tagDot[cat.tag] ?? tagDot.mixed}`}
+                  />
+                )}
                 <h2 className="font-display text-2xl text-stone-900">{cat.label}</h2>
                 <span className="text-amber-700 text-[12px] ml-auto">{cat.items.length} items</span>
               </div>
@@ -93,7 +106,13 @@ function GenericMenuPage() {
                     className={`flex gap-4 px-6 py-5 items-start ${i % 2 === 1 ? "sm:border-l border-stone-100" : ""}`}
                   >
                     {item.imageUrl && (
-                      <img src={item.imageUrl} alt={item.name} loading="lazy" decoding="async" className="w-20 h-20 rounded-xl object-cover flex-shrink-0" />
+                      <img
+                        src={item.imageUrl}
+                        alt={item.name}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-20 h-20 rounded-xl object-cover flex-shrink-0"
+                      />
                     )}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
@@ -104,8 +123,14 @@ function GenericMenuPage() {
                           </span>
                         )}
                       </div>
-                      {item.description && <p className="text-stone-500 text-[13px] mt-1 leading-relaxed">{item.description}</p>}
-                      {item.price && <p className="font-bold text-amber-700 mt-1.5">{item.price}</p>}
+                      {item.description && (
+                        <p className="text-stone-500 text-[13px] mt-1 leading-relaxed">
+                          {item.description}
+                        </p>
+                      )}
+                      {item.price && (
+                        <p className="font-bold text-amber-700 mt-1.5">{item.price}</p>
+                      )}
                     </div>
                   </div>
                 ))}

@@ -23,11 +23,11 @@ export const LEAD_TYPES: { id: string; label: string }[] = [
 ];
 
 const STATUS_STYLE: Record<string, { bg: string; color: string; dot: string }> = {
-  "new": { bg: "rgba(200,60,60,0.12)", color: "#b03030", dot: "#d64545" },
+  new: { bg: "rgba(200,60,60,0.12)", color: "#b03030", dot: "#d64545" },
   "in-progress": { bg: "rgba(200,140,10,0.12)", color: "#a05a0a", dot: "#c8860a" },
-  "completed": { bg: "rgba(74,140,58,0.12)", color: "#4a8c3a", dot: "#4a8c3a" },
-  "contacted": { bg: "rgba(60,110,200,0.12)", color: "#3060b0", dot: "#3060b0" },
-  "closed": { bg: "rgba(120,120,120,0.12)", color: "#707070", dot: "#a8a29e" },
+  completed: { bg: "rgba(74,140,58,0.12)", color: "#4a8c3a", dot: "#4a8c3a" },
+  contacted: { bg: "rgba(60,110,200,0.12)", color: "#3060b0", dot: "#3060b0" },
+  closed: { bg: "rgba(120,120,120,0.12)", color: "#707070", dot: "#a8a29e" },
 };
 
 // Ordered wizard steps for the Birthday form — index drives the progress bar.
@@ -78,7 +78,10 @@ function withinFilter(iso: string, filter: (typeof DATE_FILTERS)[number]["id"]) 
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleString("en-AU", {
-    day: "numeric", month: "short", hour: "2-digit", minute: "2-digit",
+    day: "numeric",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
   });
 }
 
@@ -121,15 +124,18 @@ function AdminLeads() {
 
   const statusesPresent = useMemo(
     () => Array.from(new Set((leads ?? []).map((l) => l.status))),
-    [leads]
+    [leads],
   );
 
   return (
     <div className="p-8 max-w-6xl">
-      <h1 className="font-display text-3xl mb-1" style={{ color: "#1a0e00" }}>Leads — {tabInfo.label}</h1>
+      <h1 className="font-display text-3xl mb-1" style={{ color: "#1a0e00" }}>
+        Leads — {tabInfo.label}
+      </h1>
       <p className="text-sm text-stone-500 mb-5">
         Every enquiry form on the site saves here automatically, newest first.
-        {tab === "birthday" && " Birthday leads update live as the customer moves through the booking steps — even if they never finish."}
+        {tab === "birthday" &&
+          " Birthday leads update live as the customer moves through the booking steps — even if they never finish."}
       </p>
 
       <div className="flex flex-wrap items-center gap-4 mb-6">
@@ -142,7 +148,11 @@ function AdminLeads() {
               style={
                 dateFilter === f.id
                   ? { background: "linear-gradient(90deg,#c8860a,#e6a020)", color: "#fff" }
-                  : { background: "#fff", color: "#7a5020", border: "1px solid rgba(200,140,30,0.25)" }
+                  : {
+                      background: "#fff",
+                      color: "#7a5020",
+                      border: "1px solid rgba(200,140,30,0.25)",
+                    }
               }
             >
               {f.label}
@@ -154,7 +164,15 @@ function AdminLeads() {
             <button
               onClick={() => setStatusFilter("all")}
               className="px-3 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-wide transition"
-              style={statusFilter === "all" ? { background: "#3a2a10", color: "#fff" } : { background: "#fff", color: "#7a5020", border: "1px solid rgba(200,140,30,0.25)" }}
+              style={
+                statusFilter === "all"
+                  ? { background: "#3a2a10", color: "#fff" }
+                  : {
+                      background: "#fff",
+                      color: "#7a5020",
+                      border: "1px solid rgba(200,140,30,0.25)",
+                    }
+              }
             >
               All statuses
             </button>
@@ -165,7 +183,11 @@ function AdminLeads() {
                   key={s}
                   onClick={() => setStatusFilter(s)}
                   className="px-3 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-wide transition"
-                  style={statusFilter === s ? { background: style.color, color: "#fff" } : { background: style.bg, color: style.color }}
+                  style={
+                    statusFilter === s
+                      ? { background: style.color, color: "#fff" }
+                      : { background: style.bg, color: style.color }
+                  }
                 >
                   {s}
                 </button>
@@ -173,7 +195,9 @@ function AdminLeads() {
             })}
           </div>
         )}
-        <span className="text-[12px] text-stone-400 ml-auto">{filtered.length} of {leads?.length ?? 0}</span>
+        <span className="text-[12px] text-stone-400 ml-auto">
+          {filtered.length} of {leads?.length ?? 0}
+        </span>
       </div>
 
       {isLoading && <p className="text-sm text-stone-500">Loading…</p>}
@@ -194,7 +218,9 @@ function AdminLeads() {
 // Birthday customer dropped off without opening the card.
 function BirthdayProgress({ step, status }: { step: string | null; status: string }) {
   const completed = status === "completed";
-  const currentIndex = completed ? BIRTHDAY_STEPS.length - 1 : BIRTHDAY_STEPS.findIndex((s) => s.id === step);
+  const currentIndex = completed
+    ? BIRTHDAY_STEPS.length - 1
+    : BIRTHDAY_STEPS.findIndex((s) => s.id === step);
   const reachedIndex = currentIndex === -1 ? 0 : currentIndex;
 
   return (
@@ -220,7 +246,10 @@ function BirthdayProgress({ step, status }: { step: string | null; status: strin
               </span>
             </div>
             {i < BIRTHDAY_STEPS.length - 1 && (
-              <div className="w-6 h-[2px] rounded mb-3.5" style={{ background: (completed || i < reachedIndex) ? "#4a8c3a" : "#e7e0d4" }} />
+              <div
+                className="w-6 h-[2px] rounded mb-3.5"
+                style={{ background: completed || i < reachedIndex ? "#4a8c3a" : "#e7e0d4" }}
+              />
             )}
           </div>
         );
@@ -252,9 +281,10 @@ function LeadCard({ lead, onChanged }: { lead: Enquiry; onChanged: () => void })
     onSuccess: onChanged,
   });
 
-  const extraFields = lead.data && Object.keys(lead.data).length > 0
-    ? Object.entries(lead.data).filter(([, v]) => v !== null && v !== "")
-    : [];
+  const extraFields =
+    lead.data && Object.keys(lead.data).length > 0
+      ? Object.entries(lead.data).filter(([, v]) => v !== null && v !== "")
+      : [];
 
   // Pull the 1-2 most useful fields (e.g. date/guests) into the collapsed row
   // so you don't have to open every card just to see the essentials.
@@ -267,11 +297,19 @@ function LeadCard({ lead, onChanged }: { lead: Enquiry; onChanged: () => void })
       className="bg-white rounded-xl border overflow-hidden transition-shadow hover:shadow-[0_4px_16px_-6px_rgba(0,0,0,0.12)]"
       style={{ borderColor: "rgba(0,0,0,0.08)", borderLeft: `4px solid ${statusStyle.dot}` }}
     >
-      <button onClick={() => setOpen((o) => !o)} className="w-full flex items-start justify-between gap-4 p-4 text-left">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="w-full flex items-start justify-between gap-4 p-4 text-left"
+      >
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="font-semibold text-[15px]" style={{ color: "#1a0e00" }}>{lead.name || "(no name yet)"}</span>
-            <span className="text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full" style={{ background: statusStyle.bg, color: statusStyle.color }}>
+            <span className="font-semibold text-[15px]" style={{ color: "#1a0e00" }}>
+              {lead.name || "(no name yet)"}
+            </span>
+            <span
+              className="text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full"
+              style={{ background: statusStyle.bg, color: statusStyle.color }}
+            >
               {lead.status}
             </span>
             {quickFacts.length > 0 && (
@@ -287,7 +325,9 @@ function LeadCard({ lead, onChanged }: { lead: Enquiry; onChanged: () => void })
           {isBirthday && <BirthdayProgress step={lead.step} status={lead.status} />}
         </div>
         <div className="text-[11px] text-stone-400 whitespace-nowrap shrink-0 text-right">
-          <div className="font-medium" style={{ color: "#8a7a60" }}>{timeAgo(lead.updatedAt)}</div>
+          <div className="font-medium" style={{ color: "#8a7a60" }}>
+            {timeAgo(lead.updatedAt)}
+          </div>
           <div className="mt-0.5">{formatDate(lead.updatedAt)}</div>
         </div>
       </button>
@@ -295,7 +335,9 @@ function LeadCard({ lead, onChanged }: { lead: Enquiry; onChanged: () => void })
       {open && (
         <div className="px-4 pb-4 border-t border-stone-100 pt-3 space-y-3">
           {lead.message && (
-            <p className="text-[13px] text-stone-700 bg-stone-50 rounded-lg p-3 whitespace-pre-wrap">{lead.message}</p>
+            <p className="text-[13px] text-stone-700 bg-stone-50 rounded-lg p-3 whitespace-pre-wrap">
+              {lead.message}
+            </p>
           )}
           {extraFields.length > 0 && (
             <div className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5 text-[13px]">
@@ -303,9 +345,18 @@ function LeadCard({ lead, onChanged }: { lead: Enquiry; onChanged: () => void })
                 <div key={k} className="flex justify-between gap-3 border-b border-stone-100 py-1">
                   <span className="text-stone-400 shrink-0">{fieldLabel(k)}</span>
                   {k === "resumeUrl" ? (
-                    <a href={String(v)} target="_blank" rel="noreferrer" className="text-saffron hover:underline font-medium text-right">View Resume</a>
+                    <a
+                      href={String(v)}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-saffron hover:underline font-medium text-right"
+                    >
+                      View Resume
+                    </a>
                   ) : (
-                    <span className="text-stone-800 font-medium text-right break-all">{fieldValue(k, v)}</span>
+                    <span className="text-stone-800 font-medium text-right break-all">
+                      {fieldValue(k, v)}
+                    </span>
                   )}
                 </div>
               ))}
@@ -319,13 +370,19 @@ function LeadCard({ lead, onChanged }: { lead: Enquiry; onChanged: () => void })
                 onClick={() => updateStatus.mutate(s)}
                 disabled={updateStatus.isPending || lead.status === s}
                 className="text-[11px] font-semibold uppercase tracking-wide px-3 py-1 rounded-full disabled:opacity-40"
-                style={lead.status === s ? { background: statusStyle.bg, color: statusStyle.color } : { background: "#f5f5f4", color: "#78716c" }}
+                style={
+                  lead.status === s
+                    ? { background: statusStyle.bg, color: statusStyle.color }
+                    : { background: "#f5f5f4", color: "#78716c" }
+                }
               >
                 {s}
               </button>
             ))}
             <button
-              onClick={() => { if (confirm("Delete this lead permanently?")) remove.mutate(); }}
+              onClick={() => {
+                if (confirm("Delete this lead permanently?")) remove.mutate();
+              }}
               disabled={remove.isPending}
               className="text-[11px] text-red-500 font-semibold ml-auto"
             >

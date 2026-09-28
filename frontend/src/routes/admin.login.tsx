@@ -43,7 +43,10 @@ function AdminLogin() {
           boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
         }}
       >
-        <p className="text-[9px] tracking-[0.5em] uppercase font-semibold text-center" style={{ color: "#b8860b" }}>
+        <p
+          className="text-[9px] tracking-[0.5em] uppercase font-semibold text-center"
+          style={{ color: "#b8860b" }}
+        >
           The Grand Palace
         </p>
         <h1 className="font-display text-3xl text-center mt-1" style={{ color: "#1a0e00" }}>
@@ -51,11 +54,16 @@ function AdminLogin() {
         </h1>
         <div className="flex items-center justify-center gap-2 mt-3 mb-7">
           <span className="h-px flex-1" style={{ background: "rgba(200,140,30,0.3)" }} />
-          <span className="text-[10px]" style={{ color: "rgba(180,120,20,0.5)" }}>◆</span>
+          <span className="text-[10px]" style={{ color: "rgba(180,120,20,0.5)" }}>
+            ◆
+          </span>
           <span className="h-px flex-1" style={{ background: "rgba(200,140,30,0.3)" }} />
         </div>
 
-        <label className="block text-[11px] uppercase tracking-wider font-semibold mb-1.5" style={{ color: "#7a5020" }}>
+        <label
+          className="block text-[11px] uppercase tracking-wider font-semibold mb-1.5"
+          style={{ color: "#7a5020" }}
+        >
           Email
         </label>
         <input
@@ -67,7 +75,10 @@ function AdminLogin() {
           style={{ borderColor: "rgba(200,140,30,0.25)", color: "#1a0e00" }}
         />
 
-        <label className="block text-[11px] uppercase tracking-wider font-semibold mb-1.5" style={{ color: "#7a5020" }}>
+        <label
+          className="block text-[11px] uppercase tracking-wider font-semibold mb-1.5"
+          style={{ color: "#7a5020" }}
+        >
           Password
         </label>
         <input

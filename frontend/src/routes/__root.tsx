@@ -17,23 +17,31 @@ import { normPath, OG_LOCALE, SITE_NAME, type SeoOverride } from "../lib/seo";
 type SiteSeoConfigLite = { headerCode: string | null; footerCode: string | null };
 
 type ThemeSetting = {
-  colorSaffron?: string | null; colorGold?: string | null;
-  colorPalace?: string | null; colorCream?: string | null;
-  fontDisplay?: string | null; fontBody?: string | null;
+  colorSaffron?: string | null;
+  colorGold?: string | null;
+  colorPalace?: string | null;
+  colorCream?: string | null;
+  fontDisplay?: string | null;
+  fontBody?: string | null;
   baseFontScale?: string | null;
 };
 
 type RootLoaderData = SiteSeoConfigLite & { theme: ThemeSetting | null; seo: SeoOverride | null };
 
 async function fetchRootData(pathname: string): Promise<RootLoaderData> {
-  const json = (url: string) => fetch(url).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+  const json = (url: string) =>
+    fetch(url)
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null);
   const path = normPath(pathname);
   // The admin SEO override for this exact URL (SEO → Pages) — read back by
   // every public route's head() via buildSeoHead(). Skipped for admin pages.
   const [config, theme, seo] = await Promise.all([
     json(`${API_URL}/api/seo/config`),
     json(`${API_URL}/api/content/theme`),
-    path.startsWith("/admin") ? null : json(`${API_URL}/api/seo/pages/lookup?path=${encodeURIComponent(path)}`),
+    path.startsWith("/admin")
+      ? null
+      : json(`${API_URL}/api/seo/pages/lookup?path=${encodeURIComponent(path)}`),
   ]);
   return {
     headerCode: config?.headerCode ?? null,
@@ -54,11 +62,15 @@ function themeToCss(theme: ThemeSetting | null): string {
   if (theme.colorPalace) decls.push(`--color-palace:${theme.colorPalace};`);
   if (theme.colorCream) decls.push(`--color-cream:${theme.colorCream};`);
   if (theme.fontDisplay) decls.push(`--font-display:${theme.fontDisplay};`);
-  if (theme.fontBody) { decls.push(`--font-sans:${theme.fontBody};`); decls.push(`--font-body:${theme.fontBody};`); }
+  if (theme.fontBody) {
+    decls.push(`--font-sans:${theme.fontBody};`);
+    decls.push(`--font-body:${theme.fontBody};`);
+  }
   const root = decls.length ? `:root{${decls.join("")}}` : "";
-  const scale = theme.baseFontScale && Number(theme.baseFontScale) > 0
-    ? `html{font-size:${Number(theme.baseFontScale) * 100}%;}`
-    : "";
+  const scale =
+    theme.baseFontScale && Number(theme.baseFontScale) > 0
+      ? `html{font-size:${Number(theme.baseFontScale) * 100}%;}`
+      : "";
   return root + scale;
 }
 
@@ -129,16 +141,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "The Grand Palace Indian Restaurant | Sydney CBD" },
-      { name: "description", content: "Authentic Indian fine dining in Sydney CBD. Birthday packages, events, catering and à la carte dining at The Grand Palace." },
+      {
+        name: "description",
+        content:
+          "Authentic Indian fine dining in Sydney CBD. Birthday packages, events, catering and à la carte dining at The Grand Palace.",
+      },
       { name: "author", content: "The Grand Palace" },
       { property: "og:title", content: "The Grand Palace Indian Restaurant | Sydney CBD" },
-      { property: "og:description", content: "Authentic Indian fine dining in Sydney CBD. Birthday packages, events, catering and à la carte dining at The Grand Palace." },
+      {
+        property: "og:description",
+        content:
+          "Authentic Indian fine dining in Sydney CBD. Birthday packages, events, catering and à la carte dining at The Grand Palace.",
+      },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: SITE_NAME },
       { property: "og:locale", content: OG_LOCALE },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "The Grand Palace Indian Restaurant | Sydney CBD" },
-      { name: "twitter:description", content: "Authentic Indian fine dining in Sydney CBD. Birthday packages, events, catering and à la carte dining at The Grand Palace." },
+      {
+        name: "twitter:description",
+        content:
+          "Authentic Indian fine dining in Sydney CBD. Birthday packages, events, catering and à la carte dining at The Grand Palace.",
+      },
       { property: "og:image", content: `${SITE_URL}/site-image-defaults/about-hero.jpg` },
       { name: "twitter:image", content: `${SITE_URL}/site-image-defaults/about-hero.jpg` },
     ],

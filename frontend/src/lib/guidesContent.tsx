@@ -182,7 +182,10 @@ export const guidesContent: Record<string, GuideContent> = {
       { label: "Lunch", value: "Monday – Sunday: 12:00pm – 3:00pm" },
       { label: "Dinner", value: "Sun – Thu: 5:00pm – 10:00pm · Fri – Sat: 5:00pm – 10:30pm" },
       { label: "Distance", value: "90 seconds from Wynyard Station via MetCentre exit" },
-      { label: "Certified", value: "HACCP Certified · Gold Catering Licence · Halal Certified Meats" },
+      {
+        label: "Certified",
+        value: "HACCP Certified · Gold Catering Licence · Halal Certified Meats",
+      },
     ],
     sections: [
       {
@@ -315,7 +318,8 @@ export const guidesContent: Record<string, GuideContent> = {
     sections: [
       {
         heading: "{{color:#c8720a}}Getting to The Grand Palace from Martin Place{{/color}}",
-        image: "https://booriz1miux5j9vr.public.blob.vercel-storage.com/resized-Hero_030-hllw0VdEWrIyRyZozlJ09qFFpIEwiA.jpg",
+        image:
+          "https://booriz1miux5j9vr.public.blob.vercel-storage.com/resized-Hero_030-hllw0VdEWrIyRyZozlJ09qFFpIEwiA.jpg",
         imageAlt: "A signature spread of dishes at The Grand Palace, Sydney CBD",
         body: [
           "From Martin Place, head north on George Street toward Wynyard — The Grand Palace's basement entrance at [261 George Street](https://www.google.com/maps/search/?api=1&query=Basement%2C%20261%20George%20Street%2C%20Sydney%2C%20NSW%202000%2C%20Australia) is around a 5-minute walk, in the same stretch of the CBD as Wynyard Station and the Bridge Street Light Rail stop.",
@@ -325,7 +329,8 @@ export const guidesContent: Record<string, GuideContent> = {
       {
         heading: "{{color:#c8720a}}Why Choose The Grand Palace{{/color}}",
         blockType: "row",
-        image: "https://booriz1miux5j9vr.public.blob.vercel-storage.com/resized-Hero_045-wEydhaRCSNtUpNenKcwF9Nj9MHUma5.JPG",
+        image:
+          "https://booriz1miux5j9vr.public.blob.vercel-storage.com/resized-Hero_045-wEydhaRCSNtUpNenKcwF9Nj9MHUma5.JPG",
         imageAlt: "Dishes from The Grand Palace's menu, set against a tropical living wall",
         body: [],
         items: [
@@ -411,7 +416,11 @@ export const guidesContent: Record<string, GuideContent> = {
       },
     ],
     externalLinks: [
-      { label: "Martin Place precinct information", href: "https://transportnsw.info/", source: "Transport for NSW" },
+      {
+        label: "Martin Place precinct information",
+        href: "https://transportnsw.info/",
+        source: "Transport for NSW",
+      },
     ],
     relatedSlugs: [
       "indian-restaurant-near-wynyard-station-sydney",
@@ -450,7 +459,8 @@ export const guidesContent: Record<string, GuideContent> = {
     sections: [
       {
         heading: "{{color:#c8720a}}Getting to The Grand Palace from Town Hall Station{{/color}}",
-        image: "https://booriz1miux5j9vr.public.blob.vercel-storage.com/Hero_001-FplNabdSZNZfJj4tlERXr9Ykghx9w3.jpg",
+        image:
+          "https://booriz1miux5j9vr.public.blob.vercel-storage.com/Hero_001-FplNabdSZNZfJj4tlERXr9Ykghx9w3.jpg",
         imageAlt: "A signature spread of dishes at The Grand Palace, Sydney CBD",
         body: [
           "The simplest route is the train: from Town Hall, it's one stop to Wynyard on the **T1/T7/T8/T9** lines, then about a minute's walk through the MetCentre to [261 George Street](https://www.google.com/maps/search/?api=1&query=Basement%2C%20261%20George%20Street%2C%20Sydney%2C%20NSW%202000%2C%20Australia). If you'd rather walk the whole way, head north on George Street — it's a straightforward, mostly flat **15-minute walk** through the CBD, passing Wynyard and the Bridge Street Light Rail stop along the way.",
@@ -459,8 +469,10 @@ export const guidesContent: Record<string, GuideContent> = {
       {
         heading: "{{color:#c8720a}}Why Choose The Grand Palace{{/color}}",
         blockType: "row",
-        image: "https://booriz1miux5j9vr.public.blob.vercel-storage.com/resized-Hero_015-JIwAw8PpRyWeeJflKFnTGzyxY9Ze3C.jpg",
-        imageAlt: "Dining at The Grand Palace, set beneath the restaurant's hand-carved antique doors",
+        image:
+          "https://booriz1miux5j9vr.public.blob.vercel-storage.com/resized-Hero_015-JIwAw8PpRyWeeJflKFnTGzyxY9Ze3C.jpg",
+        imageAlt:
+          "Dining at The Grand Palace, set beneath the restaurant's hand-carved antique doors",
         body: [],
         items: [
           "Authentic Recipes\nTraditional Indian spice blends and cooking techniques, not a simplified tourist menu.",
@@ -604,7 +616,11 @@ export const guidesContent: Record<string, GuideContent> = {
         a: "Yes, with advance notice. Let us know when booking or ordering and the kitchen will prepare your dishes to a no-onion/no-garlic standard.",
       },
     ],
-    relatedSlugs: ["jain-restaurants-sydney", "indian-restaurant-near-wynyard-station-sydney", "best-indian-restaurant-sydney"],
+    relatedSlugs: [
+      "jain-restaurants-sydney",
+      "indian-restaurant-near-wynyard-station-sydney",
+      "best-indian-restaurant-sydney",
+    ],
     ctaLabel: "Book a Table",
     ctaHref: "/book-a-table",
   },
@@ -666,9 +682,21 @@ export const guidesContent: Record<string, GuideContent> = {
       rows: [
         { item: "Vegetarian Platter Box", price: "$75 / box", note: "Pickup or CBD delivery" },
         { item: "Non-Vegetarian Platter Box", price: "$85 / box", note: "Pickup or CBD delivery" },
-        { item: "On-site catering packages", price: "From $45 / person", note: "Buffet, food stations or plated service" },
-        { item: "Set menu banquets", price: "From $65 / person", note: "Minimum 2 guests, dine-in" },
-        { item: "Minimum charge (dine-in)", price: "$35 / person", note: "Children aged 5–10: $25" },
+        {
+          item: "On-site catering packages",
+          price: "From $45 / person",
+          note: "Buffet, food stations or plated service",
+        },
+        {
+          item: "Set menu banquets",
+          price: "From $65 / person",
+          note: "Minimum 2 guests, dine-in",
+        },
+        {
+          item: "Minimum charge (dine-in)",
+          price: "$35 / person",
+          note: "Children aged 5–10: $25",
+        },
       ],
     },
     faq: [
@@ -689,7 +717,11 @@ export const guidesContent: Record<string, GuideContent> = {
         a: "Yes — the kitchen is halal-certified and HACCP approved, and vegetarian, vegan and gluten-free options are available on request.",
       },
     ],
-    relatedSlugs: ["how-to-plan-office-lunch-catering-sydney", "indian-catering-box-sydney", "indian-restaurant-near-martin-place"],
+    relatedSlugs: [
+      "how-to-plan-office-lunch-catering-sydney",
+      "indian-catering-box-sydney",
+      "indian-restaurant-near-martin-place",
+    ],
     ctaLabel: "Enquire Now",
     ctaHref: "/office-catering",
   },
@@ -792,7 +824,11 @@ export const guidesContent: Record<string, GuideContent> = {
         a: "Yes — vegetarian, vegan, halal, gluten-free and Jain (no onion/no garlic) requirements can all be accommodated with advance notice.",
       },
     ],
-    relatedSlugs: ["corporate-catering-sydney-cbd", "private-event-venue-hire-sydney-cbd", "jain-restaurants-sydney"],
+    relatedSlugs: [
+      "corporate-catering-sydney-cbd",
+      "private-event-venue-hire-sydney-cbd",
+      "jain-restaurants-sydney",
+    ],
     ctaLabel: "Enquire About Wedding Catering",
     ctaHref: "/venue-catering",
   },
@@ -816,21 +852,79 @@ export const guidesContent: Record<string, GuideContent> = {
       "For a full sit-down vegan Indian meal in Sydney CBD, The Grand Palace serves a dedicated line of vegan dishes across starters, curries, rice and biryani, available lunch and dinner, daily. For fully plant-based fine dining, Yellow in Potts Point is Sydney's best-known option; for casual and inner-west dining, Yulli's, Gigi Pizzeria, Miss Sina and Mama B's at the Chippo Hotel are well-regarded choices.",
     quickFacts: [
       { label: "Vegan dishes at The Grand Palace", value: "Lunch and dinner, every day" },
-      { label: "Dietary flexibility", value: "Vegan, vegetarian, gluten-friendly, halal — all on one menu" },
+      {
+        label: "Dietary flexibility",
+        value: "Vegan, vegetarian, gluten-friendly, halal — all on one menu",
+      },
     ],
     comparisonTable: {
       title: "Compare at a Glance",
       note: "The Grand Palace runs a mixed halal Indian menu with a dedicated vegan selection; the rest of the list is fully vegan kitchens.",
       rows: [
-        { name: "The Grand Palace", area: "Sydney CBD", style: "Indian fine dining", dietary: "Vegan dishes + halal, vegetarian menu", goodForGroups: true, highlight: true },
-        { name: "Yellow", area: "Potts Point", style: "Vegan fine dining", dietary: "Fully vegan, GF options", goodForGroups: false },
-        { name: "Towzen", area: "Sydney CBD", style: "Japanese-inspired", dietary: "Fully vegan", goodForGroups: false },
-        { name: "Gigi Pizzeria", area: "Newtown", style: "Vegan pizzeria", dietary: "Fully vegan, GF bases", goodForGroups: false },
-        { name: "Yulli's", area: "Surry Hills", style: "Small plates / bar", dietary: "Plant-based menu, GF options", goodForGroups: true },
-        { name: "Miss Sina", area: "Marrickville", style: "Vegan bakery & café", dietary: "Fully vegan", goodForGroups: false },
-        { name: "Mama B's (Chippo Hotel)", area: "Chippendale", style: "Vegan pub food", dietary: "Fully vegan", goodForGroups: true },
-        { name: "Little Turtle", area: "Enmore", style: "Vegan Thai", dietary: "Fully vegan", goodForGroups: false },
-        { name: "Golden Lotus", area: "Newtown", style: "Vegan Vietnamese, BYO", dietary: "Fully vegan", goodForGroups: false },
+        {
+          name: "The Grand Palace",
+          area: "Sydney CBD",
+          style: "Indian fine dining",
+          dietary: "Vegan dishes + halal, vegetarian menu",
+          goodForGroups: true,
+          highlight: true,
+        },
+        {
+          name: "Yellow",
+          area: "Potts Point",
+          style: "Vegan fine dining",
+          dietary: "Fully vegan, GF options",
+          goodForGroups: false,
+        },
+        {
+          name: "Towzen",
+          area: "Sydney CBD",
+          style: "Japanese-inspired",
+          dietary: "Fully vegan",
+          goodForGroups: false,
+        },
+        {
+          name: "Gigi Pizzeria",
+          area: "Newtown",
+          style: "Vegan pizzeria",
+          dietary: "Fully vegan, GF bases",
+          goodForGroups: false,
+        },
+        {
+          name: "Yulli's",
+          area: "Surry Hills",
+          style: "Small plates / bar",
+          dietary: "Plant-based menu, GF options",
+          goodForGroups: true,
+        },
+        {
+          name: "Miss Sina",
+          area: "Marrickville",
+          style: "Vegan bakery & café",
+          dietary: "Fully vegan",
+          goodForGroups: false,
+        },
+        {
+          name: "Mama B's (Chippo Hotel)",
+          area: "Chippendale",
+          style: "Vegan pub food",
+          dietary: "Fully vegan",
+          goodForGroups: true,
+        },
+        {
+          name: "Little Turtle",
+          area: "Enmore",
+          style: "Vegan Thai",
+          dietary: "Fully vegan",
+          goodForGroups: false,
+        },
+        {
+          name: "Golden Lotus",
+          area: "Newtown",
+          style: "Vegan Vietnamese, BYO",
+          dietary: "Fully vegan",
+          goodForGroups: false,
+        },
       ],
     },
     sections: [
@@ -977,9 +1071,17 @@ export const guidesContent: Record<string, GuideContent> = {
       },
     ],
     externalLinks: [
-      { label: "More vegan dining recommendations across Sydney", href: "https://www.sydney.com/articles/the-best-vegan-restaurants-in-sydney", source: "Sydney.com — official Destination NSW tourism guide" },
+      {
+        label: "More vegan dining recommendations across Sydney",
+        href: "https://www.sydney.com/articles/the-best-vegan-restaurants-in-sydney",
+        source: "Sydney.com — official Destination NSW tourism guide",
+      },
     ],
-    relatedSlugs: ["best-halal-restaurant-in-sydney", "vegetarian-restaurants-chippendale", "jain-restaurants-sydney"],
+    relatedSlugs: [
+      "best-halal-restaurant-in-sydney",
+      "vegetarian-restaurants-chippendale",
+      "jain-restaurants-sydney",
+    ],
     ctaLabel: "View the Menu",
     ctaHref: "/menu",
   },
@@ -1002,18 +1104,55 @@ export const guidesContent: Record<string, GuideContent> = {
     quickAnswer:
       "For casual vegetarian dining right in Chippendale, Spice Alley and Andiamo Trattoria are both local options within walking distance. For a full sit-down vegetarian Indian meal, The Grand Palace in Sydney CBD is roughly a 20-minute walk or a short trip via Central Station, with vegetarian dishes served across the whole menu, lunch and dinner, daily.",
     quickFacts: [
-      { label: "Distance from Chippendale to The Grand Palace", value: "~2.5km — short train, taxi or rideshare trip via Central" },
-      { label: "Vegetarian & vegan dishes", value: "Available across the full menu, lunch and dinner" },
+      {
+        label: "Distance from Chippendale to The Grand Palace",
+        value: "~2.5km — short train, taxi or rideshare trip via Central",
+      },
+      {
+        label: "Vegetarian & vegan dishes",
+        value: "Available across the full menu, lunch and dinner",
+      },
     ],
     comparisonTable: {
       title: "Compare at a Glance",
       note: "Mina Maria's main restaurant is in Newtown, with a smaller counter in Chippendale itself — everything else listed is directly in or immediately around Chippendale.",
       rows: [
-        { name: "The Grand Palace", area: "Sydney CBD", style: "Indian fine dining", dietary: "Vegetarian, vegan, halal, GF", goodForGroups: true, highlight: true },
-        { name: "Spice Alley", area: "Chippendale", style: "Asian hawker laneway", dietary: "Vegetarian-friendly stalls", goodForGroups: true },
-        { name: "Mina Maria", area: "Newtown (Chippendale counter)", style: "Vegan café", dietary: "Fully vegan", goodForGroups: false },
-        { name: "Andiamo Trattoria", area: "Chippendale", style: "Vegetarian Italian", dietary: "Vegetarian + vegan menu", goodForGroups: true },
-        { name: "Hari's Vegetarian", area: "Haymarket", style: "Vegetarian Indian-style", dietary: "Fully vegetarian/vegan", goodForGroups: false },
+        {
+          name: "The Grand Palace",
+          area: "Sydney CBD",
+          style: "Indian fine dining",
+          dietary: "Vegetarian, vegan, halal, GF",
+          goodForGroups: true,
+          highlight: true,
+        },
+        {
+          name: "Spice Alley",
+          area: "Chippendale",
+          style: "Asian hawker laneway",
+          dietary: "Vegetarian-friendly stalls",
+          goodForGroups: true,
+        },
+        {
+          name: "Mina Maria",
+          area: "Newtown (Chippendale counter)",
+          style: "Vegan café",
+          dietary: "Fully vegan",
+          goodForGroups: false,
+        },
+        {
+          name: "Andiamo Trattoria",
+          area: "Chippendale",
+          style: "Vegetarian Italian",
+          dietary: "Vegetarian + vegan menu",
+          goodForGroups: true,
+        },
+        {
+          name: "Hari's Vegetarian",
+          area: "Haymarket",
+          style: "Vegetarian Indian-style",
+          dietary: "Fully vegetarian/vegan",
+          goodForGroups: false,
+        },
       ],
     },
     sections: [
@@ -1045,7 +1184,9 @@ export const guidesContent: Record<string, GuideContent> = {
         body: [
           "Mina Maria's main plant-based restaurant is on King Street in Newtown; it also runs a smaller retail counter in Chippendale, inside The Old Rum Store on Kensington Street. Worth knowing which location you're heading to before you go.",
         ],
-        bullets: ["Best for: vegan café food, if you don't mind the short trip to the Newtown restaurant"],
+        bullets: [
+          "Best for: vegan café food, if you don't mind the short trip to the Newtown restaurant",
+        ],
       },
       {
         heading: "4. Andiamo Trattoria — Chippendale",
@@ -1079,9 +1220,17 @@ export const guidesContent: Record<string, GuideContent> = {
       },
     ],
     externalLinks: [
-      { label: "Getting around Sydney CBD and Central", href: "https://transportnsw.info/", source: "Transport for NSW" },
+      {
+        label: "Getting around Sydney CBD and Central",
+        href: "https://transportnsw.info/",
+        source: "Transport for NSW",
+      },
     ],
-    relatedSlugs: ["best-vegan-restaurant-sydney", "best-halal-restaurant-in-sydney", "indian-restaurant-near-town-hall-station"],
+    relatedSlugs: [
+      "best-vegan-restaurant-sydney",
+      "best-halal-restaurant-in-sydney",
+      "indian-restaurant-near-town-hall-station",
+    ],
     ctaLabel: "Book a Table",
     ctaHref: "/book-a-table",
   },

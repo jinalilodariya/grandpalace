@@ -14,7 +14,15 @@ const PRESETS = [
   { label: "Email bookings", value: "mailto:bookings@thegrandpalace.com.au" },
 ];
 
-export function LinkField({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) {
+export function LinkField({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+}) {
   const preset = PRESETS.find((p) => p.value === value);
   const [forceCustom, setForceCustom] = useState(!!value && !preset);
 
@@ -22,7 +30,12 @@ export function LinkField({ label, value, onChange }: { label: string; value: st
 
   return (
     <div>
-      <label className="text-[10px] uppercase tracking-wider font-semibold block mb-1" style={{ color: "#7a5020" }}>{label}</label>
+      <label
+        className="text-[10px] uppercase tracking-wider font-semibold block mb-1"
+        style={{ color: "#7a5020" }}
+      >
+        {label}
+      </label>
       <select
         value={showCustomInput ? "__custom__" : value}
         onChange={(e) => {
@@ -37,7 +50,11 @@ export function LinkField({ label, value, onChange }: { label: string; value: st
         style={{ borderColor: "rgba(200,140,30,0.25)", color: "#1a0e00" }}
       >
         <option value="">— None —</option>
-        {PRESETS.map((p) => <option key={p.value} value={p.value}>{p.label}</option>)}
+        {PRESETS.map((p) => (
+          <option key={p.value} value={p.value}>
+            {p.label}
+          </option>
+        ))}
         <option value="__custom__">Custom link…</option>
       </select>
       {showCustomInput && (

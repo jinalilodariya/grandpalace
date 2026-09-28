@@ -11,7 +11,12 @@ import type { PageSection } from "@/components/admin/SectionsEditor";
 const FALLBACK_IMAGE = "https://placehold.co/1200x800/2a1500/e6a020?text=Click+to+add+photo";
 
 const DEFAULT_SECTIONS: PageSection[] = [
-  { heading: "Section Heading", priceTag: "", intro: "", items: ["First detail", "Second detail", "Third detail"] },
+  {
+    heading: "Section Heading",
+    priceTag: "",
+    intro: "",
+    items: ["First detail", "Second detail", "Third detail"],
+  },
 ];
 
 type ContentBlock = { subtitle: string; body: string };
@@ -19,7 +24,9 @@ type ContentBlock = { subtitle: string; body: string };
 const BADGE_COLORS = ["#c8860a", "#e05454", "#16a085", "#6366f1", "#9333ea", "#0891b2"];
 
 export function WhatsOnPageEditor({
-  page, onClose, onSaved,
+  page,
+  onClose,
+  onSaved,
 }: {
   page: SitePage | null;
   onClose: () => void;
@@ -37,7 +44,7 @@ export function WhatsOnPageEditor({
   const [heroVideo, setHeroVideo] = useState(page?.heroVideo ?? "");
   const [galleryImages, setGalleryImages] = useState<string[]>(page?.galleryImages ?? []);
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>(
-    page?.contentBlocks?.map((b) => ({ subtitle: b.subtitle ?? "", body: b.body })) ?? []
+    page?.contentBlocks?.map((b) => ({ subtitle: b.subtitle ?? "", body: b.body })) ?? [],
   );
   const [cardImageHeight, setCardImageHeight] = useState(page?.cardImageHeight ?? 200);
   const [sidebarImage, setSidebarImage] = useState(page?.sidebarImage ?? "");
@@ -53,7 +60,9 @@ export function WhatsOnPageEditor({
     setSections((prev) => prev.map((s, idx) => (idx === i ? { ...s, ...patch } : s)));
   }
   function updateItem(sIdx: number, iIdx: number, value: string) {
-    updateSection(sIdx, { items: sections[sIdx].items.map((it, idx) => (idx === iIdx ? value : it)) });
+    updateSection(sIdx, {
+      items: sections[sIdx].items.map((it, idx) => (idx === iIdx ? value : it)),
+    });
   }
   function updateContentBlock(i: number, patch: Partial<ContentBlock>) {
     setContentBlocks((prev) => prev.map((b, idx) => (idx === i ? { ...b, ...patch } : b)));
@@ -62,14 +71,26 @@ export function WhatsOnPageEditor({
   const save = useMutation({
     mutationFn: () => {
       const data = {
-        emoji: emoji || null, badge: badge || null, badgeColor,
-        title, subtitle, intro, highlightLine,
-        heroImage, heroVideo: heroVideo || null,
+        emoji: emoji || null,
+        badge: badge || null,
+        badgeColor,
+        title,
+        subtitle,
+        intro,
+        highlightLine,
+        heroImage,
+        heroVideo: heroVideo || null,
         galleryImages: galleryImages.length ? galleryImages : null,
         contentBlocks: contentBlocks.length ? contentBlocks : null,
-        cardImageHeight, sidebarImage, sidebarVideo: sidebarVideo || null, ctaLabel, ctaHref,
-        cta2Label: cta2Label || null, cta2Href: cta2Href || null,
-        published, sections,
+        cardImageHeight,
+        sidebarImage,
+        sidebarVideo: sidebarVideo || null,
+        ctaLabel,
+        ctaHref,
+        cta2Label: cta2Label || null,
+        cta2Href: cta2Href || null,
+        published,
+        sections,
       };
       return page
         ? api.patch(`/api/pages/${page.id}`, data)
@@ -78,13 +99,18 @@ export function WhatsOnPageEditor({
     onSuccess: onSaved,
   });
 
-  const inputBase = "bg-transparent outline-none border-b-2 border-dashed border-transparent hover:border-white/30 focus:border-white/70 transition-colors";
-  const inputBaseDark = "bg-transparent outline-none border-b-2 border-dashed border-transparent hover:border-amber-300 focus:border-amber-500 transition-colors";
+  const inputBase =
+    "bg-transparent outline-none border-b-2 border-dashed border-transparent hover:border-white/30 focus:border-white/70 transition-colors";
+  const inputBaseDark =
+    "bg-transparent outline-none border-b-2 border-dashed border-transparent hover:border-amber-300 focus:border-amber-500 transition-colors";
 
   return (
     <div className="fixed inset-0 z-[60] bg-black overflow-y-auto">
       {/* ── sticky toolbar ── */}
-      <div className="sticky top-0 z-20 flex items-center justify-between px-6 py-3" style={{ background: "#1a0e00" }}>
+      <div
+        className="sticky top-0 z-20 flex items-center justify-between px-6 py-3"
+        style={{ background: "#1a0e00" }}
+      >
         <div className="flex items-center gap-4">
           <p className="text-cream text-sm font-semibold tracking-wide uppercase">
             {page ? "Editing" : "New"} What's On Page
@@ -99,12 +125,18 @@ export function WhatsOnPageEditor({
             />
           )}
           <label className="flex items-center gap-2 text-sm text-white/80">
-            <input type="checkbox" checked={published} onChange={(e) => setPublished(e.target.checked)} />
+            <input
+              type="checkbox"
+              checked={published}
+              onChange={(e) => setPublished(e.target.checked)}
+            />
             Active (shown on the live site)
           </label>
         </div>
         <div className="flex items-center gap-3">
-          <button onClick={onClose} className="text-sm text-white/60 hover:text-white">Cancel</button>
+          <button onClick={onClose} className="text-sm text-white/60 hover:text-white">
+            Cancel
+          </button>
           <button
             onClick={() => save.mutate()}
             disabled={save.isPending || !title || (!page && !slug)}
@@ -117,9 +149,14 @@ export function WhatsOnPageEditor({
 
       {/* ── the actual template, editable in place ── */}
       <div className="bg-white">
-        <PageShell crumbs={[{ label: "What's On", to: "/whats-on" }, { label: title || "New Page" }]}>
+        <PageShell
+          crumbs={[{ label: "What's On", to: "/whats-on" }, { label: title || "New Page" }]}
+        >
           {/* HERO */}
-          <div className="relative flex items-center justify-center text-center overflow-hidden" style={{ minHeight: "46vh" }}>
+          <div
+            className="relative flex items-center justify-center text-center overflow-hidden"
+            style={{ minHeight: "46vh" }}
+          >
             <EditableImage
               value={heroImage}
               onChange={setHeroImage}
@@ -127,9 +164,18 @@ export function WhatsOnPageEditor({
               className="absolute inset-0"
               imgClassName="absolute inset-0 w-full h-full object-cover"
             />
-            <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(to bottom, rgba(6,2,0,0.82) 0%, rgba(8,3,0,0.78) 50%, rgba(10,4,0,0.85) 100%)" }} />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(6,2,0,0.82) 0%, rgba(8,3,0,0.78) 50%, rgba(10,4,0,0.85) 100%)",
+              }}
+            />
             <div className="relative z-30 flex flex-col items-center gap-4 px-6 py-10 w-full pointer-events-none [&_input]:pointer-events-auto [&_button]:pointer-events-auto">
-              <p className="text-[9px] tracking-[0.7em] uppercase font-bold" style={{ color: "#f5c14a", textShadow: "0 1px 8px rgba(0,0,0,0.8)" }}>
+              <p
+                className="text-[9px] tracking-[0.7em] uppercase font-bold"
+                style={{ color: "#f5c14a", textShadow: "0 1px 8px rgba(0,0,0,0.8)" }}
+              >
                 The Grand Palace · Sydney CBD
               </p>
               <div className="flex items-center gap-2 w-full justify-center">
@@ -138,7 +184,12 @@ export function WhatsOnPageEditor({
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="Page Title"
                   className={`font-display leading-none text-center ${inputBase}`}
-                  style={{ fontSize: "clamp(38px,7vw,80px)", color: "#fdf6e8", textShadow: "0 2px 20px rgba(0,0,0,0.5)", width: "min(90%, 700px)" }}
+                  style={{
+                    fontSize: "clamp(38px,7vw,80px)",
+                    color: "#fdf6e8",
+                    textShadow: "0 2px 20px rgba(0,0,0,0.5)",
+                    width: "min(90%, 700px)",
+                  }}
                 />
                 <input
                   value={emoji}
@@ -166,7 +217,9 @@ export function WhatsOnPageEditor({
           {/* HERO VIDEO — optional, shown instead of the static hero image on the live page when set */}
           <div className="bg-white px-6 py-5 border-b border-stone-100">
             <div className="max-w-6xl mx-auto">
-              <p className="text-[11px] uppercase tracking-widest font-bold text-stone-400 mb-2">Hero video (optional — overrides the hero photo above when set)</p>
+              <p className="text-[11px] uppercase tracking-widest font-bold text-stone-400 mb-2">
+                Hero video (optional — overrides the hero photo above when set)
+              </p>
               <EditableVideo
                 value={heroVideo}
                 onChange={setHeroVideo}
@@ -179,10 +232,15 @@ export function WhatsOnPageEditor({
           {/* GALLERY STRIP — extra photos shown below the hero */}
           <div className="bg-white px-6 py-5 border-b border-stone-100">
             <div className="max-w-6xl mx-auto">
-              <p className="text-[11px] uppercase tracking-widest font-bold text-stone-400 mb-2">Extra photos below the hero (optional)</p>
+              <p className="text-[11px] uppercase tracking-widest font-bold text-stone-400 mb-2">
+                Extra photos below the hero (optional)
+              </p>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                 {galleryImages.map((src, i) => (
-                  <div key={i} className="relative rounded-xl overflow-hidden border border-stone-200 aspect-[4/3]">
+                  <div
+                    key={i}
+                    className="relative rounded-xl overflow-hidden border border-stone-200 aspect-[4/3]"
+                  >
                     <img src={src} alt="" className="w-full h-full object-cover" />
                     <button
                       type="button"
@@ -208,7 +266,13 @@ export function WhatsOnPageEditor({
           <section className="bg-white py-12 md:py-20 px-6">
             <div className="max-w-6xl mx-auto grid lg:grid-cols-[1fr_360px] gap-12 items-start">
               <div className="order-3 lg:order-1">
-                <div className="block rounded-lg px-4 py-2.5 mb-6 border w-full max-w-xl" style={{ background: "rgba(200,134,10,0.08)", borderColor: "rgba(200,134,10,0.25)" }}>
+                <div
+                  className="block rounded-lg px-4 py-2.5 mb-6 border w-full max-w-xl"
+                  style={{
+                    background: "rgba(200,134,10,0.08)",
+                    borderColor: "rgba(200,134,10,0.25)",
+                  }}
+                >
                   <RichTextInput
                     value={highlightLine}
                     onChange={setHighlightLine}
@@ -228,7 +292,10 @@ export function WhatsOnPageEditor({
 
                 {/* Extra description/subtitle blocks — repeatable, each with its own optional subtitle and rich body */}
                 {contentBlocks.map((block, i) => (
-                  <div key={i} className="rounded-2xl bg-white border border-stone-200 shadow-sm p-6 md:p-7 mb-6 relative max-w-2xl">
+                  <div
+                    key={i}
+                    className="rounded-2xl bg-white border border-stone-200 shadow-sm p-6 md:p-7 mb-6 relative max-w-2xl"
+                  >
                     <button
                       type="button"
                       onClick={() => setContentBlocks((prev) => prev.filter((_, idx) => idx !== i))}
@@ -262,7 +329,10 @@ export function WhatsOnPageEditor({
                 </button>
 
                 {sections.map((sec, i) => (
-                  <div key={i} className="rounded-2xl bg-white border border-stone-200 shadow-sm p-6 md:p-7 mb-6 relative">
+                  <div
+                    key={i}
+                    className="rounded-2xl bg-white border border-stone-200 shadow-sm p-6 md:p-7 mb-6 relative"
+                  >
                     <button
                       type="button"
                       onClick={() => setSections((prev) => prev.filter((_, idx) => idx !== i))}
@@ -322,7 +392,14 @@ export function WhatsOnPageEditor({
                     />
                     <input
                       value={(sec.tags ?? []).join(", ")}
-                      onChange={(e) => updateSection(i, { tags: e.target.value.split(",").map((t) => t.trim()).filter(Boolean) })}
+                      onChange={(e) =>
+                        updateSection(i, {
+                          tags: e.target.value
+                            .split(",")
+                            .map((t) => t.trim())
+                            .filter(Boolean),
+                        })
+                      }
                       placeholder="Spec chips, comma separated (optional) — e.g. Himalayan Barley, American Oak, Lightly Peated"
                       className={`text-[13px] mb-3 w-full ${inputBaseDark}`}
                     />
@@ -334,9 +411,13 @@ export function WhatsOnPageEditor({
                     />
                     <ul className="grid sm:grid-cols-2 gap-2.5 mt-4">
                       {sec.items.map((item, j) => (
-                        <li key={j}
-                            className="flex items-start gap-2.5 text-stone-700 text-[14px] leading-relaxed rounded-lg px-3.5 py-2.5"
-                            style={{ background: j % 2 === 0 ? "rgba(200,140,30,0.06)" : "transparent" }}>
+                        <li
+                          key={j}
+                          className="flex items-start gap-2.5 text-stone-700 text-[14px] leading-relaxed rounded-lg px-3.5 py-2.5"
+                          style={{
+                            background: j % 2 === 0 ? "rgba(200,140,30,0.06)" : "transparent",
+                          }}
+                        >
                           <span className="text-amber-600 mt-0.5 flex-shrink-0">●</span>
                           <div className="flex-1">
                             <RichTextInput
@@ -348,7 +429,9 @@ export function WhatsOnPageEditor({
                           </div>
                           <button
                             type="button"
-                            onClick={() => updateSection(i, { items: sec.items.filter((_, idx) => idx !== j) })}
+                            onClick={() =>
+                              updateSection(i, { items: sec.items.filter((_, idx) => idx !== j) })
+                            }
                             className="text-red-500 text-xs flex-shrink-0"
                           >
                             ✕
@@ -368,7 +451,12 @@ export function WhatsOnPageEditor({
 
                 <button
                   type="button"
-                  onClick={() => setSections((prev) => [...prev, { heading: "New Section", priceTag: "", intro: "", items: ["First detail"] }])}
+                  onClick={() =>
+                    setSections((prev) => [
+                      ...prev,
+                      { heading: "New Section", priceTag: "", intro: "", items: ["First detail"] },
+                    ])
+                  }
                   className="btn-outline-gold !text-[11px] !px-4 !py-2 mb-8"
                 >
                   + Add Section
@@ -409,7 +497,9 @@ export function WhatsOnPageEditor({
 
               <div className="order-2 lg:order-2 mt-4 lg:mt-14 space-y-3">
                 <div>
-                  <p className="text-[11px] uppercase tracking-widest font-bold text-stone-400 mb-2">Sidebar video (optional — shown above the sidebar photo)</p>
+                  <p className="text-[11px] uppercase tracking-widest font-bold text-stone-400 mb-2">
+                    Sidebar video (optional — shown above the sidebar photo)
+                  </p>
                   <EditableVideo
                     value={sidebarVideo}
                     onChange={setSidebarVideo}
@@ -470,9 +560,15 @@ export function WhatsOnPageEditor({
             </div>
           </div>
           <div className="p-5">
-            <p className="font-display text-xl text-stone-900 leading-snug mb-2">{title || "Page Title"}</p>
-            <p className="text-amber-700 text-[13px] font-semibold leading-snug mb-2">{subtitle || "Subtitle line"}</p>
-            <p className="text-stone-500 text-[13px] leading-relaxed mb-4 line-clamp-2">{intro || "Intro paragraph…"}</p>
+            <p className="font-display text-xl text-stone-900 leading-snug mb-2">
+              {title || "Page Title"}
+            </p>
+            <p className="text-amber-700 text-[13px] font-semibold leading-snug mb-2">
+              {subtitle || "Subtitle line"}
+            </p>
+            <p className="text-stone-500 text-[13px] leading-relaxed mb-4 line-clamp-2">
+              {intro || "Intro paragraph…"}
+            </p>
             <div className="border-t border-stone-100 pt-4 flex items-center gap-2">
               <span className="flex-1 text-center text-[12px] font-bold uppercase tracking-wider py-2.5 rounded-lg border border-stone-900 text-stone-900">
                 Learn More
@@ -495,7 +591,9 @@ export function WhatsOnPageEditor({
           >
             {save.isPending ? "Saving…" : "Save Page"}
           </button>
-          <button onClick={onClose} className="text-sm text-white/60 hover:text-white self-center">Cancel</button>
+          <button onClick={onClose} className="text-sm text-white/60 hover:text-white self-center">
+            Cancel
+          </button>
         </div>
       </div>
     </div>

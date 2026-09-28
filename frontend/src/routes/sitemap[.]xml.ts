@@ -36,7 +36,9 @@ export const Route = createFileRoute("/sitemap.xml")({
           }
           if (seoRes.ok) {
             const data = await seoRes.json();
-            redirectedPaths = new Set((data.redirects ?? []).map((r: { fromPath: string }) => r.fromPath));
+            redirectedPaths = new Set(
+              (data.redirects ?? []).map((r: { fromPath: string }) => r.fromPath),
+            );
           }
           if (guidesRes.ok) {
             const guides: { slug: string }[] = await guidesRes.json();
@@ -49,11 +51,14 @@ export const Route = createFileRoute("/sitemap.xml")({
         const blogSlugSet = new Set(BLOG_SLUGS);
         const allGuideSlugs = new Set([...Object.keys(guidesContent), ...dbGuideSlugs]);
         for (const slug of RETIRED_GUIDE_SLUGS) allGuideSlugs.delete(slug);
-        const guidePaths = [...allGuideSlugs].map((slug) => (blogSlugSet.has(slug) ? `/blog/${slug}` : `/guides/${slug}`));
+        const guidePaths = [...allGuideSlugs].map((slug) =>
+          blogSlugSet.has(slug) ? `/blog/${slug}` : `/guides/${slug}`,
+        );
         const whatsOnPaths = whatsOnSlugs.map((slug) => `/whats-on/${slug}`);
 
-        const allPaths = [...STATIC_PATHS, ...guidePaths, ...whatsOnPaths]
-          .filter((p) => !redirectedPaths.has(p));
+        const allPaths = [...STATIC_PATHS, ...guidePaths, ...whatsOnPaths].filter(
+          (p) => !redirectedPaths.has(p),
+        );
 
         const urls = allPaths
           .map((p) => `  <url><loc>${xmlEscape(SITE_URL + p)}</loc></url>`)
