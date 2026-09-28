@@ -90,9 +90,14 @@ jobs:
 
             ln -sfn "releases/$RELEASE" current
 
+            # backend/.env is a symlink to shared/.env, which is 600 and
+            # owned by swayam (it holds DATABASE_URL, JWT_SECRET, Stripe and
+            # SMTP secrets) — the deploy user can't read it directly. Run the
+            # prisma steps as swayam, the same way pm2 restart/save already
+            # do below, instead of loosening the file's permissions.
             cd current/backend
-            npx prisma generate
-            npx prisma migrate deploy
+            sudo -u swayam npx prisma generate
+            sudo -u swayam npx prisma migrate deploy
 
             cd "$DEPLOY_DIR"
             sudo -u swayam pm2 restart $PM2_APP_NAME --update-env
