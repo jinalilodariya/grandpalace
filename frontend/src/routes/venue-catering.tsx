@@ -635,7 +635,7 @@ function EnquirySection() {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
       e.email = "Enter a valid email address";
     if (!form.phone.trim()) e.phone = "Phone number is required";
-    else if (!/^[\d\s\+\-\(\)]{7,}$/.test(form.phone)) e.phone = "Enter a valid phone number";
+    else if (!/^[\d\s+()-]{7,}$/.test(form.phone)) e.phone = "Enter a valid phone number";
     if (!form.date.trim()) e.date = "Event date is required";
     if (!form.guests.trim()) e.guests = "Number of guests is required";
     if (!form.location.trim()) e.location = "Venue location is required";
