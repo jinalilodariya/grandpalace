@@ -5,6 +5,7 @@ import { useSiteToggle } from "@/lib/useSiteToggle";
 import { fetchPageContent, useLiveContent, makeContent } from "@/lib/pageContent";
 import mandala from "@/assets/mandala.png";
 import heroImgDefault from "@/assets/hero-events-spread.jpg";
+import { pageHead } from "@/lib/seo";
 
 const PHONE_TEL = "+61280217696";
 const PHONE_DISPLAY = "(02) 8021 7696";
@@ -43,12 +44,7 @@ const reserveActionSchema = {
 
 export const Route = createFileRoute("/book-a-table")({
   loader: () => fetchPageContent("/book-a-table"),
-  head: () => ({
-    meta: [
-      { title: "Book a Table — The Grand Palace Indian Restaurant Sydney" },
-      { name: "description", content: "Reserve your table at The Grand Palace Indian Restaurant, Sydney CBD. Book online instantly via OpenTable." },
-    ],
-  }),
+  head: (ctx) => pageHead(ctx, "/book-a-table"),
   component: BookATablePage,
 });
 
@@ -63,8 +59,8 @@ function CarvedBackdrop({ tone }: { tone: "gold" | "dark" }) {
   const op = tone === "gold" ? "opacity-[0.09]" : "opacity-[0.11]";
   return (
     <>
-      <img src={mandala} alt="" aria-hidden className={`pointer-events-none absolute -left-36 -top-28 w-[460px] ${op} animate-spin-slow`} />
-      <img src={mandala} alt="" aria-hidden className={`pointer-events-none absolute -right-36 -bottom-28 w-[460px] ${op} animate-spin-slow`} style={{ animationDirection: "reverse" }} />
+      <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className={`pointer-events-none absolute -left-36 -top-28 w-[460px] ${op} animate-spin-slow`} />
+      <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className={`pointer-events-none absolute -right-36 -bottom-28 w-[460px] ${op} animate-spin-slow`} style={{ animationDirection: "reverse" }} />
     </>
   );
 }
@@ -81,7 +77,7 @@ function BookATablePage() {
 
       {/* Hero */}
       <section className="relative z-0 overflow-hidden">
-        <img src={heroImg} alt="" data-tgp-key="hero.image" fetchPriority="high" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={heroImg} alt="Indian feast on a table at The Grand Palace, Sydney CBD" data-tgp-key="hero.image" fetchPriority="high" decoding="async" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-b from-palace/85 via-palace/80 to-palace/95" />
         <div className="relative z-10 max-w-3xl mx-auto px-6 py-20 text-center">
           <div className="text-xs tracking-[0.4em] uppercase text-saffron mb-3">Namaste from The Grand Palace</div>

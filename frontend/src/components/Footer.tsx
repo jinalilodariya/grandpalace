@@ -32,9 +32,9 @@ export function Footer() {
   const minChargeActive = useSiteToggle("min-charge-notice");
   return (
     <footer className="relative overflow-hidden bg-palace border-t border-gold/20">
-      <img src={mandala} alt="" aria-hidden
+      <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async"
         className="pointer-events-none absolute -left-40 -bottom-40 w-[520px] opacity-[0.06] animate-spin-slow" />
-      <img src={mandala} alt="" aria-hidden
+      <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async"
         className="pointer-events-none absolute -right-40 -top-40 w-[400px] opacity-[0.04] animate-spin-slow" style={{ animationDirection: "reverse" }} />
 
       {/* Main grid */}
@@ -42,7 +42,7 @@ export function Footer() {
 
         {/* ── Col 1: Brand ── */}
         <div className="flex flex-col items-center md:items-start text-center md:text-left">
-          <img src={logo} alt="The Grand Palace" className="h-24 w-24 object-contain mb-4"
+          <img src={logo} alt="The Grand Palace" loading="lazy" decoding="async" className="h-24 w-24 object-contain mb-4"
             style={{ filter: "drop-shadow(0 0 14px rgba(212,168,76,0.55))" }} />
           <p className="text-gold/90 font-display text-base italic leading-snug mb-1">Fine Dining Indian Restaurant</p>
           <p className="text-cream/55 text-[13px] leading-relaxed mb-5">Make Your Moments Special With Us</p>
@@ -66,7 +66,7 @@ export function Footer() {
 
         {/* ── Col 2: Trading Hours ── */}
         <div>
-          <h4 className="text-cream text-base font-semibold mb-4 tracking-wide">Trading Hours</h4>
+          <h3 className="text-cream text-base font-semibold mb-4 tracking-wide">Trading Hours</h3>
           <div className="space-y-3 text-[13px] text-cream/60 leading-relaxed">
             <div>
               <p className="text-cream/90 font-semibold text-[13px] mb-1">Lunch</p>
@@ -89,7 +89,7 @@ export function Footer() {
 
         {/* ── Col 3: Contact + Conditions ── */}
         <div>
-          <h4 className="text-cream text-base font-semibold mb-4 tracking-wide">Contact Us</h4>
+          <h3 className="text-cream text-base font-semibold mb-4 tracking-wide">Contact Us</h3>
           <ul className="space-y-2.5 text-[13px] mb-6">
             <li>
               <a href={`tel:${PHONE_TEL}`} className="flex items-center gap-2.5 text-cream/70 hover:text-gold transition">
@@ -103,7 +103,7 @@ export function Footer() {
             </li>
           </ul>
 
-          <h4 className="text-cream text-base font-semibold mb-3 tracking-wide">Conditions of Entry</h4>
+          <h3 className="text-cream text-base font-semibold mb-3 tracking-wide">Conditions of Entry</h3>
           <ul className="space-y-2 text-[13px] text-cream/60">
             {[
               ...(minChargeActive ? ["Minimum charge per person $35. Children aged 5 to 10 is $25."] : []),
@@ -121,7 +121,7 @@ export function Footer() {
 
         {/* ── Col 4: Visit Us ── */}
         <div>
-          <h4 className="text-cream text-base font-semibold mb-4 tracking-wide">Visit Us</h4>
+          <h3 className="text-cream text-base font-semibold mb-4 tracking-wide">Visit Us</h3>
           <ul className="space-y-3 text-[13px] text-cream/60 mb-4">
             <li className="flex items-start gap-2.5">
               <MapPin className="h-4 w-4 text-gold mt-0.5 shrink-0" />

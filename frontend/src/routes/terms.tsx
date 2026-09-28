@@ -2,19 +2,15 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
 import mandala from "@/assets/mandala.png";
 import { fetchPageContent, useLiveContent, makeContent } from "@/lib/pageContent";
+import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/terms")({
   loader: () => fetchPageContent("/terms"),
-  head: () => ({
-    meta: [
-      { title: "Terms & Conditions — The Grand Palace Indian Restaurant" },
-      { name: "description", content: "Terms and conditions for dining, online ordering, gift cards, and events at The Grand Palace Indian Restaurant, Sydney CBD." },
-    ],
-  }),
+  head: (ctx) => pageHead(ctx, "/terms"),
   component: TermsPage,
 });
 
-const sections = [
+const sections: { title: string; body: string; list?: string[]; note?: string }[] = [
   {
     title: "Definitions",
     body: `"We", "us", and "our" refer to The Grand Palace – Indian Restaurant at Basement, 261 George Street, Sydney, NSW 2000. The restaurant reserves the right to revise these terms without prior notice.`,
@@ -74,7 +70,7 @@ function TermsPage() {
     <PageShell crumbs={[{ label: "Terms" }]}>
       {/* Hero */}
       <div className="relative h-48 md:h-64 overflow-hidden bg-palace">
-        <img src={mandala} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover opacity-[0.07]" />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-[0.07]" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 gap-3">
           <p className="text-[11px] tracking-[0.45em] uppercase font-bold" style={{ color: "#f5c14a", textShadow: "0 1px 8px rgba(0,0,0,0.8)" }}>The Grand Palace</p>
           <h1 data-tgp-key="hero.title" className="font-display text-5xl md:text-6xl text-gold-gradient">{c("hero.title", "Terms & Conditions")}</h1>
@@ -82,7 +78,7 @@ function TermsPage() {
       </div>
 
       <section className="relative section-cream py-14 px-6 overflow-hidden">
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -right-36 -top-28 w-[420px] opacity-[0.06] animate-spin-slow" />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -right-36 -top-28 w-[420px] opacity-[0.06] animate-spin-slow" />
         <div className="relative z-10 max-w-3xl mx-auto">
           <p data-tgp-key="intro.text" className="text-palace/60 text-[14px] leading-relaxed mb-8 border-l-2 border-saffron/40 pl-4">
             {c("intro.text", "Last updated: 2025. These terms apply to all dine-in guests and online customers of The Grand Palace Indian Restaurant, Basement, 261 George Street, Sydney, NSW 2000.")}

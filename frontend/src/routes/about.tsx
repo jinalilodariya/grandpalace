@@ -10,15 +10,11 @@ import { Editable } from "@/components/Editable";
 import interiorImg from "@/assets/gallery/Interior_058.jpg";
 import foodImg from "@/assets/menu-categories/cat-biryani.jpg";
 import corpImg from "@/assets/gallery/Corporate_084.jpeg";
+import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
   loader: () => fetchPageContent("/about"),
-  head: () => ({
-    meta: [
-      { title: "About Us — The Grand Palace Indian Restaurant Sydney CBD" },
-      { name: "description", content: "The Grand Palace serves traditional Indian cuisine in a royal palace-inspired setting in Sydney CBD. Authentic flavours, HACCP certified, Gold Licensed." },
-    ],
-  }),
+  head: (ctx) => pageHead(ctx, "/about"),
   component: AboutPage,
 });
 
@@ -50,8 +46,8 @@ function AboutPage() {
 
       {/* Our Story */}
       <section className="relative section-cream py-20 px-6 overflow-hidden">
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -left-36 -top-28 w-[460px] opacity-[0.08] animate-spin-slow" />
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -right-36 -bottom-28 w-[460px] opacity-[0.08] animate-spin-slow" style={{ animationDirection: "reverse" }} />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -left-36 -top-28 w-[460px] opacity-[0.08] animate-spin-slow" />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -right-36 -bottom-28 w-[460px] opacity-[0.08] animate-spin-slow" style={{ animationDirection: "reverse" }} />
         <div className="relative z-10 max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <p className="text-[11px] tracking-[0.4em] uppercase text-saffron/80 mb-3"><Editable k="story.kicker">{c("story.kicker", "Our Story")}</Editable></p>
@@ -65,7 +61,7 @@ function AboutPage() {
             </div>
           </div>
           <div className="relative rounded-2xl overflow-hidden shadow-[0_24px_60px_-20px_rgba(0,0,0,0.35)] min-h-[400px]">
-            <img src={storyImg} alt="The Grand Palace dining room" data-tgp-key="story.image" className="w-full h-full object-cover absolute inset-0" />
+            <img src={storyImg} alt="The Grand Palace dining room" loading="lazy" decoding="async" data-tgp-key="story.image" className="w-full h-full object-cover absolute inset-0" />
             <div className="absolute inset-0 bg-gradient-to-t from-palace/50 to-transparent" />
           </div>
         </div>
@@ -73,7 +69,7 @@ function AboutPage() {
 
       {/* Vision */}
       <section className="relative bg-palace py-20 px-6 overflow-hidden">
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute inset-0 w-full h-full object-cover opacity-[0.05]" />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute inset-0 w-full h-full object-cover opacity-[0.05]" />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <p className="text-[11px] tracking-[0.4em] uppercase text-saffron/80 mb-4"><Editable k="vision.kicker">{c("vision.kicker", "Our Vision")}</Editable></p>
           <blockquote className="font-display text-2xl md:text-3xl lg:text-4xl text-cream leading-relaxed italic">
@@ -89,7 +85,7 @@ function AboutPage() {
 
       {/* Why us tiles */}
       <section className="relative section-cream py-20 px-6 overflow-hidden">
-        <img src={mandala} alt="" aria-hidden className="pointer-events-none absolute -right-36 -top-28 w-[460px] opacity-[0.07] animate-spin-slow" />
+        <img src={mandala} alt="" aria-hidden loading="lazy" decoding="async" className="pointer-events-none absolute -right-36 -top-28 w-[460px] opacity-[0.07] animate-spin-slow" />
         <div className="relative z-10 max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <p className="text-[11px] tracking-[0.4em] uppercase text-saffron/80 mb-3"><Editable k="diff.kicker">{c("diff.kicker", "What Sets Us Apart")}</Editable></p>

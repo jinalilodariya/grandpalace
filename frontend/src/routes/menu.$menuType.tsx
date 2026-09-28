@@ -1,6 +1,7 @@
 import { createFileRoute, notFound, redirect } from "@tanstack/react-router";
 import { PageShell } from "@/components/PageShell";
 import { API_URL, type MenuCategory } from "@/lib/admin-api";
+import { buildSeoHead, titleWithBrand } from "@/lib/seo";
 
 // menuTypes with their own hand-built page (see Header.tsx's
 // KNOWN_MENU_TYPES) — this generic template only reads item.price, but
@@ -39,9 +40,13 @@ export const Route = createFileRoute("/menu/$menuType")({
     if (categories.length === 0) throw notFound();
     return categories;
   },
-  head: ({ loaderData, params }) => {
-    const menuLabel = loaderData?.[0]?.menuLabel || params.menuType;
-    return { meta: [{ title: `${menuLabel} — The Grand Palace` }] };
+  head: (ctx) => {
+    const menuLabel = ctx.loaderData?.[0]?.menuLabel || ctx.params.menuType;
+    return buildSeoHead(ctx, `/menu/${ctx.params.menuType}`, {
+      title: titleWithBrand(`${menuLabel} Menu`),
+      description: `${menuLabel} menu at The Grand Palace Indian Restaurant, 261 George Street, Sydney CBD. Authentic Indian dishes with halal, vegetarian and vegan options.`,
+      breadcrumbs: [{ name: "Menu", path: "/menu" }, { name: menuLabel }],
+    });
   },
   component: GenericMenuPage,
 });
@@ -88,7 +93,7 @@ function GenericMenuPage() {
                     className={`flex gap-4 px-6 py-5 items-start ${i % 2 === 1 ? "sm:border-l border-stone-100" : ""}`}
                   >
                     {item.imageUrl && (
-                      <img src={item.imageUrl} alt={item.name} className="w-20 h-20 rounded-xl object-cover flex-shrink-0" />
+                      <img src={item.imageUrl} alt={item.name} loading="lazy" decoding="async" className="w-20 h-20 rounded-xl object-cover flex-shrink-0" />
                     )}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">

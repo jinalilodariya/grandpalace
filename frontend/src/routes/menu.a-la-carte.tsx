@@ -64,18 +64,14 @@ import catSides    from "@/assets/menu-categories/cat-sides.jpg";
 import catVegan    from "@/assets/food-real/mains-veg-korma.jpg";
 import catJain     from "@/assets/food-real/mains-mixed-veg.jpg";
 import catDesserts from "@/assets/menu-categories/cat-desserts.jpg";
+import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/menu/a-la-carte")({
   loader: async () => {
     const [content, rawCategories] = await Promise.all([fetchPageContent("/menu/a-la-carte"), fetchCategories()]);
     return { content, rawCategories };
   },
-  head: () => ({
-    meta: [
-      { title: "À la Carte Menu — The Grand Palace" },
-      { name: "description", content: "Full à la carte menu — authentic Indian cuisine at The Grand Palace, Sydney CBD." },
-    ],
-  }),
+  head: (ctx) => pageHead(ctx, "/menu/a-la-carte"),
   component: MenuPage,
 });
 
@@ -176,7 +172,7 @@ function MenuPage() {
     <PageShell crumbs={[{ label: "Menu", to: "/menu" }, { label: "À la Carte" }]}>
       {/* ── Hero ── */}
       <div className="relative flex items-center justify-center text-center overflow-hidden" style={{ minHeight: "46vh" }}>
-        <img src={pageHeroImg} alt="" data-tgp-key="hero.image" className="absolute inset-0 w-full h-full object-cover" fetchPriority="high" decoding="async" />
+        <img src={pageHeroImg} alt="Spread of à la carte Indian dishes at The Grand Palace, Sydney CBD" data-tgp-key="hero.image" className="absolute inset-0 w-full h-full object-cover" fetchPriority="high" decoding="async" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(6,2,0,0.82) 0%, rgba(8,3,0,0.78) 50%, rgba(10,4,0,0.85) 100%)" }} />
         <div className="relative flex flex-col items-center gap-4 px-6 py-10">
           <p className="text-[9px] tracking-[0.7em] uppercase font-bold" style={{ color: "#f5c14a", textShadow: "0 1px 8px rgba(0,0,0,0.8)" }}>
@@ -281,10 +277,10 @@ function MenuPage() {
 
                 {/* section header: full-width bg image */}
                 <div className="relative flex items-end min-h-[180px] md:min-h-[220px] overflow-hidden bg-stone-900">
-                  <img src={cat.img} alt="" aria-hidden="true"
+                  <img src={cat.img} alt="" aria-hidden="true" loading="lazy" decoding="async"
                        className="absolute inset-0 w-full h-full object-cover scale-110"
                        style={{filter:"brightness(0.5) saturate(1.1) blur(20px)"}} />
-                  <img src={cat.img} alt={cat.label}
+                  <img src={cat.img} alt={cat.label} loading="lazy" decoding="async"
                        className="absolute inset-0 w-full h-full object-cover"
                        style={{filter:"brightness(0.85) saturate(1.15)"}} />
                   <div className="absolute inset-0" style={{background:"linear-gradient(to top,rgba(10,4,0,0.88) 0%,rgba(10,4,0,0.45) 55%,rgba(10,4,0,0.2) 100%)"}} />
