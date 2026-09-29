@@ -322,7 +322,7 @@ const BLOGS = [
     "externalLinks": null,
     "slug": "diwali-catering-box-sydney",
     "tag": "Catering",
-    "title": "Diwali Catering Box in Sydney: Festive Snacks & Sweets from TGP for $99",
+    "title": "Diwali Catering Box: Festive Snacks & Sweets for $99",
     "metaTitle": "Diwali Catering Box Sydney — $99 Snacks & Sweets | TGP",
     "metaDescription": "TGP's $99 Diwali Catering Box: paneer cigar rolls, palak pakora, dal kachori, samosas, motichur laddu and gulab jamun. Order by Thursday 5 November.",
     "excerpt": "Six festive favourites, 33–35 pieces, $99 — what's inside the TGP Diwali Catering Box, who it's for, and how to order and collect.",
