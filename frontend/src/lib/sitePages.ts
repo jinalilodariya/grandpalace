@@ -74,7 +74,7 @@ export const SITE_PAGES: SitePage[] = [
     label: "Career",
     title: "Careers at The Grand Palace | Restaurant Jobs Sydney CBD",
     description:
-      "Join the team at The Grand Palace, a family-run Indian restaurant in Sydney CBD. See our current job openings for chefs, cooks and restaurant staff and apply online.",
+      "Join the team at The Grand Palace, a family-run Indian restaurant in Sydney CBD. See current openings for chefs, cooks and restaurant staff and apply online.",
     keywords: "restaurant jobs sydney cbd, indian chef jobs sydney, hospitality jobs sydney",
     image: "/site-image-defaults/about-hero.jpg",
   },
@@ -152,7 +152,7 @@ export const SITE_PAGES: SitePage[] = [
     label: "Menu Hub",
     title: "Indian Restaurant Menu Sydney CBD | The Grand Palace",
     description:
-      "Explore our à la carte Indian dishes, set menu banquets, lunch specials and drinks at The Grand Palace, Sydney CBD. Halal meats plus vegetarian and vegan options.",
+      "Explore our à la carte Indian dishes, set menu banquets, lunch specials and drinks at The Grand Palace, Sydney CBD. Halal, vegetarian and vegan options.",
     keywords:
       "indian restaurant menu sydney, indian food menu sydney cbd, halal indian menu sydney",
     image: "/site-image-defaults/menu-index-hero.jpg",
