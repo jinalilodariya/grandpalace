@@ -397,6 +397,11 @@ export const guides: GuideItem[] = [
 // belong here — see the guideType comment in blog.$slug.tsx / guides.$slug.tsx.
 // Kept as a single source of truth so /guides and /blog can't drift apart.
 export const BLOG_SLUGS: string[] = [
+  // Festive posts, Navratri & Diwali 2026
+  "navratri-catering-sydney",
+  "navratri-celebration-dinner-sydney",
+  "diwali-catering-box-sydney",
+  "diwali-dinner-sydney-cbd",
   "private-corporate-dining-sydney-cbd",
   "best-indian-birthday-dinner-sydney-where-to-celebrate-in-style",
   "best-indian-restaurant-near-me-sydney-cbd-the-grand-palace-guide",
