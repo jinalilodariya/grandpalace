@@ -683,8 +683,8 @@ function OrderWizard() {
     return id;
   }
 
-  // Captures the lead as it's typed (Admin → Leads → Office Catering), like
-  // the platter box wizard, so no order is lost if payment isn't completed.
+  // Captures the lead as it's typed (Admin → Leads → Diwali Catering Box),
+  // like the platter box wizard, so no order is lost if payment isn't completed.
   useEffect(() => {
     if (typeof step !== "number") return;
     if (!form.name.trim() && !form.email.trim() && !form.mobile.trim()) return;
@@ -692,7 +692,7 @@ function OrderWizard() {
       api
         .post("/api/enquiries/track", {
           sessionId: getSessionId(),
-          type: "office-catering",
+          type: "diwali-catering-box",
           name: form.name || null,
           email: form.email || null,
           phone: form.mobile || null,
@@ -730,11 +730,6 @@ function OrderWizard() {
     setAgreeError("");
     setStatus("submitting");
     try {
-      // TODO(developer): add this endpoint in backend/src/routes/stripe.routes.js,
-      // modelled on create-catering-checkout-session — Stripe Checkout for
-      // `boxes` × $99 AUD, success_url ?payment=success and cancel_url
-      // ?payment=cancelled back to /whats-on/diwali-catering-box, and mark the
-      // tracked enquiry (sessionId) as paid in the webhook.
       const { url } = await api.post<{ url: string }>(
         "/api/stripe/create-diwali-checkout-session",
         {

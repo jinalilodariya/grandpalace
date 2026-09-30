@@ -2,7 +2,7 @@ import { Router } from "express";
 import Stripe from "stripe";
 import express from "express";
 import { prisma } from "../db.js";
-import { sendMail, birthdayCustomerEmail, birthdayBookingsEmail, cateringCustomerEmail, cateringBookingsEmail } from "../lib/mailer.js";
+import { sendMail, birthdayCustomerEmail, birthdayBookingsEmail, cateringCustomerEmail, cateringBookingsEmail, diwaliCustomerEmail, diwaliBookingsEmail } from "../lib/mailer.js";
 
 const router = Router();
 
@@ -12,6 +12,7 @@ function getStripe() {
 
 const BIRTHDAY_PACKAGE_PRICE_AUD = 150;
 const PLATTER_PRICES_AUD = { veg: 75, nonVeg: 85 };
+const DIWALI_BOX_PRICE_AUD = 99;
 
 // Public: creates a Stripe Checkout Session for the $150 birthday package
 // fee. The frontend redirects the browser straight to the returned URL —
@@ -110,6 +111,50 @@ router.post("/create-catering-checkout-session", async (req, res) => {
   }
 });
 
+// Public: creates a Stripe Checkout Session for a TGP Diwali Catering Box
+// order (What's On → Diwali Catering Box page). Quantity is computed
+// server-side and the price is hardcoded here — never trust a client-sent
+// price or amount.
+router.post("/create-diwali-checkout-session", async (req, res) => {
+  const { sessionId, name, email, mobile, boxes, collectionDate, collectionTime, message } = req.body;
+  const qty = Math.max(1, parseInt(boxes, 10) || 1);
+  if (!sessionId || !name || !email) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
+
+  const origin = req.headers.origin || (process.env.FRONTEND_URL || "").split(",")[0];
+
+  try {
+    const stripe = getStripe();
+    const session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      customer_email: email,
+      line_items: [{
+        price_data: {
+          currency: "aud",
+          product_data: {
+            name: "TGP Diwali Catering Box",
+            description: `${qty} box(es) · ${collectionDate || ""} ${collectionTime || ""}`.trim(),
+          },
+          unit_amount: DIWALI_BOX_PRICE_AUD * 100,
+        },
+        quantity: qty,
+      }],
+      success_url: `${origin}/whats-on/diwali-catering-box?payment=success`,
+      cancel_url: `${origin}/whats-on/diwali-catering-box?payment=cancelled`,
+      metadata: {
+        orderType: "diwali-catering-box", sessionId, name, mobile: mobile || "",
+        boxes: String(qty), collectionDate: collectionDate || "", collectionTime: collectionTime || "",
+        message: message || "",
+      },
+    });
+    res.json({ url: session.url });
+  } catch (err) {
+    console.error("Stripe diwali checkout session error:", err.message);
+    res.status(500).json({ error: "Could not start checkout" });
+  }
+});
+
 // Stripe webhook — needs the raw body to verify the signature, so this
 // route parses it itself (the app-level JSON parser skips this path).
 router.post("/webhook", express.raw({ type: "application/json" }), async (req, res) => {
@@ -149,6 +194,31 @@ router.post("/webhook", express.raw({ type: "application/json" }), async (req, r
       };
       if (session.customer_email) await sendMail(cateringCustomerEmail(emailPayload));
       await sendMail(cateringBookingsEmail(emailPayload));
+
+      return res.json({ received: true });
+    }
+
+    if (meta.orderType === "diwali-catering-box" && meta.sessionId) {
+      const { sessionId, name, mobile, boxes, collectionDate, collectionTime, message } = meta;
+      const amountPaidAud = (session.amount_total || 0) / 100;
+      const data = { boxes, collectionDate, collectionTime, stripeSessionId: session.id, amountPaidAud };
+
+      await prisma.enquiry.upsert({
+        where: { sessionId },
+        create: {
+          sessionId, type: "diwali-catering-box", status: "completed",
+          name: name || null, email: session.customer_email || null, phone: mobile || null,
+          subject: "Diwali Catering Box Order", message: message || null, step: "confirm", data,
+        },
+        update: { status: "completed", data },
+      });
+
+      const emailPayload = {
+        name, email: session.customer_email, mobile, boxes, collectionDate, collectionTime,
+        message, amountPaid: amountPaidAud, stripeSessionId: session.id,
+      };
+      if (session.customer_email) await sendMail(diwaliCustomerEmail(emailPayload));
+      await sendMail(diwaliBookingsEmail(emailPayload));
 
       return res.json({ received: true });
     }
