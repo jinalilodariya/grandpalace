@@ -179,38 +179,6 @@ export function Header() {
               </div>
             )}
           </div>
-          <div className="relative" onMouseEnter={onEventsEnter} onMouseLeave={onEventsLeave}>
-            <Link
-              to="/events"
-              className="flex items-center gap-1 text-[15px] tracking-wider text-cream/90 hover:text-gold transition"
-              activeProps={{ className: "text-gold" }}
-            >
-              Events{" "}
-              <ChevronDown
-                className={`h-3 w-3 transition-transform duration-200 ${eventsOpen ? "rotate-180" : ""}`}
-              />
-            </Link>
-            {eventsOpen && (
-              <div
-                className="absolute top-full left-0 mt-2 w-64 rounded shadow-[0_8px_32px_rgba(0,0,0,0.35)] z-50 overflow-hidden border border-gold/20"
-                style={{
-                  background: "linear-gradient(180deg, oklch(0.97 0.025 85), oklch(0.94 0.035 80))",
-                }}
-                onMouseEnter={onEventsEnter}
-                onMouseLeave={onEventsLeave}
-              >
-                {eventsDropdownItems.map((item) => (
-                  <Link
-                    key={item.label}
-                    to={item.to}
-                    className="block px-5 py-3 text-sm font-medium text-palace/80 hover:text-saffron hover:bg-saffron/10 border-b border-gold/15 last:border-0 transition"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
           {[...leftNav, ...rightNav].map((n) => (
             <Link
               key={n.to}
