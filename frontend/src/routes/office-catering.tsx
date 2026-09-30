@@ -187,10 +187,7 @@ function Hero() {
   const c = useContext(PageContentCtx);
   const heroImg = useSiteImage("office-catering-hero", heroImgDefault);
   return (
-    <section
-      className="relative flex items-start md:items-center justify-center text-center overflow-hidden lg:min-h-[62vh]"
-      style={{ minHeight: "46vh" }}
-    >
+    <section className="relative overflow-hidden">
       <img
         src={heroImg}
         alt="Office catering by The Grand Palace Indian Restaurant"
@@ -205,68 +202,72 @@ function Hero() {
             "linear-gradient(to bottom, rgba(6,2,0,0.82) 0%, rgba(8,3,0,0.78) 50%, rgba(10,4,0,0.85) 100%)",
         }}
       />
-      <div className="relative flex flex-col items-center gap-4 px-6 pt-20 pb-10 md:py-10">
-        <p
-          className="text-[9px] tracking-[0.7em] uppercase font-bold"
-          style={{ color: "#f5c14a", textShadow: "0 1px 8px rgba(0,0,0,0.8)" }}
-        >
-          Office Catering · Sydney CBD
-        </p>
-        <h1
-          data-tgp-key="hero.title"
-          className="font-display leading-none whitespace-pre-line"
-          style={{
-            fontSize: "clamp(32px,6vw,64px)",
-            color: "#fdf6e8",
-            textShadow: "0 2px 20px rgba(0,0,0,0.5)",
-          }}
-        >
-          {c("hero.title", "Office Catering Sydney CBD")}
-        </h1>
-        <div className="flex items-center gap-4" style={{ width: "10rem" }}>
-          <span className="h-px flex-1" style={{ background: "rgba(210,165,65,0.65)" }} />
-          <span style={{ color: "rgba(210,165,65,0.8)", fontSize: "9px" }}>◆</span>
-          <span className="h-px flex-1" style={{ background: "rgba(210,165,65,0.65)" }} />
-        </div>
-        <p
-          data-tgp-key="hero.subtitle"
-          className="text-[13px] md:text-[15px] max-w-xl"
-          style={{ color: "rgba(255,235,190,0.9)" }}
-        >
-          {c(
-            "hero.subtitle",
-            "Fresh Indian platter boxes from $75 per box. Full Catering Service at your office premise for group sizes of 20 and above",
-          )}
-        </p>
-        <div className="flex flex-nowrap gap-2 sm:gap-3 mt-2">
-          <a
-            href="#enquiry"
-            className="btn-gold flex-1 sm:flex-initial justify-center whitespace-nowrap !text-[12px] !px-4 !py-2.5 sm:!text-sm sm:!px-8 sm:!py-3.5"
+      <div className="relative grid lg:grid-cols-[1.3fr_1fr] items-center">
+        <div className="flex flex-col items-center text-center gap-4 px-6 pt-20 pb-10 md:py-16 lg:py-20">
+          <p
+            className="text-[9px] tracking-[0.7em] uppercase font-bold"
+            style={{ color: "#f5c14a", textShadow: "0 1px 8px rgba(0,0,0,0.8)" }}
           >
-            Get a Quote <ArrowRight className="h-4 w-4" />
-          </a>
-          <a
-            href="#platters"
-            className="btn-outline-gold flex-1 sm:flex-initial justify-center whitespace-nowrap !text-[12px] !px-4 !py-2.5 sm:!text-sm sm:!px-8 sm:!py-3.5"
+            Office Catering · Sydney CBD
+          </p>
+          <h1
+            data-tgp-key="hero.title"
+            className="font-display leading-none whitespace-pre-line"
+            style={{
+              fontSize: "clamp(32px,6vw,64px)",
+              color: "#fdf6e8",
+              textShadow: "0 2px 20px rgba(0,0,0,0.5)",
+            }}
           >
-            View Platter Boxes
-          </a>
+            {c("hero.title", "Office Catering Sydney CBD")}
+          </h1>
+          <div className="flex items-center gap-4" style={{ width: "10rem" }}>
+            <span className="h-px flex-1" style={{ background: "rgba(210,165,65,0.65)" }} />
+            <span style={{ color: "rgba(210,165,65,0.8)", fontSize: "9px" }}>◆</span>
+            <span className="h-px flex-1" style={{ background: "rgba(210,165,65,0.65)" }} />
+          </div>
+          <p
+            data-tgp-key="hero.subtitle"
+            className="text-[13px] md:text-[15px] max-w-xl"
+            style={{ color: "rgba(255,235,190,0.9)" }}
+          >
+            {c(
+              "hero.subtitle",
+              "Fresh Indian platter boxes from $75 per box. Full Catering Service at your office premise for group sizes of 20 and above",
+            )}
+          </p>
+          <div className="flex flex-nowrap gap-2 sm:gap-3 mt-2">
+            <a
+              href="#enquiry"
+              className="btn-gold flex-1 sm:flex-initial justify-center whitespace-nowrap !text-[12px] !px-4 !py-2.5 sm:!text-sm sm:!px-8 sm:!py-3.5"
+            >
+              Get a Quote <ArrowRight className="h-4 w-4" />
+            </a>
+            <a
+              href="#platters"
+              className="btn-outline-gold flex-1 sm:flex-initial justify-center whitespace-nowrap !text-[12px] !px-4 !py-2.5 sm:!text-sm sm:!px-8 sm:!py-3.5"
+            >
+              View Platter Boxes
+            </a>
+          </div>
         </div>
-      </div>
-      <div className="hidden lg:block absolute right-8 xl:right-16 top-1/2 -translate-y-1/2 z-10 w-[150px] xl:w-[170px] max-h-[80%]">
-        <div className="absolute -inset-2 border border-gold/40 rounded-2xl pointer-events-none" />
-        <div className="rounded-2xl overflow-hidden shadow-[0_24px_60px_-15px_rgba(0,0,0,0.6)] ring-1 ring-gold/20 bg-palace">
-          <video
-            src={officeCateringVideo}
-            poster={officeCateringVideoPoster}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            controls
-            className="w-full h-auto block"
-          />
+        <div className="hidden lg:flex items-center justify-center py-10 px-8">
+          <div className="relative w-full max-w-[280px]">
+            <div className="absolute -inset-2 border border-gold/40 rounded-2xl pointer-events-none" />
+            <div className="rounded-2xl overflow-hidden shadow-[0_24px_60px_-15px_rgba(0,0,0,0.6)] ring-1 ring-gold/20 bg-palace">
+              <video
+                src={officeCateringVideo}
+                poster={officeCateringVideoPoster}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                controls
+                className="w-full h-auto block"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
