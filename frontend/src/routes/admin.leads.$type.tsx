@@ -20,6 +20,7 @@ export const LEAD_TYPES: { id: string; label: string }[] = [
   { id: "venue-for-hire", label: "Venue Hire" },
   { id: "birthday", label: "Birthday" },
   { id: "career", label: "Career" },
+  { id: "diwali-catering-box", label: "Diwali Catering Box" },
 ];
 
 const STATUS_STYLE: Record<string, { bg: string; color: string; dot: string }> = {

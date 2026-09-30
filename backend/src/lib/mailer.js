@@ -230,6 +230,50 @@ export function cateringBookingsEmail({ name, email, mobile, vegQty, nonVegQty, 
   return { to: BOOKINGS_EMAIL, subject: `New Platter Box Order (Paid) — ${name || "Guest"}`, html, replyTo: email || undefined };
 }
 
+/* ── Diwali catering box: customer confirmation ── */
+export function diwaliCustomerEmail({ name, email, boxes, collectionDate, collectionTime, amountPaid }) {
+  const html = shell(
+    `<h1 style="margin:0 0 8px;font-size:22px;color:${BRAND.palace};">Your Diwali Catering Box order is confirmed! 🎉</h1>
+     <p style="margin:0 0 20px;font-size:15px;line-height:1.6;color:#4a3f30;">
+       Thank you, ${escapeHtml(name || "Guest")} — your payment has been received for a TGP Diwali Catering Box order.
+       Here is your order summary:
+     </p>
+     ${detailsTable([
+       ["Diwali Catering Box", boxes ? `× ${boxes}` : null],
+       ["Collection date", collectionDate],
+       ["Collection time", collectionTime],
+       ["Amount paid", amountPaid ? `A$${amountPaid}` : null],
+     ])}
+     <p style="margin:22px 0 0;font-size:14px;line-height:1.6;color:#4a3f30;">
+       Your order will be ready as per the collection slot above. If you need to change anything, just reply to this
+       email or call us on <strong>(02) 8021 7696</strong>.
+     </p>`,
+    { preheader: "Your Diwali Catering Box order at The Grand Palace is confirmed." }
+  );
+  return { to: email, subject: "Your Diwali Catering Box Order is Confirmed — The Grand Palace", html };
+}
+
+/* ── Diwali catering box: internal notification to bookings@ ── */
+export function diwaliBookingsEmail({ name, email, mobile, boxes, collectionDate, collectionTime, message, amountPaid, stripeSessionId }) {
+  const html = shell(
+    `<h1 style="margin:0 0 8px;font-size:20px;color:${BRAND.palace};">New Diwali Catering Box Order — Paid ✅</h1>
+     <p style="margin:0 0 20px;font-size:14px;color:#4a3f30;">A Diwali catering box order payment has just been completed.</p>
+     ${detailsTable([
+       ["Name", name],
+       ["Email", email],
+       ["Mobile", mobile],
+       ["Diwali Catering Box", boxes ? `× ${boxes}` : null],
+       ["Collection date", collectionDate],
+       ["Collection time", collectionTime],
+       ["Message", message],
+       ["Amount paid", amountPaid ? `A$${amountPaid}` : null],
+       ["Stripe session", stripeSessionId],
+     ])}`,
+    { preheader: `New paid Diwali catering box order — ${name || "guest"}` }
+  );
+  return { to: BOOKINGS_EMAIL, subject: `New Diwali Catering Box Order (Paid) — ${name || "Guest"}`, html, replyTo: email || undefined };
+}
+
 /* ── Generic enquiry: customer acknowledgement ── */
 export function enquiryCustomerEmail({ name, email, type, subject: subj }) {
   const typeLabel = { contact: "enquiry", events: "event enquiry", "office-catering": "catering enquiry", "venue-catering": "catering enquiry", "venue-for-hire": "venue hire enquiry", birthday: "birthday enquiry" }[type] || "enquiry";

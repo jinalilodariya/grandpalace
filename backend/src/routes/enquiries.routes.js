@@ -13,6 +13,7 @@ const VALID_TYPES = [
   "venue-for-hire",
   "birthday",
   "career",
+  "diwali-catering-box",
 ];
 
 // ── Public: standard single-submit forms (Contact, Events, Catering, etc.) ──
