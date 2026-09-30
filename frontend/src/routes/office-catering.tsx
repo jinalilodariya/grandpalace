@@ -34,6 +34,7 @@ import food2Default from "@/assets/platterbox-nonveg-live.jpg";
 import food3Default from "@/assets/office-catering-gallery-1.jpg";
 import food4Default from "@/assets/office-catering-gallery-2.jpg";
 import corpImgDefault from "@/assets/gallery/Corporate_059.jpg";
+import officeCateringVideo from "@/assets/office-catering-video.mp4";
 import { faqSchema, pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/office-catering")({
@@ -172,6 +173,7 @@ function OfficeCateringPage() {
         <PlatterOrderWizard />
         <WhyUs />
         <Gallery />
+        <VideoShowcase />
         <FAQ />
         <EnquirySection />
         <BirthdayTeaser />
@@ -1257,6 +1259,35 @@ function Gallery() {
               />
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Video Showcase ─────────────────────────────────────────────── */
+function VideoShowcase() {
+  return (
+    <section className="relative z-0 section-cream py-12 px-6 overflow-hidden border-t border-saffron/10">
+      <CarvedBackdrop tone="gold" />
+      <div className="relative z-10 max-w-5xl mx-auto text-center">
+        <div className="text-xs tracking-[0.4em] uppercase text-saffron/80 mb-3">
+          See It in Action
+        </div>
+        <h2 className="font-display text-3xl md:text-4xl text-palace mb-8">
+          A glimpse of our <span className="italic text-saffron">office catering</span>
+        </h2>
+        <div className="mx-auto max-w-sm rounded-2xl overflow-hidden shadow-[0_24px_50px_-18px_rgba(0,0,0,0.4)] ring-1 ring-saffron/15">
+          <video
+            src={officeCateringVideo}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
+            controls
+            className="w-full h-auto block"
+          />
         </div>
       </div>
     </section>
