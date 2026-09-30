@@ -174,7 +174,6 @@ function OfficeCateringPage() {
         <PlatterOrderWizard />
         <WhyUs />
         <Gallery />
-        <VideoShowcase />
         <FAQ />
         <EnquirySection />
         <BirthdayTeaser />
@@ -252,6 +251,22 @@ function Hero() {
           >
             View Platter Boxes
           </a>
+        </div>
+      </div>
+      <div className="hidden lg:block absolute right-8 xl:right-16 top-1/2 -translate-y-1/2 z-10 w-[180px] xl:w-[210px]">
+        <div className="absolute -inset-2 border border-gold/40 rounded-2xl pointer-events-none" />
+        <div className="rounded-2xl overflow-hidden shadow-[0_24px_60px_-15px_rgba(0,0,0,0.6)] ring-1 ring-gold/20 bg-palace">
+          <video
+            src={officeCateringVideo}
+            poster={officeCateringVideoPoster}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            controls
+            className="w-full h-auto block"
+          />
         </div>
       </div>
     </section>
@@ -1260,44 +1275,6 @@ function Gallery() {
               />
             </div>
           ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─── Video Showcase ─────────────────────────────────────────────── */
-function VideoShowcase() {
-  return (
-    <section className="relative z-0 section-cream py-12 md:py-16 px-6 overflow-hidden border-t border-saffron/10">
-      <CarvedBackdrop tone="gold" />
-      <div className="relative z-10 max-w-3xl mx-auto">
-        <div className="grid sm:grid-cols-[1fr_1.1fr] gap-6 sm:gap-8 items-center">
-          <div className="order-2 sm:order-1 text-center sm:text-left">
-            <div className="text-xs tracking-[0.4em] uppercase text-saffron/80 mb-3">
-              See It in Action
-            </div>
-            <h2 className="font-display text-3xl md:text-4xl text-palace mb-4">
-              A glimpse of our <span className="italic text-saffron">office catering</span>
-            </h2>
-            <p className="text-palace/65 text-sm leading-relaxed">
-              From our kitchen to your office — freshly cooked, beautifully presented, and set up
-              right at your desk. Watch how The Grand Palace brings the office together.
-            </p>
-          </div>
-          <div className="order-1 sm:order-2 w-full max-w-[220px] mx-auto sm:mx-0 rounded-2xl overflow-hidden shadow-[0_24px_50px_-18px_rgba(0,0,0,0.4)] ring-1 ring-saffron/15 bg-palace">
-            <video
-              src={officeCateringVideo}
-              poster={officeCateringVideoPoster}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              controls
-              className="w-full h-auto block"
-            />
-          </div>
         </div>
       </div>
     </section>
