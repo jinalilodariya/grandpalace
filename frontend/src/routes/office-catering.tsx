@@ -251,8 +251,8 @@ function Hero() {
             </a>
           </div>
         </div>
-        <div className="hidden lg:flex items-center justify-center py-10 px-8">
-          <div className="relative w-full max-w-[280px]">
+        <div className="flex items-center justify-center py-6 px-8 lg:py-10">
+          <div className="relative w-full max-w-[220px] lg:max-w-[280px]">
             <div className="absolute -inset-2 border border-gold/40 rounded-2xl pointer-events-none" />
             <div className="rounded-2xl overflow-hidden shadow-[0_24px_60px_-15px_rgba(0,0,0,0.6)] ring-1 ring-gold/20 bg-palace">
               <video
