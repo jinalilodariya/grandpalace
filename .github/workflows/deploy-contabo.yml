@@ -90,6 +90,11 @@ jobs:
 
             ln -sfn "releases/$RELEASE" current
 
+            # backend/.env is a symlink to shared/.env (640, group-owned by
+            # swayam; gp-deploy is a member of that group) so it can be read
+            # directly here. Prisma must run as gp-deploy, not swayam, since
+            # gp-deploy owns node_modules in this release and swayam can't
+            # write node_modules/.prisma/client during generate.
             cd current/backend
             npx prisma generate
             npx prisma migrate deploy
