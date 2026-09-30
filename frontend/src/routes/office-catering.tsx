@@ -1285,7 +1285,7 @@ function VideoShowcase() {
               right at your desk. Watch how The Grand Palace brings the office together.
             </p>
           </div>
-          <div className="order-1 sm:order-2 w-full max-w-[280px] sm:max-w-none mx-auto rounded-2xl overflow-hidden shadow-[0_24px_50px_-18px_rgba(0,0,0,0.4)] ring-1 ring-saffron/15 bg-palace">
+          <div className="order-1 sm:order-2 w-full max-w-[220px] mx-auto sm:mx-0 rounded-2xl overflow-hidden shadow-[0_24px_50px_-18px_rgba(0,0,0,0.4)] ring-1 ring-saffron/15 bg-palace">
             <video
               src={officeCateringVideo}
               poster={officeCateringVideoPoster}
