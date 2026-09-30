@@ -47,6 +47,9 @@ import { Route as AdminSeoRouteImport } from './routes/admin.seo'
 import { Route as AdminSiteImagesRouteImport } from './routes/admin.site-images'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as EventsBirthdayRouteImport } from './routes/events_.birthday'
+import { Route as EventsCorporateRouteImport } from './routes/events_.corporate'
+import { Route as EventsPrivateRouteImport } from './routes/events_.private'
 import { Route as GuidesIndexRouteImport } from './routes/guides.index'
 import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 import { Route as MenuIndexRouteImport } from './routes/menu.index'
@@ -247,6 +250,21 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BlogRoute,
 } as any)
+const EventsBirthdayRoute = EventsBirthdayRouteImport.update({
+  id: '/events_/birthday',
+  path: '/events/birthday',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsCorporateRoute = EventsCorporateRouteImport.update({
+  id: '/events_/corporate',
+  path: '/events/corporate',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsPrivateRoute = EventsPrivateRouteImport.update({
+  id: '/events_/private',
+  path: '/events/private',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GuidesIndexRoute = GuidesIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -330,6 +348,9 @@ export interface FileRoutesByFullPath {
   '/admin/seo': typeof AdminSeoRoute
   '/admin/site-images': typeof AdminSiteImagesRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/events/birthday': typeof EventsBirthdayRoute
+  '/events/corporate': typeof EventsCorporateRoute
+  '/events/private': typeof EventsPrivateRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/menu/$menuType': typeof MenuMenuTypeRoute
   '/menu/a-la-carte': typeof MenuALaCarteRoute
@@ -373,6 +394,9 @@ export interface FileRoutesByTo {
   '/admin/seo': typeof AdminSeoRoute
   '/admin/site-images': typeof AdminSiteImagesRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/events/birthday': typeof EventsBirthdayRoute
+  '/events/corporate': typeof EventsCorporateRoute
+  '/events/private': typeof EventsPrivateRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/menu/$menuType': typeof MenuMenuTypeRoute
   '/menu/a-la-carte': typeof MenuALaCarteRoute
@@ -423,6 +447,9 @@ export interface FileRoutesById {
   '/admin/seo': typeof AdminSeoRoute
   '/admin/site-images': typeof AdminSiteImagesRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/events_/birthday': typeof EventsBirthdayRoute
+  '/events_/corporate': typeof EventsCorporateRoute
+  '/events_/private': typeof EventsPrivateRoute
   '/guides/$slug': typeof GuidesSlugRoute
   '/menu/$menuType': typeof MenuMenuTypeRoute
   '/menu/a-la-carte': typeof MenuALaCarteRoute
@@ -474,6 +501,9 @@ export interface FileRouteTypes {
     | '/admin/seo'
     | '/admin/site-images'
     | '/blog/$slug'
+    | '/events/birthday'
+    | '/events/corporate'
+    | '/events/private'
     | '/guides/$slug'
     | '/menu/$menuType'
     | '/menu/a-la-carte'
@@ -517,6 +547,9 @@ export interface FileRouteTypes {
     | '/admin/seo'
     | '/admin/site-images'
     | '/blog/$slug'
+    | '/events/birthday'
+    | '/events/corporate'
+    | '/events/private'
     | '/guides/$slug'
     | '/menu/$menuType'
     | '/menu/a-la-carte'
@@ -566,6 +599,9 @@ export interface FileRouteTypes {
     | '/admin/seo'
     | '/admin/site-images'
     | '/blog/$slug'
+    | '/events_/birthday'
+    | '/events_/corporate'
+    | '/events_/private'
     | '/guides/$slug'
     | '/menu/$menuType'
     | '/menu/a-la-carte'
@@ -604,6 +640,9 @@ export interface RootRouteChildren {
   VenueCateringRoute: typeof VenueCateringRoute
   VenueForHireRoute: typeof VenueForHireRoute
   WhatsOnRoute: typeof WhatsOnRouteWithChildren
+  EventsBirthdayRoute: typeof EventsBirthdayRoute
+  EventsCorporateRoute: typeof EventsCorporateRoute
+  EventsPrivateRoute: typeof EventsPrivateRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -874,6 +913,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof BlogRoute
     }
+    '/events_/birthday': {
+      id: '/events_/birthday'
+      path: '/events/birthday'
+      fullPath: '/events/birthday'
+      preLoaderRoute: typeof EventsBirthdayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events_/corporate': {
+      id: '/events_/corporate'
+      path: '/events/corporate'
+      fullPath: '/events/corporate'
+      preLoaderRoute: typeof EventsCorporateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events_/private': {
+      id: '/events_/private'
+      path: '/events/private'
+      fullPath: '/events/private'
+      preLoaderRoute: typeof EventsPrivateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/guides/': {
       id: '/guides/'
       path: '/'
@@ -1063,6 +1123,9 @@ const rootRouteChildren: RootRouteChildren = {
   VenueCateringRoute: VenueCateringRoute,
   VenueForHireRoute: VenueForHireRoute,
   WhatsOnRoute: WhatsOnRouteWithChildren,
+  EventsBirthdayRoute: EventsBirthdayRoute,
+  EventsCorporateRoute: EventsCorporateRoute,
+  EventsPrivateRoute: EventsPrivateRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

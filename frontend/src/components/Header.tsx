@@ -27,10 +27,16 @@ function useMenuDropdownItems() {
   return [...BASE_MENU_ITEMS, ...custom];
 }
 
+const eventsDropdownItems = [
+  { to: "/events/corporate", label: "Corporate Functions" },
+  { to: "/events/private", label: "Private Events" },
+  { to: "/venue-catering", label: "Marriage & Catering at Your Venue" },
+  { to: "/events/birthday", label: "Celebrate Birthday" },
+];
+
 const leftNav = [
   { to: "/whats-on", label: "What's On" },
   { to: "/gallery", label: "Gallery" },
-  { to: "/events", label: "Events" },
 ];
 
 const rightNav = [
@@ -48,7 +54,9 @@ const restMobileNav = [
 export function Header() {
   const [open, setOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [eventsOpen, setEventsOpen] = useState(false);
   const menuTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const eventsTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const menuDropdownItems = useMenuDropdownItems();
 
   function onMenuEnter() {
@@ -57,6 +65,13 @@ export function Header() {
   }
   function onMenuLeave() {
     menuTimer.current = setTimeout(() => setMenuOpen(false), 120);
+  }
+  function onEventsEnter() {
+    if (eventsTimer.current) clearTimeout(eventsTimer.current);
+    setEventsOpen(true);
+  }
+  function onEventsLeave() {
+    eventsTimer.current = setTimeout(() => setEventsOpen(false), 120);
   }
 
   return (
@@ -121,6 +136,70 @@ export function Header() {
                 onMouseLeave={onMenuLeave}
               >
                 {menuDropdownItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    to={item.to}
+                    className="block px-5 py-3 text-sm font-medium text-palace/80 hover:text-saffron hover:bg-saffron/10 border-b border-gold/15 last:border-0 transition"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="relative" onMouseEnter={onEventsEnter} onMouseLeave={onEventsLeave}>
+            <Link
+              to="/events"
+              className="flex items-center gap-1 text-[15px] tracking-wider text-cream/90 hover:text-gold transition"
+              activeProps={{ className: "text-gold" }}
+            >
+              Events{" "}
+              <ChevronDown
+                className={`h-3 w-3 transition-transform duration-200 ${eventsOpen ? "rotate-180" : ""}`}
+              />
+            </Link>
+            {eventsOpen && (
+              <div
+                className="absolute top-full left-0 mt-2 w-64 rounded shadow-[0_8px_32px_rgba(0,0,0,0.35)] z-50 overflow-hidden border border-gold/20"
+                style={{
+                  background: "linear-gradient(180deg, oklch(0.97 0.025 85), oklch(0.94 0.035 80))",
+                }}
+                onMouseEnter={onEventsEnter}
+                onMouseLeave={onEventsLeave}
+              >
+                {eventsDropdownItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    to={item.to}
+                    className="block px-5 py-3 text-sm font-medium text-palace/80 hover:text-saffron hover:bg-saffron/10 border-b border-gold/15 last:border-0 transition"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="relative" onMouseEnter={onEventsEnter} onMouseLeave={onEventsLeave}>
+            <Link
+              to="/events"
+              className="flex items-center gap-1 text-[15px] tracking-wider text-cream/90 hover:text-gold transition"
+              activeProps={{ className: "text-gold" }}
+            >
+              Events{" "}
+              <ChevronDown
+                className={`h-3 w-3 transition-transform duration-200 ${eventsOpen ? "rotate-180" : ""}`}
+              />
+            </Link>
+            {eventsOpen && (
+              <div
+                className="absolute top-full left-0 mt-2 w-64 rounded shadow-[0_8px_32px_rgba(0,0,0,0.35)] z-50 overflow-hidden border border-gold/20"
+                style={{
+                  background: "linear-gradient(180deg, oklch(0.97 0.025 85), oklch(0.94 0.035 80))",
+                }}
+                onMouseEnter={onEventsEnter}
+                onMouseLeave={onEventsLeave}
+              >
+                {eventsDropdownItems.map((item) => (
                   <Link
                     key={item.label}
                     to={item.to}
@@ -213,6 +292,31 @@ export function Header() {
             </Link>
             <div className="flex flex-col gap-2.5 mt-2 pl-3 border-l border-gold/25">
               {menuDropdownItems.map((item) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  onClick={() => setOpen(false)}
+                  className="text-cream/60 hover:text-gold text-[13px]"
+                  activeProps={{ className: "text-gold" }}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Events section with sub-items */}
+          <div className="py-2">
+            <Link
+              to="/events"
+              onClick={() => setOpen(false)}
+              className="text-cream/90 hover:text-gold text-[15px]"
+              activeProps={{ className: "text-gold" }}
+            >
+              Events
+            </Link>
+            <div className="flex flex-col gap-2.5 mt-2 pl-3 border-l border-gold/25">
+              {eventsDropdownItems.map((item) => (
                 <Link
                   key={item.to}
                   to={item.to}
