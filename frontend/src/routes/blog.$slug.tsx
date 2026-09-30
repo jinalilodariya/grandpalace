@@ -1,7 +1,8 @@
-import { createFileRoute, notFound } from "@tanstack/react-router";
+import { createFileRoute, notFound, redirect } from "@tanstack/react-router";
 import { GuideTemplate } from "@/components/GuideTemplate";
 import { NormalGuideTemplate } from "@/components/NormalGuideTemplate";
 import { getGuide, type GuideContent } from "@/lib/guidesContent";
+import { isBlogPost } from "@/lib/guidesListingData";
 import { API_URL, type Guide } from "@/lib/admin-api";
 import { guideHead } from "@/lib/seo";
 
@@ -48,6 +49,7 @@ export const Route = createFileRoute("/blog/$slug")({
   loader: async ({ params }) => {
     const guide = (await fetchGuideFromApi(params.slug)) ?? getGuide(params.slug);
     if (!guide) throw notFound();
+    if (!isBlogPost(guide)) throw redirect({ href: `/guides/${guide.slug}`, statusCode: 301 });
     return guide;
   },
   head: (ctx) => (ctx.loaderData ? guideHead(ctx, "/blog", ctx.loaderData) : { meta: [] }),

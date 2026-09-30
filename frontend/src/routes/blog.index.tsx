@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { GuideListingPage } from "@/components/GuideListingPage";
 import heroImgDefault from "@/assets/hero-guides-spread.jpg";
-import { guides, BLOG_SLUGS } from "@/lib/guidesListingData";
+import { guides, blogSlugsFor } from "@/lib/guidesListingData";
 import { fetchPageContent, useLiveContent, makeContent } from "@/lib/pageContent";
 import { API_URL, type Guide } from "@/lib/admin-api";
 import { pageHead } from "@/lib/seo";
@@ -28,7 +28,6 @@ export const Route = createFileRoute("/blog/")({
   component: BlogPage,
 });
 
-const blogSlugSet = new Set(BLOG_SLUGS);
 
 function BlogPage() {
   const loaderData = Route.useLoaderData();
@@ -39,6 +38,7 @@ function BlogPage() {
   // Same guide list the /guides index draws from, filtered down to just the
   // slugs that live under /blog now (see BLOG_SLUGS in guidesListingData).
   const dbGuideSlugs = new Set(loaderData.adminGuides.map((g) => g.slug));
+  const blogSlugSet = blogSlugsFor(loaderData.adminGuides);
   const mergedGuides = [
     ...guides.map((g, i) => {
       const db = loaderData.adminGuides.find((d) => d.slug === g.slug);

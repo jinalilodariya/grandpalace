@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { API_URL, SITE_URL } from "@/lib/admin-api";
 import { guidesContent } from "@/lib/guidesContent";
 import { SITE_PAGES } from "@/lib/sitePages";
-import { BLOG_SLUGS, RETIRED_GUIDE_SLUGS } from "@/lib/guidesListingData";
+import { blogSlugsFor, RETIRED_GUIDE_SLUGS } from "@/lib/guidesListingData";
 
 // Every static page currently on the site, from the single shared list (also
 // used by the admin SEO panel) so the sitemap can never drift out of sync
@@ -23,6 +23,7 @@ export const Route = createFileRoute("/sitemap.xml")({
       GET: async () => {
         let redirectedPaths = new Set<string>();
         let dbGuideSlugs: string[] = [];
+        let dbGuides: { slug: string; guideType?: string | null }[] = [];
         let whatsOnSlugs = WHATS_ON_SLUGS;
         try {
           const [seoRes, guidesRes, pagesRes] = await Promise.all([
@@ -41,14 +42,14 @@ export const Route = createFileRoute("/sitemap.xml")({
             );
           }
           if (guidesRes.ok) {
-            const guides: { slug: string }[] = await guidesRes.json();
-            dbGuideSlugs = guides.map((g) => g.slug);
+            dbGuides = await guidesRes.json();
+            dbGuideSlugs = dbGuides.map((g) => g.slug);
           }
         } catch {
           // sitemap still works with the static list even if the backend is briefly down
         }
 
-        const blogSlugSet = new Set(BLOG_SLUGS);
+        const blogSlugSet = blogSlugsFor(dbGuides);
         const allGuideSlugs = new Set([...Object.keys(guidesContent), ...dbGuideSlugs]);
         for (const slug of RETIRED_GUIDE_SLUGS) allGuideSlugs.delete(slug);
         const guidePaths = [...allGuideSlugs].map((slug) =>

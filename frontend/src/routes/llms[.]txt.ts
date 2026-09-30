@@ -6,7 +6,7 @@ import {
   RESTAURANT_EMAIL,
   RESTAURANT_PHONE_DISPLAY,
 } from "@/lib/guidesContent";
-import { BLOG_SLUGS, RETIRED_GUIDE_SLUGS } from "@/lib/guidesListingData";
+import { blogSlugsFor, RETIRED_GUIDE_SLUGS } from "@/lib/guidesListingData";
 
 // llms.txt (https://llmstxt.org) — a plain-markdown summary of the site for AI
 // assistants, the way robots.txt/sitemap.xml are for crawlers. Business details
@@ -39,18 +39,19 @@ export const Route = createFileRoute("/llms.txt")({
         const titles = new Map<string, string>(
           Object.values(guidesContent).map((g) => [g.slug, g.title]),
         );
+        let dbGuides: { slug: string; title?: string; guideType?: string | null }[] = [];
         try {
           const res = await fetch(`${API_URL}/api/guides`);
           if (res.ok) {
-            const guides: { slug: string; title?: string }[] = await res.json();
-            for (const g of guides) if (!titles.has(g.slug)) titles.set(g.slug, g.title || g.slug);
+            dbGuides = await res.json();
+            for (const g of dbGuides) if (!titles.has(g.slug)) titles.set(g.slug, g.title || g.slug);
           }
         } catch {
           // still serve the bundled guides if the backend is briefly down
         }
 
         for (const slug of RETIRED_GUIDE_SLUGS) titles.delete(slug);
-        const blogSlugSet = new Set(BLOG_SLUGS);
+        const blogSlugSet = blogSlugsFor(dbGuides);
         const toLine = ([slug, title]: [string, string], base: string) =>
           `- [${title}](${SITE_URL}/${base}/${slug})`;
         const entries = [...titles.entries()];
