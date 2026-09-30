@@ -1269,27 +1269,35 @@ function Gallery() {
 /* ─── Video Showcase ─────────────────────────────────────────────── */
 function VideoShowcase() {
   return (
-    <section className="relative z-0 section-cream py-12 px-6 overflow-hidden border-t border-saffron/10">
+    <section className="relative z-0 section-cream py-12 md:py-16 px-6 overflow-hidden border-t border-saffron/10">
       <CarvedBackdrop tone="gold" />
-      <div className="relative z-10 max-w-5xl mx-auto text-center">
-        <div className="text-xs tracking-[0.4em] uppercase text-saffron/80 mb-3">
-          See It in Action
-        </div>
-        <h2 className="font-display text-3xl md:text-4xl text-palace mb-8">
-          A glimpse of our <span className="italic text-saffron">office catering</span>
-        </h2>
-        <div className="mx-auto max-w-md rounded-2xl overflow-hidden shadow-[0_24px_50px_-18px_rgba(0,0,0,0.4)] ring-1 ring-saffron/15 bg-palace">
-          <video
-            src={officeCateringVideo}
-            poster={officeCateringVideoPoster}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            controls
-            className="w-full h-auto block"
-          />
+      <div className="relative z-10 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+          <div className="order-2 md:order-1 text-center md:text-left">
+            <div className="text-xs tracking-[0.4em] uppercase text-saffron/80 mb-3">
+              See It in Action
+            </div>
+            <h2 className="font-display text-3xl md:text-4xl text-palace mb-4">
+              A glimpse of our <span className="italic text-saffron">office catering</span>
+            </h2>
+            <p className="text-palace/65 text-sm leading-relaxed max-w-md mx-auto md:mx-0">
+              From our kitchen to your office — freshly cooked, beautifully presented, and set up
+              right at your desk. Watch how The Grand Palace brings the office together.
+            </p>
+          </div>
+          <div className="order-1 md:order-2 mx-auto w-full max-w-[320px] rounded-2xl overflow-hidden shadow-[0_24px_50px_-18px_rgba(0,0,0,0.4)] ring-1 ring-saffron/15 bg-palace">
+            <video
+              src={officeCateringVideo}
+              poster={officeCateringVideoPoster}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              controls
+              className="w-full h-auto block"
+            />
+          </div>
         </div>
       </div>
     </section>
