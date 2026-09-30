@@ -11,8 +11,6 @@ import menuFeatureImg from "@/assets/menu-feature.png";
 import menuHero020Default from "@/assets/menu-hero-020.jpg";
 import { useSiteImage } from "@/lib/useSiteImage";
 import introVideo from "@/assets/intro-video.mp4";
-import officeCateringVideo from "@/assets/office-catering-video.mp4";
-import officeCateringVideoPoster from "@/assets/office-catering-video-poster.jpg";
 import birthdayImgDefault from "@/assets/birthday-015.jpg";
 import milestoneImgDefault from "@/assets/corporate-section.png";
 import venueImgDefault from "@/assets/venue-section.png";
@@ -163,22 +161,6 @@ function Home() {
             <Link to="/menu/a-la-carte" className="btn-outline-gold">
               View Menu
             </Link>
-          </div>
-        </div>
-        <div className="hidden lg:block absolute right-8 xl:right-16 top-1/2 -translate-y-1/2 z-10 w-[180px] xl:w-[210px]">
-          <div className="absolute -inset-2 border border-gold/40 rounded-2xl pointer-events-none" />
-          <div className="rounded-2xl overflow-hidden shadow-[0_24px_60px_-15px_rgba(0,0,0,0.6)] ring-1 ring-gold/20 bg-palace">
-            <video
-              src={officeCateringVideo}
-              poster={officeCateringVideoPoster}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              controls
-              className="w-full h-auto block"
-            />
           </div>
         </div>
       </section>

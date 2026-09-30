@@ -188,7 +188,7 @@ function Hero() {
   const heroImg = useSiteImage("office-catering-hero", heroImgDefault);
   return (
     <section
-      className="relative flex items-start md:items-center justify-center text-center overflow-hidden"
+      className="relative flex items-start md:items-center justify-center text-center overflow-hidden lg:min-h-[62vh]"
       style={{ minHeight: "46vh" }}
     >
       <img
@@ -253,7 +253,7 @@ function Hero() {
           </a>
         </div>
       </div>
-      <div className="hidden lg:block absolute right-8 xl:right-16 top-1/2 -translate-y-1/2 z-10 w-[180px] xl:w-[210px]">
+      <div className="hidden lg:block absolute right-8 xl:right-16 top-1/2 -translate-y-1/2 z-10 w-[150px] xl:w-[170px] max-h-[80%]">
         <div className="absolute -inset-2 border border-gold/40 rounded-2xl pointer-events-none" />
         <div className="rounded-2xl overflow-hidden shadow-[0_24px_60px_-15px_rgba(0,0,0,0.6)] ring-1 ring-gold/20 bg-palace">
           <video
