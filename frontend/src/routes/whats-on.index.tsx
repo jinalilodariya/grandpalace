@@ -6,6 +6,7 @@ import mandala from "@/assets/mandala.png";
 import { API_URL, type SitePage } from "@/lib/admin-api";
 
 import heroImgDefault from "@/assets/hero-whats-on-spread.jpg";
+import diwaliBoxImg from "@/assets/diwali-catering-box.jpg";
 import { fetchPageContent, useLiveContent, makeContent } from "@/lib/pageContent";
 import { pageHead } from "@/lib/seo";
 
@@ -76,7 +77,26 @@ function WhatsOnPage() {
     bookExternal: p.ctaHref.startsWith("http"),
   }));
 
-  const cards = dbCards;
+  // Seasonal pages that live as their own code route rather than an admin
+  // What's On page — shown first, and never duplicated by a DB page with
+  // the same slug.
+  const featuredCards = [
+    {
+      img: diwaliBoxImg,
+      imgHeight: 340,
+      badge: "Diwali",
+      badgeColor: "#c8860a",
+      title: "Diwali Catering Box",
+      sub: "Six festive Indian savouries and sweets in one box — $99",
+      desc: "Paneer cigar rolls, palak pakora, dal kachori, samosas, motichur laddu and gulab jamun. Order by Thursday 5 November for in-store collection.",
+      learnHref: "/whats-on/diwali-catering-box" as string | null,
+      bookHref: "/whats-on/diwali-catering-box#order",
+      bookLabel: "Order Now",
+      bookExternal: false,
+    },
+  ];
+  const featuredHrefs = new Set(featuredCards.map((f) => f.learnHref));
+  const cards = [...featuredCards, ...dbCards.filter((d) => !featuredHrefs.has(d.learnHref))];
 
   return (
     <PageShell crumbs={[{ label: "What's On" }]}>

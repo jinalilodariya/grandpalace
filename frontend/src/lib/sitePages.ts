@@ -229,6 +229,17 @@ export const SITE_PAGES: SitePage[] = [
       "restaurant deals sydney cbd, food offers sydney cbd, indian restaurant specials sydney",
     image: "/site-image-defaults/about-hero.jpg",
   },
+  {
+    path: "/whats-on/diwali-catering-box",
+    label: "Diwali Catering Box",
+    title: "Diwali Catering Box Sydney CBD — $99 | TGP",
+    description:
+      "Order the TGP Diwali Catering Box — six Indian savouries and sweets, 33–35 pieces, for $99. Order by Thursday 5 November for in-store collection.",
+    keywords:
+      "diwali catering sydney, diwali catering box, diwali sweets sydney, indian sweets box sydney cbd, diwali snacks box",
+    image: "/whats-on-images/diwali-catering-box.jpg",
+    parent: { name: "What's On", path: "/whats-on" },
+  },
 ];
 
 export const SITE_PAGE_BY_PATH = new Map(SITE_PAGES.map((p) => [p.path, p]));
