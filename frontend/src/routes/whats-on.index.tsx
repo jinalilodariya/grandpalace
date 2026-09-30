@@ -6,7 +6,7 @@ import mandala from "@/assets/mandala.png";
 import { API_URL, type SitePage } from "@/lib/admin-api";
 
 import heroImgDefault from "@/assets/hero-whats-on-spread.jpg";
-import diwaliBoxImg from "@/assets/diwali-catering-box.jpg";
+import diwaliBoxImg from "@/assets/diwali-catering-card.jpg";
 import { fetchPageContent, useLiveContent, makeContent } from "@/lib/pageContent";
 import { pageHead } from "@/lib/seo";
 
@@ -83,7 +83,7 @@ function WhatsOnPage() {
   const featuredCards = [
     {
       img: diwaliBoxImg,
-      imgHeight: 340,
+      imgHeight: 240,
       badge: "Diwali",
       badgeColor: "#c8860a",
       title: "Diwali Catering Box",
