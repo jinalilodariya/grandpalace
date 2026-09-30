@@ -57,6 +57,7 @@ import { Route as MenuMenuTypeRouteImport } from './routes/menu.$menuType'
 import { Route as MenuALaCarteRouteImport } from './routes/menu.a-la-carte'
 import { Route as WhatsOnIndexRouteImport } from './routes/whats-on.index'
 import { Route as WhatsOnSlugRouteImport } from './routes/whats-on.$slug'
+import { Route as WhatsOnDiwaliCateringBoxRouteImport } from './routes/whats-on.diwali-catering-box'
 import { Route as AdminLeadsIndexRouteImport } from './routes/admin.leads.index'
 import { Route as AdminLeadsTypeRouteImport } from './routes/admin.leads.$type'
 
@@ -300,6 +301,12 @@ const WhatsOnSlugRoute = WhatsOnSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => WhatsOnRoute,
 } as any)
+const WhatsOnDiwaliCateringBoxRoute =
+  WhatsOnDiwaliCateringBoxRouteImport.update({
+    id: '/diwali-catering-box',
+    path: '/diwali-catering-box',
+    getParentRoute: () => WhatsOnRoute,
+  } as any)
 const AdminLeadsIndexRoute = AdminLeadsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -355,6 +362,7 @@ export interface FileRoutesByFullPath {
   '/menu/$menuType': typeof MenuMenuTypeRoute
   '/menu/a-la-carte': typeof MenuALaCarteRoute
   '/whats-on/$slug': typeof WhatsOnSlugRoute
+  '/whats-on/diwali-catering-box': typeof WhatsOnDiwaliCateringBoxRoute
   '/admin/': typeof AdminIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/guides/': typeof GuidesIndexRoute
@@ -401,6 +409,7 @@ export interface FileRoutesByTo {
   '/menu/$menuType': typeof MenuMenuTypeRoute
   '/menu/a-la-carte': typeof MenuALaCarteRoute
   '/whats-on/$slug': typeof WhatsOnSlugRoute
+  '/whats-on/diwali-catering-box': typeof WhatsOnDiwaliCateringBoxRoute
   '/admin': typeof AdminIndexRoute
   '/blog': typeof BlogIndexRoute
   '/guides': typeof GuidesIndexRoute
@@ -454,6 +463,7 @@ export interface FileRoutesById {
   '/menu/$menuType': typeof MenuMenuTypeRoute
   '/menu/a-la-carte': typeof MenuALaCarteRoute
   '/whats-on/$slug': typeof WhatsOnSlugRoute
+  '/whats-on/diwali-catering-box': typeof WhatsOnDiwaliCateringBoxRoute
   '/admin/': typeof AdminIndexRoute
   '/blog/': typeof BlogIndexRoute
   '/guides/': typeof GuidesIndexRoute
@@ -508,6 +518,7 @@ export interface FileRouteTypes {
     | '/menu/$menuType'
     | '/menu/a-la-carte'
     | '/whats-on/$slug'
+    | '/whats-on/diwali-catering-box'
     | '/admin/'
     | '/blog/'
     | '/guides/'
@@ -554,6 +565,7 @@ export interface FileRouteTypes {
     | '/menu/$menuType'
     | '/menu/a-la-carte'
     | '/whats-on/$slug'
+    | '/whats-on/diwali-catering-box'
     | '/admin'
     | '/blog'
     | '/guides'
@@ -606,6 +618,7 @@ export interface FileRouteTypes {
     | '/menu/$menuType'
     | '/menu/a-la-carte'
     | '/whats-on/$slug'
+    | '/whats-on/diwali-catering-box'
     | '/admin/'
     | '/blog/'
     | '/guides/'
@@ -983,6 +996,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WhatsOnSlugRouteImport
       parentRoute: typeof WhatsOnRoute
     }
+    '/whats-on/diwali-catering-box': {
+      id: '/whats-on/diwali-catering-box'
+      path: '/diwali-catering-box'
+      fullPath: '/whats-on/diwali-catering-box'
+      preLoaderRoute: typeof WhatsOnDiwaliCateringBoxRouteImport
+      parentRoute: typeof WhatsOnRoute
+    }
     '/admin/leads/': {
       id: '/admin/leads/'
       path: '/'
@@ -1087,11 +1107,13 @@ const MenuRouteWithChildren = MenuRoute._addFileChildren(MenuRouteChildren)
 
 interface WhatsOnRouteChildren {
   WhatsOnSlugRoute: typeof WhatsOnSlugRoute
+  WhatsOnDiwaliCateringBoxRoute: typeof WhatsOnDiwaliCateringBoxRoute
   WhatsOnIndexRoute: typeof WhatsOnIndexRoute
 }
 
 const WhatsOnRouteChildren: WhatsOnRouteChildren = {
   WhatsOnSlugRoute: WhatsOnSlugRoute,
+  WhatsOnDiwaliCateringBoxRoute: WhatsOnDiwaliCateringBoxRoute,
   WhatsOnIndexRoute: WhatsOnIndexRoute,
 }
 
