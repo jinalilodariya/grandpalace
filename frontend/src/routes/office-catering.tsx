@@ -35,6 +35,7 @@ import food3Default from "@/assets/office-catering-gallery-1.jpg";
 import food4Default from "@/assets/office-catering-gallery-2.jpg";
 import corpImgDefault from "@/assets/gallery/Corporate_059.jpg";
 import officeCateringVideo from "@/assets/office-catering-video.mp4";
+import officeCateringVideoPoster from "@/assets/office-catering-video-poster.jpg";
 import { faqSchema, pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/office-catering")({
@@ -1277,14 +1278,15 @@ function VideoShowcase() {
         <h2 className="font-display text-3xl md:text-4xl text-palace mb-8">
           A glimpse of our <span className="italic text-saffron">office catering</span>
         </h2>
-        <div className="mx-auto max-w-sm rounded-2xl overflow-hidden shadow-[0_24px_50px_-18px_rgba(0,0,0,0.4)] ring-1 ring-saffron/15">
+        <div className="mx-auto max-w-md rounded-2xl overflow-hidden shadow-[0_24px_50px_-18px_rgba(0,0,0,0.4)] ring-1 ring-saffron/15 bg-palace">
           <video
             src={officeCateringVideo}
+            poster={officeCateringVideoPoster}
             autoPlay
             muted
             loop
             playsInline
-            preload="none"
+            preload="metadata"
             controls
             className="w-full h-auto block"
           />
