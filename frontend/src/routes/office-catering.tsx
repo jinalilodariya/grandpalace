@@ -31,9 +31,9 @@ import {
 import heroImgDefault from "@/assets/hero-office-catering-platter.jpg";
 import food1Default from "@/assets/platterbox-veg-live.jpg";
 import food2Default from "@/assets/platterbox-nonveg-live.jpg";
-import food3Default from "@/assets/office-catering-gallery-1.jpg";
-import food4Default from "@/assets/office-catering-gallery-2.jpg";
-import corpImgDefault from "@/assets/gallery/Corporate_059.jpg";
+import food3Default from "@/assets/office-catering-gallery-boxed.jpg";
+import food4Default from "@/assets/office-catering-gallery-catering.jpg";
+import corpImgDefault from "@/assets/office-catering-full-service.jpg";
 import officeCateringVideo from "@/assets/office-catering-video.mp4";
 import officeCateringVideoPoster from "@/assets/office-catering-video-poster.jpg";
 import { faqSchema, pageHead } from "@/lib/seo";
