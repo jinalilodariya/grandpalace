@@ -20,6 +20,39 @@ export const tagColors: Record<Tag, string> = {
 
 export const guides: GuideItem[] = [
   {
+    title: "Navratri Catering in Sydney: Vegetarian Food for Garba Nights & Navratri Parties",
+    excerpt:
+      "A practical guide to catering a garba night or Navratri get-together in Sydney — what to serve, dietary needs, how much to order and how to book with TGP.",
+    date: "Sep 29, 2026",
+    tag: "Catering",
+    slug: "navratri-catering-sydney",
+  },
+  {
+    title: "Navratri Celebration Dinner in Sydney: Where to Eat Before or After Garba",
+    excerpt:
+      "Where to eat before or after garba in Sydney — vegetarian and Jain dishes, set menus for groups and easy access from Wynyard at TGP.",
+    date: "Sep 29, 2026",
+    tag: "Dining",
+    slug: "navratri-celebration-dinner-sydney",
+  },
+  {
+    title: "Diwali Catering Box: Festive Snacks & Sweets for $99",
+    excerpt:
+      "Six festive favourites, 33–35 pieces, $99 — what's inside the TGP Diwali Catering Box, who it's for, and how to order and collect.",
+    date: "Sep 29, 2026",
+    tag: "Catering",
+    slug: "diwali-catering-box-sydney",
+  },
+  {
+    title:
+      "Diwali Dinner in Sydney CBD: Celebrate the Festival of Lights at The Grand Palace Indian Restaurant",
+    excerpt:
+      "Planning Diwali dinner out with the family? What to order, how to book for a group and why to book early at TGP in Sydney CBD.",
+    date: "Sep 29, 2026",
+    tag: "Dining",
+    slug: "diwali-dinner-sydney-cbd",
+  },
+  {
     title: "Indian Restaurant Near Wynyard Station Sydney — 1-Minute Walk to The Grand Palace",
     excerpt:
       "If you work near Wynyard Station in Sydney CBD, you're just one minute from the finest Indian dining experience in the city.",
