@@ -12,7 +12,7 @@ import {
 } from "@/lib/admin-api";
 import { SITE_PAGES } from "@/lib/sitePages";
 import { guidesContent } from "@/lib/guidesContent";
-import { BLOG_SLUGS, RETIRED_GUIDE_SLUGS } from "@/lib/guidesListingData";
+import { isBlogPost, RETIRED_GUIDE_SLUGS } from "@/lib/guidesListingData";
 import {
   absUrl,
   DEFAULT_OG_IMAGE,
@@ -202,15 +202,15 @@ function useSeoTargets() {
       heroImage?: string | null;
       sections?: { image?: string | null }[];
       published?: boolean;
+      guideType?: string | null;
     }
   >();
   for (const g of Object.values(guidesContent)) bySlug.set(g.slug, g);
   for (const g of dbGuides) bySlug.set(g.slug, g);
   for (const slug of RETIRED_GUIDE_SLUGS) bySlug.delete(slug);
-  const blogSlugs = new Set(BLOG_SLUGS);
   for (const g of bySlug.values()) {
     if (g.published === false) continue;
-    const isBlog = blogSlugs.has(g.slug);
+    const isBlog = isBlogPost(g);
     targets.push({
       path: `${isBlog ? "/blog" : "/guides"}/${g.slug}`,
       label: g.title,

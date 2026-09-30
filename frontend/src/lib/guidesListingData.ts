@@ -429,6 +429,19 @@ export const BLOG_SLUGS: string[] = [
   "top-5-indian-dishes-sydney",
 ];
 
+/** A post lives under /blog if it's one of the slugs above (covers the
+ *  bundled posts, which have no guideType) or if it's a "normal" (single
+ *  article) post; "listicle" posts live under /guides. Posts created in
+ *  admin as Normal therefore land on /blog with no code change. */
+export function isBlogPost(g: { slug: string; guideType?: string | null }): boolean {
+  return BLOG_SLUGS.includes(g.slug) || g.guideType === "normal";
+}
+
+/** Every blog slug, given the posts loaded from the database. */
+export function blogSlugsFor(dbGuides: { slug: string; guideType?: string | null }[] = []): Set<string> {
+  return new Set([...BLOG_SLUGS, ...dbGuides.filter((g) => g.guideType === "normal").map((g) => g.slug)]);
+}
+
 // Bundled guides that were merged into another post and are now 301'd at the
 // server (nginx) level — so no admin Redirect row exists for sitemap.xml to
 // filter on. Kept out of sitemap.xml, llms.txt and the admin SEO list.

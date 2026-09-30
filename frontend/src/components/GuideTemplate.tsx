@@ -32,7 +32,7 @@ import {
   RESTAURANT_EMAIL,
 } from "@/lib/guidesContent";
 import { SITE_URL as CURRENT_LIVE_SITE_URL } from "@/lib/admin-api";
-import { BLOG_SLUGS } from "@/lib/guidesListingData";
+import { BLOG_SLUGS, isBlogPost } from "@/lib/guidesListingData";
 import { RelatedGuides } from "@/components/RelatedGuides";
 
 function GoogleIcon({ className }: { className?: string }) {
@@ -103,7 +103,7 @@ function extractHowToSteps(guide: GuideContent): string[] | null {
 export function buildSchema(guide: GuideContent) {
   // Blog posts share this template but live under /blog — their schema URLs
   // must match their real (canonical) address, not redirect via /guides.
-  const isBlog = BLOG_SLUGS.includes(guide.slug);
+  const isBlog = isBlogPost(guide);
   const url = `${CANONICAL_BASE_URL}/${isBlog ? "blog" : "guides"}/${guide.slug}`;
 
   const articleSchema = {
