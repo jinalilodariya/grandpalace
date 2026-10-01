@@ -1527,10 +1527,10 @@ export const guidesContent: Record<string, GuideContent> = {
   },
   // Festive post — Navratri/Diwali 2026
   "diwali-catering-box-sydney": {
-    publishedDate: "2026-09-29",
-    publishedDateDisplay: "Sep 29, 2026",
-    updatedDate: "2026-09-29",
-    updatedDateDisplay: "Sep 29, 2026",
+    publishedDate: "2026-09-28",
+    publishedDateDisplay: "Sep 28, 2026",
+    updatedDate: "2026-09-28",
+    updatedDateDisplay: "Sep 28, 2026",
     guideType: "normal",
     slug: "diwali-catering-box-sydney",
     tag: "Catering",
@@ -1678,10 +1678,10 @@ export const guidesContent: Record<string, GuideContent> = {
   },
   // Festive post — Navratri/Diwali 2026
   "diwali-dinner-sydney-cbd": {
-    publishedDate: "2026-09-29",
-    publishedDateDisplay: "Sep 29, 2026",
-    updatedDate: "2026-09-29",
-    updatedDateDisplay: "Sep 29, 2026",
+    publishedDate: "2026-09-28",
+    publishedDateDisplay: "Sep 28, 2026",
+    updatedDate: "2026-09-28",
+    updatedDateDisplay: "Sep 28, 2026",
     guideType: "normal",
     slug: "diwali-dinner-sydney-cbd",
     tag: "Dining",
