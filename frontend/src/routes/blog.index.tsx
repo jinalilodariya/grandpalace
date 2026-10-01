@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { GuideListingPage } from "@/components/GuideListingPage";
 import heroImgDefault from "@/assets/hero-guides-spread.jpg";
 import { guides, blogSlugsFor } from "@/lib/guidesListingData";
+import { guidesContent } from "@/lib/guidesContent";
 import { fetchPageContent, useLiveContent, makeContent } from "@/lib/pageContent";
 import { API_URL, type Guide } from "@/lib/admin-api";
 import { pageHead } from "@/lib/seo";
@@ -29,6 +30,12 @@ export const Route = createFileRoute("/blog/")({
 });
 
 
+/** Publish date as a sortable number; undated posts sort last. */
+function publishedTime(date: string | undefined): number {
+  const t = date ? Date.parse(date) : NaN;
+  return Number.isNaN(t) ? 0 : t;
+}
+
 function BlogPage() {
   const loaderData = Route.useLoaderData();
   const content = useLiveContent("/blog", loaderData.content);
@@ -50,8 +57,9 @@ function BlogPage() {
             tag: db.tag as typeof g.tag,
             slug: db.slug,
             order: db.sortOrder,
+            published: db.publishedDate,
           }
-        : { ...g, order: i };
+        : { ...g, order: i, published: guidesContent[g.slug]?.publishedDate ?? g.date };
     }),
     ...loaderData.adminGuides
       .filter((g) => !guides.some((s) => s.slug === g.slug))
@@ -62,10 +70,13 @@ function BlogPage() {
         tag: g.tag as (typeof guides)[number]["tag"],
         slug: g.slug,
         order: g.sortOrder,
+        published: g.publishedDate,
       })),
   ]
     .filter((g) => blogSlugSet.has(g.slug))
-    .sort((a, b) => a.order - b.order);
+    // Newest first, so a newly added post (admin or code) always shows at the
+    // top; posts with the same date keep their admin order.
+    .sort((a, b) => publishedTime(b.published) - publishedTime(a.published) || a.order - b.order);
 
   return (
     <GuideListingPage

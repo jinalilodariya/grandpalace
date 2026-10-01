@@ -39,7 +39,7 @@ export const guides: GuideItem[] = [
     title: "Diwali Catering Box: Festive Snacks & Sweets for $99",
     excerpt:
       "Six festive favourites, 33–35 pieces, $99 — what's inside the TGP Diwali Catering Box, who it's for, and how to order and collect.",
-    date: "Sep 29, 2026",
+    date: "Sep 28, 2026",
     tag: "Catering",
     slug: "diwali-catering-box-sydney",
   },
@@ -48,7 +48,7 @@ export const guides: GuideItem[] = [
       "Diwali Dinner in Sydney CBD: Celebrate the Festival of Lights at The Grand Palace Indian Restaurant",
     excerpt:
       "Planning Diwali dinner out with the family? What to order, how to book for a group and why to book early at TGP in Sydney CBD.",
-    date: "Sep 29, 2026",
+    date: "Sep 28, 2026",
     tag: "Dining",
     slug: "diwali-dinner-sydney-cbd",
   },
